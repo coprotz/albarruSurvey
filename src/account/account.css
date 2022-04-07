@@ -298,12 +298,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100%;
+    min-height: 100%;
+    
+}
+
+.share_inner h2{
+    margin-bottom: 20px;
 }
 
 .shared_icons{
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
 
@@ -323,8 +329,7 @@
         margin: 0 auto;
     }
 
-    .account__container{
-      
+    .account__container{      
         width: 100%;
         flex-direction: column;
         margin-top:0px;
@@ -350,6 +355,7 @@
         /* background:rgb(231, 231, 255) ; */
         padding: 10px;
         /* border: 1px solid rgb(201, 199, 199); */
+        height: calc(100vh -200px);
     }
 
     .dashbord_title{
@@ -395,6 +401,11 @@
 
     .hide_menu{
         display: none;
+    }
+
+    .share_inner h2{
+        margin-bottom: 20px;
+        text-align: center;
     }
 
     
