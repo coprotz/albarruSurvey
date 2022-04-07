@@ -3,6 +3,8 @@ import './request.css'
 import {motion} from 'framer-motion'
 import { Link } from "react-router-dom";
 import { useForm, useStep } from 'react-hooks-helper'
+import Footer from '../footer/Footer';
+import TopBar from '../topbar/TopBar';
 
 
 const defaultData = {
@@ -45,6 +47,8 @@ const Request = () => {
 
 
   return (
+      <>
+      <TopBar/>
     <motion.div 
         initial={{ x: '-100vw'}}
         animate={{x:0}} 
@@ -206,6 +210,8 @@ const Request = () => {
     </div>
     
     </motion.div>
+    <Footer/>
+    </>
   )
 }
 

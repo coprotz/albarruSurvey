@@ -3,6 +3,8 @@ import './login.css'
 import {motion} from 'framer-motion'
 import { Link } from "react-router-dom";
 import { useForm, useStep } from 'react-hooks-helper'
+import Footer from '../footer/Footer';
+import TopBar from '../topbar/TopBar';
 
 
 const defaultData = {   
@@ -35,6 +37,8 @@ const Login = () => {
 
 
   return (
+      <>
+      <TopBar/>
     <motion.div 
         initial={{ x: '-100vw'}}
         animate={{x:0}} 
@@ -112,6 +116,8 @@ const Login = () => {
     </div>
     
     </motion.div>
+    <Footer/>
+    </>
   )
 }
 
