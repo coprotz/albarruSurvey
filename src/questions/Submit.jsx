@@ -1,8 +1,11 @@
 import React from 'react'
 import { FaChevronLeft } from "react-icons/fa";
 import {motion} from 'framer-motion'
+import { useNavigate } from 'react-router-dom';
 
 const Submit = ({previous, next, go}) => {
+
+    const navigate = useNavigate();
   return (     
 
         <motion.div 
@@ -19,7 +22,7 @@ const Submit = ({previous, next, go}) => {
             </h2>
             <h3 className='body_foote'>In case of any query please contact me through</h3>
             <h3 className='body_foote'><a href='mailto:ally@allyphd.site'>ally@allyphd.site</a> </h3>
-            <button className='get_start' onClick={() => {go('1')}}>Finish my Questionnaire</button>
+            <button className='get_start' onClick={() => {navigate('https://624f229eeec04935f9f3165f--dazzling-kashata-2ef301.netlify.app/')}}>Finish my Questionnaire</button>
         
         </motion.div>
     
