@@ -1,0 +1,401 @@
+.account__container{
+    display: flex;
+    width: 90%;
+    min-height: calc(100vh - 110px);
+    margin-top:10px;
+    
+}
+
+.account_sidebar{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: sticky;
+    top: 60px;
+    height: fit-content;
+    border-bottom: 1px solid rgb(173, 172, 172);
+
+}
+
+
+
+.account_btn{
+    padding:20px 15px;
+  
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+ 
+}
+
+.active_btn{
+    padding:20px 15px;
+    /* background: white; */
+    cursor: pointer;
+    border: none;
+    font-size: 18px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    background:rgb(231, 231, 255) ;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(173, 172, 172);
+}
+
+.account_btn:hover{
+    background: #e3e3e4;
+}
+
+.account_btn svg{
+    margin-right: 10px;
+
+}
+
+.active_btn svg{
+    margin-right: 15px;
+}
+
+.account_btn:not(:last-of-type){
+    border-bottom: 1px solid rgb(173, 172, 172);
+}
+
+.account_body{
+    width: calc(100vw - 300px);
+    background:rgb(231, 231, 255) ;
+    /* padding: 20px 0; */
+    min-height: calc(100vh - 120px);
+    
+    /* border: 1px solid rgb(201, 199, 199); */
+}
+
+.dashbord_title{
+    display: block;
+    width: 100%;
+    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+    padding: 10px;
+    border-bottom: 1px solid #dadbdb;
+    /* color: white; */
+    font-size: 35px;
+}
+
+.dashboard{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 80%;
+}
+
+.inner__inner{
+    border: 1px solid red;
+}
+
+.card{
+    /* width: 300px; */
+    height: 400px;
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    border-radius: 15px;
+    background: white;
+}
+
+.card svg{
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.card:hover{
+    background: #e3e3e4;
+}
+
+.card h1{
+    color: #c1c2c3;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.card h3{
+    color: blue;
+    font-weight: 400;
+}
+
+.analysis_card{
+    width: 450px;
+    padding: 20px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.analysis{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 450px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px;
+    padding: 10px;
+}
+
+.analysis_title{
+    font-size: 25px;
+    margin: 25px 0;
+    margin-left: 10px;
+    color: blue;
+}
+
+
+.bill_inner{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+     border: 1px solid rgb(201, 199, 199);
+}
+
+.bill_inner h4{
+    font-weight: 400;
+    color: #c1c2c3;
+}
+
+.bill_top{
+    background: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    height: 150px;
+    color: white;
+   
+}
+
+.bill_right{
+    text-align: right;
+}
+
+.bill_body{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    min-height: calc(100vh - 270px);
+}
+
+.bill_body_right{
+    width: 300px;
+}
+
+.right_inner{
+    margin: 10px 0;
+    text-align: right;
+    padding: 15px;
+}
+
+.right_inner h1{
+    font-weight: 400;
+}
+
+.right_inner label{
+    color: blue;
+    font-weight: 600;
+}
+
+.table{
+    padding: 10px;
+}
+
+.table  tr, th{
+    padding: 10px;
+}
+.table td, tr, th{
+    padding: 20px;
+}
+
+.table th{
+    color: blue;
+}
+
+.table .tra{
+    border: 1px solid red;
+    border-top: 1px solid #c1c2c3;
+    
+}
+
+
+.descr{
+    text-align: left;
+    border-bottom: 1px solid #c1c2c3;
+}
+
+.qty{
+    text-align: center;
+    border-bottom: 1px solid #c1c2c3;
+  
+}
+
+.total{
+    border-bottom: 1px solid #c1c2c3;
+}
+
+.bill_btn{
+   
+    margin-top: 20px;
+    text-align: center;
+}
+
+.how_works{
+    min-height: calc(100vh - 100px);
+    background: white;
+    border: none;
+    width: 60%;
+    padding: 20px 0;
+   
+}
+
+.how_inner{
+     margin-bottom: 20px;
+}
+
+.works_title{
+ 
+    text-align: center;
+    padding: 40px;
+    font-size: 45px;
+    background: rgb(216, 216, 255);
+}
+
+.works_body{
+    margin: 30px 0;
+}
+
+.works_body p{
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+
+.menu_btn{
+    background: blue;
+    font-size: 18px;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    display: none;
+}
+
+.share_inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.shared_icons{
+    display: flex;
+    justify-content: center;
+}
+
+
+@media screen and (max-width: 420px){
+    .how_works{
+       
+        width: 100%;
+        /* padding: 10px; */
+       
+    }
+
+    .works_inner{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .account__container{
+      
+        width: 100%;
+        flex-direction: column;
+        margin-top:0px;
+        
+    }
+
+    .account_sidebar{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+        border-radius: 0px;
+        overflow: hidden;
+        position: sticky;
+        top: 60px;
+        height: fit-content;
+        border-bottom: 1px solid rgb(173, 172, 172);
+    
+    }
+
+    .account_body{
+        width: 100%;
+        /* background:rgb(231, 231, 255) ; */
+        padding: 10px;
+        /* border: 1px solid rgb(201, 199, 199); */
+    }
+
+    .dashbord_title{
+        display: block;
+        width: 100%;
+        /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
+        padding: 10px;
+        border-bottom: 1px solid #dadbdb;
+        /* color: white; */
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .card{
+        width: 300px;
+        height: 200px;
+        
+    }
+
+    .card svg{
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    .bill_body{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        background: white;
+        min-height: calc(100vh - 330px);
+    }
+
+    .right_inner{
+        /* margin: 10px 0; */
+        text-align: center;
+        /* padding: 15px; */
+    }
+    .menu_btn{
+       
+        display: block;
+    }
+
+    .hide_menu{
+        display: none;
+    }
+
+    
+}

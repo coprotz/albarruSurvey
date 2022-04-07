@@ -2,37 +2,87 @@
   text-align: center;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.error{
+  background: rgb(255, 151, 151);
+  margin-top: 15px;
+  padding: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.invalid{
+  background: rgb(168, 167, 167) !important;
+  color: white !important;
+  border: none !important;
+  cursor: not-allowed !important;
+}
+
+
+
+@media screen and (max-width: 420px){
+  .inner__container{
+    flex-direction: column;
+    /* align-items: center; */
+  }
+  .container{  
+    width: 100%;    
+}
+
+
+
+.inner__left{    
+    width: 100% !important;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.home_title{
+    font-size: 35px !important;
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.home_note{
+    font-size: 18px;
+    color: gray;
+    margin-bottom: 15px;
+    font-weight: 400;
+    
+}
+
+.inner__right{
+    width: 100% !important;
+    background-size: 100% !important; 
+    flex: 1;  
+    min-height:250px !important; 
+    
+}
+
+.home_title span{
+  font-size: 35px;
+}
+
+.how_it_works{ 
+  padding: 10px !important;
+  margin-top: 10px !important;
+
+
+
+
+}
+
+.how_title{
+  font-size: 50px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
