@@ -24,7 +24,7 @@ import {
 
 const Share = () => {
 
-  const shareUrl = 'localhost:3000/amzuu/questionnaire'
+  const shareUrl = 'https://624f229eeec04935f9f3165f--dazzling-kashata-2ef301.netlify.app/amzuu/questionnaire'
   return (
     <motion.div 
         initial={{ y: '-100vw'}}
