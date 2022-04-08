@@ -71,8 +71,8 @@ const Contact = () => {
           </div>
           <div className="top">
             <h3>EMAIL</h3>
-            <span>info@aqssmart.com</span>
-            <span>www.aqssmart.com</span>
+            <span>info@albarrusurvey.com</span>
+            <span>www.albarrusurvey.com</span>
           </div>
         </motion.div>
       </div>

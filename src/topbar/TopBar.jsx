@@ -5,6 +5,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import './topbar.css'
 import { useState } from 'react';
 import {motion} from 'framer-motion'
+import Logo from '../images/albarru.png'
 
 const TopBar = () => {
 
@@ -15,7 +16,7 @@ const TopBar = () => {
       <div className="inner_topbar">     
         <div className="top_left">
           <div className="logo">
-            <Link to='/'>Takwimu</Link>
+            <Link to='/'><img src={Logo} alt='ALBARRU'></img></Link>
           </div>
            <Link to='/works'><button className='top_btn'>How it works</button></Link> 
            <Link to='/pricing'><button className='top_btn'>Pricing</button></Link> 

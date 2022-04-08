@@ -34,7 +34,7 @@
 
   .logo{
     font-size: 30px;
-    font-weight: 800;
+    width: 100px;
     color: blue;
     /* border: 1px solid black; */
     display: flex;
@@ -42,6 +42,8 @@
 
     
   }
+
+  .logo img{width: 100%;}
 
   .logo a{
     text-decoration: none;
