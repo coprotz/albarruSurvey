@@ -22,7 +22,7 @@ const Submit = ({previous, next, go}) => {
             </h2>
             <h3 className='body_foote'>In case of any query please contact me through</h3>
             <h3 className='body_foote'><a href='mailto:ally@allyphd.site'>ally@allyphd.site</a> </h3>
-            <button className='get_start' onClick={() => {navigate('https://www.albarrusurvey.com/')}}>Finish my Questionnaire</button>
+            <button className='get_start' onClick={() => {navigate('/')}}>Finish my Questionnaire</button>
         
         </motion.div>
     
