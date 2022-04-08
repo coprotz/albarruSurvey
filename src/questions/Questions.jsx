@@ -225,8 +225,18 @@ const Questions = () => {
     const {firmname, email, experience, category, Contractor, consultant, taneps, register, attendance, participant, compaign, establish, practice, training, configure, notification, attachment, payment, boq, secure, update, submission, opening, meeting, evaluation, complaints, help, ability, system, specialist, afford, changes, compentent, worries, power, internet, difficult, resistant, control, costs, value, competition, fraud, time, maverick, effeciency, expenses, information, uniformity, integrity, biddata, interoperable, signatures, criminals, virtual, electronic, probody, govt, culture, mentality, legal, opinion } = formData
     const { go, next, previous } = navigation
     const props = { go, next, previous, steps, formData, setForm }
+
+    const width = (step.id/steps.length)*100
+
+    console.log(width)
   return (
     <div className="account_body">
+      <div className='progress'>
+        <div className="lineer_progress" style={{width:`${width}%`}}>
+          {/* {step.id} step */}
+        </div>
+        
+      </div>
       <div className="main_body">  
         <Component {...props} />
       </div>

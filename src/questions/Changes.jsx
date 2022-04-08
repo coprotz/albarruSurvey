@@ -39,8 +39,11 @@ const Changes = ({next, previous, go, setForm, formData}) => {
                 <input type="radio" className="radio_input" value='5' name='changes' id='5'/>
                 <label htmlFor="5" className='radio_label'  >Strong Agree</label>                 
             </div>
-          
-            <button className='get_start'  onClick={() => {next()}}>Ok</button>
+            {changes !== ''?          
+                <button className='get_start'  onClick={() => {next()}}>Ok</button>
+                : 
+                <button className='get_start invalid' >Ok</button>
+            }
         </div>            
         
     </motion.div>

@@ -16,9 +16,7 @@ const Category = ({previous, go, next, setForm, formData}) => {
         if(category === 'supplier'){
             go('11')
         }
-        if(category === 'manufacturer'){
-            go('11')
-        }
+      
     }
   return (
     <div className='firm_Name'>
@@ -48,9 +46,7 @@ const Category = ({previous, go, next, setForm, formData}) => {
                     <input type="radio" className="radio_input" value='consultant' name='category' id='b'/>
                     <label htmlFor="b" className='radio_label'  >Consultant</label>
                     <input type="radio" className="radio_input" value='supplier' name='category' id='c'/>
-                    <label htmlFor="c" className='radio_label'  >Supplier</label>
-                    <input type="radio" className="radio_input" value='manufacturer' name='category' id='d'/>
-                    <label htmlFor="d" className='radio_label'  >Manufacturer</label>
+                    <label htmlFor="c" className='radio_label'  >Supplier</label>                    
                 </div>
               
                 <button className='get_start'  onClick={handleCategory}>Ok</button>

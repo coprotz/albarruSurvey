@@ -53,10 +53,15 @@ const Register = ({go, setForm, formData}) => {
                     <label htmlFor="b" className='radio_label'  >We are not ready for now</label>
                     <input type="radio" className="radio_input" value='c' name='register' id='c'/>
                     <label htmlFor="c" className='radio_label'  >We don't have a genuine reason</label>
-                </div>
-          
+            </div>
+
+             {register !== ''?          
+                <button className='get_start'  onClick={() => {handleSubmit()}}>SUBMIT</button>
+                : 
+                <button className='get_start invalid' >SUBMIT</button>
+            }         
            
-            <button className='get_start'  onClick={handleSubmit}>SUBMIT</button>
+            {/* <button className='get_start'  onClick={handleSubmit}>SUBMIT</button> */}
         </div>            
         
     </motion.div>

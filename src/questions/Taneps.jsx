@@ -13,6 +13,9 @@ const Taneps = ({go, setForm, formData}) => {
             go('13')
         }
     }
+
+    console.log(taneps)
+
   return (
     <div className='firm_Name'>
     <button onClick={() => {go('8')}} className='back'><FaChevronLeft/></button>
@@ -41,9 +44,15 @@ const Taneps = ({go, setForm, formData}) => {
                 <input type="radio" className="radio_input" value='Y' name='taneps' id='b'/>
                 <label htmlFor="b" className='radio_label'  >Yes</label>                   
             </div>
+
+            {taneps === 'Y' || taneps === 'N'?          
+                <button className='get_start'  onClick={() => {handleYes()}}>OK</button>
+                : 
+                <button className='get_start invalid' >OK</button>
+            } 
           
            
-            <button className='get_start'  onClick={handleYes}>Ok</button>
+            {/* <button className='get_start'  onClick={handleYes}>Ok</button> */}
         </div>            
         
     </motion.div>

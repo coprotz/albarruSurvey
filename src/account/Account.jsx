@@ -33,7 +33,7 @@ const Account = () => {
 
     const [show, setShow] = useState(false)
 
-    console.log(step.id)
+    // console.log(step.id)
 
   return (
     <>
