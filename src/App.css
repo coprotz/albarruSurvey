@@ -17,6 +17,7 @@
   background: rgb(255, 151, 151);
   margin-top: 15px;
   padding: 10px;
+  font-size: 15px;
 }
 
 .invalid{
@@ -83,6 +84,13 @@
 .how_title{
   font-size: 50px;
   color: white;
+}
+
+.error{
+  /* background: rgb(255, 151, 151); */
+  margin-top: 0px;
+  padding: 7px;
+  
 }
 
 }

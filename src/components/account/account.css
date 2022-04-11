@@ -7,7 +7,8 @@
 }
 
 .account_sidebar{
-    width: 300px;
+    width: 250px;
+    min-width: 250px;
     display: flex;
     flex-direction: column;
     margin-right: 20px;
@@ -67,7 +68,7 @@
 }
 
 .account_body{
-    width: calc(100vw - 300px);
+    width: calc(100vw - 410px);
     background:rgb(231, 231, 255) ;
     /* padding: 20px 0; */
     min-height: calc(100vh - 150px);
@@ -180,7 +181,9 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    /* max-width: calc(100vw - 200px); */
      border: 1px solid rgb(201, 199, 199);
+     /* max-width: 500px; */
 }
 
 .bill_inner h4{
@@ -333,6 +336,68 @@
 }
 
 
+.user_table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user_table td, .user_table th{
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+}
+
+.user_table th{
+    background-color: blue;
+    color: white;
+}
+
+.user_table tbody tr:nth-child(even){
+    background-color: #f5f5f5;
+}
+
+.bill_left img{
+    width: 50px;
+}
+
+/* .invoice{
+    max-width: 1000px;
+    overflow: hidden;
+} */
+
+
+.invoice_cls_btn{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.showUp{
+    margin-top: 0;
+    animation: menuUp 0.5s;
+    opacity: 1;
+}
+
+@keyframes menuUp{
+    0%{
+        margin-top: -500px;
+        opacity: 0;
+    }
+    100%{
+        margin-top: 0;
+        opacity: 1;
+    }
+}
+
+
+
+
+
+
 @media screen and (max-width: 420px){
     .how_works{
        
@@ -366,7 +431,7 @@
         overflow: hidden;
         position: sticky;
         top: 60px;
-        height: 500px;
+        /* height: 650px; */
         border-bottom: 1px solid rgb(173, 172, 172);
     
     }
@@ -376,7 +441,7 @@
         /* background:rgb(231, 231, 255) ; */
         padding: 10px;
         /* border: 1px solid rgb(201, 199, 199); */
-        height: 100%;
+        /* height: 100%; */
     }
 
     .dashbord_title{
@@ -443,6 +508,43 @@
     
       
     }
+
+    .user_table thead{
+        display: none;
+    }
+
+    .user_table, .user_table tbody, .user_table tr, .user_table td{
+        display: block;
+        width: 100%;
+    }
+
+    .user_table tr{
+        margin-bottom: 15px;
+    }
+
+    .user_table td{
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .user_table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .invoice_cls_btn{
+      
+        right: 20px;
+        top: 20px;
+       
+    }
+    
     
 
     

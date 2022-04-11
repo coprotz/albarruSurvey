@@ -42,9 +42,18 @@
         padding: 10px 0;
         font-size: 17px;
         display: flex;
+        gap: 5px;
        
     
     
+}
+
+.email, .mobile{
+    width: 50%;
+    /* border: 1px solid red; */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
 }
 
 .request_btn{
@@ -59,6 +68,9 @@
 
 .label{
     color: white;
+  
+    display: block;
+  
 }
 
 .request_form{
@@ -82,6 +94,7 @@
     font-size: 16px;
     font-weight: 500;
     color: white;
+    
     /* color: gray; */
     /* color: #0a5f30; */
 }
@@ -149,6 +162,49 @@
     font-size: 14px;
 }
 
+.group_file{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.group_file svg{
+    color: white;
+    font-size: 18px;
+}
+
+.file_display{
+    border: 1px solid #c1c2c3;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.file_display button{
+    background: transparent;
+    color: white;
+    border: none;
+}
+
+.file_input{
+    display: flex;
+    align-items: center;
+   
+}
+
+.file_label{
+    display: flex;
+    align-items: center;
+}
+
+button:disabled{
+    background: rgb(182, 182, 182);
+    color: #555;
+    cursor: not-allowed;
+}
+
 
 @media screen and (max-width:920px){
     .request_inner{
@@ -160,6 +216,7 @@
 @media screen and (max-width: 420px) {
     .request_form{
         padding: 0px;
+        height: 100%
         ;
     }
 
@@ -193,5 +250,11 @@
         cursor: pointer;
         margin-top: 20px;
         width: 100%;
+    }
+
+    .email, .mobile{
+        width: 100%;
+        /* border: 1px solid red; */
+       
     }
 }

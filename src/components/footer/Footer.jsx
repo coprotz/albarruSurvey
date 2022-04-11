@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="footer">
       <div className="inner_footer">
         <div className="footer_left">
-          <small>&copy; 2022 Takwimu Survey Inc. All Rights Reserved</small>
+          <small>&copy; 2022 AlBarru Survey Inc. All Rights Reserved</small>
         </div>
       
         <div className="footer_right">

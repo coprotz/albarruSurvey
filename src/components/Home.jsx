@@ -25,7 +25,7 @@ const Home = () => {
                 <h4 className='home_note'>We can create an online questionnaire to suite your market strategies or 
                 to meet your study respondents and get the results instantly. Our online questionnare is responsive 
                 for any device, laptop, tablet or mobile phone...!</h4>
-                <Link to='/request'><button className='btn_submit'>Get Started</button></Link>
+                <Link to='/register'><button className='btn_submit'>Get Started</button></Link>
               </div>
               <div className="inner__right"></div>           
               

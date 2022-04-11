@@ -84,7 +84,7 @@
 }
 
 .group_define label{
-    width: 50%px;
+    width: 50%;
     display: block;
 }
 
@@ -190,6 +190,11 @@
 
     .figure{
         text-align: center;
+    }
+
+    .group_define label{
+        width: 100%;
+        margin-bottom: 5px;
     }
     
 }

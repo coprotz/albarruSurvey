@@ -44,3 +44,16 @@
 .login_btn svg{
     font-size: 20px;
 }
+
+.password{
+    display: flex;
+    background: white;
+    justify-content: space-between;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+}
+
+.password span{
+    margin-right: 5px;
+}
