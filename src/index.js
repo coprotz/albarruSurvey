@@ -1,15 +1,26 @@
 import React from 'react';
-import ReactDom from 'react-dom/client';
+import { render } from 'react-dom';
+// import ReactDom from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { AuthContextProvider } from './context/AuthContext';
 import { UserAuthContextProvider } from './context/UserAuthContext';
 
-const root = ReactDom.createRoot(document.getElementById('root'))
-root.render(
+
+// ReactDOM.render(
+//     <UserAuthContextProvider>
+//         <App />
+//     </UserAuthContextProvider>, 
+//     document.getElementById('root')
+//   );
+
+
+
+
+const root = document.getElementById('root')
+render(
     <UserAuthContextProvider>
         <App />
-    </UserAuthContextProvider>
+    </UserAuthContextProvider>, root
         
     // </AuthContextProvider>
 
