@@ -20,15 +20,9 @@ const Responce1 = ({
 
     const values = userResponces?.map((s) => s.values)
 
-    console.log('values', values)
-
-    const name = values.map(item => item.fname)
-    const email = values.map(item => item.fEmail)
-
     const [respondents, setRespondents] = useState(null)
 
     
-
     const civil = values.filter(item => item.contractor === 'civil').length
     const build = values.filter(item => item.contractor === 'building').length
     const civbid = values.filter(item => item.contractor === 'civil_building').length

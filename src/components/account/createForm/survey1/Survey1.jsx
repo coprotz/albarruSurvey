@@ -1,7 +1,5 @@
 import React, {useState} from 'react'
 import { useStep } from 'react-hooks-helper'
-
-import { useParams } from 'react-router-dom';
 import FirmDetails from './FirmDetails'
 import Establishment from './Establishments'
 import Implementation from './Implementation'
@@ -32,7 +30,7 @@ const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire,
 
 
 
-    const { step, navigation, index } = useStep({ steps, initialStep: 0 })
+    const { step, navigation } = useStep({ steps, initialStep: 0 })
     const { Component } = step
 
     const [pages, setPages] = useState(activeQue?.pages || activeQuestionnaire?.pages)
@@ -45,7 +43,7 @@ const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire,
     const { go, next, previous } = navigation
     
     const width = (step.id/steps.length)*100
-    let { register, handleSubmit, formState: { errors, isValid }, setError, clearError, watch } = useForm({mode: 'all'});
+    let { register, handleSubmit, watch } = useForm({mode: 'all'});
 
     const [name, setName] = useState(true)
     const [activeField, setActiveField] = useState(null)
