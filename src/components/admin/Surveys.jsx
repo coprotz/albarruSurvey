@@ -1,31 +1,13 @@
 import React from 'react'
-import {Questionnaires} from '../../data/surveys';
 
-const Surveys = ({surveys, users, currentUser}) => {
 
-  // console.log('cu', currentUser)
+const Surveys = ({surveys, users }) => {
 
-  const ft = surveys.map((s) => s.userId)
 
-  console.log('ft', ft)
-
-  const tem_user = users.find((u) =>{
-    if(ft.includes(u.id)) return u.id
-    
-  })
-
-   const res = users.find((u) => u.id === 'Cjv2DKEnVSbYCbEuqNI9pYuqera2').firstname
-
-   console.log('res', res)
-  // const reseracher = users.find((d) => d.id === currentUser?.uid)
   return (
     <div>
-        <h4 className='admin_tab_title'>SURVEYS</h4>
-        {/* <div className="messages_inner">
-            <button>Inbox</button>
-            <button>Outbox</button>
-        </div> */}
-       <table className='table'>
+      <h4 className='admin_tab_title'>SURVEYS</h4>
+      <table className='table'>
         <thead>
           <th className='descr'>SN</th>
           <th className='qty'>Title</th>
@@ -37,7 +19,6 @@ const Surveys = ({surveys, users, currentUser}) => {
           <th className='total'>Payment Status</th>
           <th className='total'>Completed?</th>
           <th className='total'>Researcher Name</th>      
-          {/* <th className='total'>Status</th> */}
           <th className='total'>Actions</th>
         </thead>
         <tbody className='total'>
@@ -53,8 +34,7 @@ const Surveys = ({surveys, users, currentUser}) => {
               <td data-label='Payment Status'>{s.status}</td>
               <td data-label='Completed'>{s.status}</td>
               <td data-label='Researcher Name'>{users.find((u) => u.id === s.userId)?.username }</td>
-              {/* <td data-label='Messages' className='messages_text'>{s.message}</td> */}
-            
+                    
               <td data-label='Actions'><button>Reply</button></td>
             </tr>
            ))}

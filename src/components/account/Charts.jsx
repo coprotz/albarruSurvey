@@ -1,12 +1,10 @@
 import React from 'react'
 import Chart from "react-apexcharts";
-import ApexCharts from 'apexcharts'
 
 const Charts = ({series, labels}) => {
 
 
     const options = {
-        // series: {series},
         labels: labels,
         plotOptions: {
             pie: {
@@ -23,10 +21,7 @@ const Charts = ({series, labels}) => {
         }
       }
 
-    //   const series = [4, 8, 13]
-  
-
-
+ 
   return (
     <Chart 
         type='donut' 

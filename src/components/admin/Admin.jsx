@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import {motion} from 'framer-motion'
-import { Link } from "react-router-dom";
 import '../styles/admin.css'
 import TopBar from '../topbar/TopBar';
 import Footer from '../footer/Footer';
 import {Questionnaires} from '../../data/surveys';
-import { useForm, useStep } from 'react-hooks-helper'
+import { useStep } from 'react-hooks-helper'
 import Users from './Users'
 import Dashboard from './Dashboard';
 import Responces from './Responces';
@@ -14,13 +13,11 @@ import Surveys from './Surveys'
 import Messages from './Messages';
 import {
   collection,
-  getDocs,
-  deleteDoc,
-  doc,
+ 
   onSnapshot,
-  querySnapshot,
+
 } from "firebase/firestore";
-import { db, auth } from "../../firebase";
+import { db } from "../../firebase";
 import NewMessage from './NewMessage';
 
 const steps = [
@@ -58,7 +55,7 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
         list.push({ id: doc.id, ...doc.data() });
       });
       setMessages(list)
-      // console.log(list)
+ 
     },
     (error) => {
       console.log(error)
@@ -76,7 +73,7 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
   const { go, next, previous } = navigation
 
   const props = { go, next, previous, responces, surveys, questionnaires, users, messages, currentUser, Questionnaires,newMsg, setNewMsg }
-  // console.log('cu', currentUser)
+
 
   return (
     <>

@@ -1,13 +1,8 @@
 import React from 'react'
 import {motion} from 'framer-motion'
-import { IoIosCreate, IoIosStats, IoMdShare, IoIosAddCircle } from "react-icons/io";
 import { useState } from 'react';
 import { Questionnaires } from '../../data/surveys';
-import { IoMdCreate } from "react-icons/io";
-import Share from './Share';
-import Responces from './surveys/Responces';
 import RenderSurvey from './createForm/RenderSurvey';
-
 
 
 
@@ -32,7 +27,7 @@ const Dashbord = ({
         const currentQue = userQuestionnaires.find((u) => u.type)
 
         const completed = userResponces.filter((u) => u.completed === 'true')
-        const unCompleted = userResponces.length - completed.length
+   
   
         const [share, setShare] = useState(null)
 

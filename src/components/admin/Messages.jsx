@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Messages = ({messages, newMsg, setNewMsg}) => {
+const Messages = ({messages, setNewMsg}) => {
   return (
     <div className='messages_wrapper'>
         

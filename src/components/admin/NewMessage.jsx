@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {motion} from 'framer-motion'
-import { useForm, useStep } from 'react-hooks-helper'
+import { useForm } from 'react-hooks-helper'
 import { AiOutlineClose } from "react-icons/ai";
 
 import {
@@ -11,7 +11,7 @@ import {
     doc
     
   } from "firebase/firestore";
-  import { auth, db, storage, database } from '../../firebase';
+  import { db } from '../../firebase';
 
 const defaultData = {   
     sendTo: '',

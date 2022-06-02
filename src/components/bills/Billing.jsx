@@ -1,27 +1,24 @@
 import React from 'react'
 import {motion} from 'framer-motion'
-import { Link } from "react-router-dom";
-import Footer from '../footer/Footer';
-import TopBar from '../topbar/TopBar';
+
 import Logo from '../images/icon1.png'
 import { useState } from 'react';
 import './billing.css'
 import { AiOutlineClose } from "react-icons/ai";
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import { useForm, useStep } from 'react-hooks-helper'
+
 
 import {
   collection,  
   addDoc,
   serverTimestamp,
-  setDoc,
+
   doc,
   updateDoc
  
   
 } from "firebase/firestore";
 
-import { auth, db, storage, database } from '../../firebase';
+import { db } from '../../firebase';
 import { useEffect } from 'react';
 
 

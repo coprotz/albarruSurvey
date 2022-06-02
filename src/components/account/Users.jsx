@@ -2,11 +2,10 @@ import React from 'react'
 import {motion} from 'framer-motion'
 import { useState } from 'react'
 import { HiOutlineX } from "react-icons/hi";
-import { useEffect } from 'react';
 import Billing from '../bills/Billing';
-import { useForm, useStep } from 'react-hooks-helper'
+import { useForm,  } from 'react-hooks-helper'
 import { AiOutlineClose } from "react-icons/ai";
-import { doc, setDoc, collection, addDoc, serverTimestamp,  } from "firebase/firestore";  
+import { collection, addDoc, serverTimestamp,  } from "firebase/firestore";  
 import { db } from "../../firebase";
 
 

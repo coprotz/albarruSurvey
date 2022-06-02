@@ -8,21 +8,17 @@ import { AiOutlineClose } from "react-icons/ai";
 
 
 const Invoice = ({
-    invoices, 
-    userInvoices, 
+
     userSurveys, 
-    createInvoice, 
-    setCreateInvoices, 
+
     cuUser, 
-    setInvoices,
+
     setViewInvoice,
     viewInvoice,
     setMessageAlert
   }) => {
 
-    // const userInvoices = invoices?.filter((i) => i?.userId === cuUser.id)?.filter((f) => f.status === 'Unpaid')
-
-    
+   
    
   return (
     

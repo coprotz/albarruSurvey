@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 
-const Dashboard = ({users, surveys, Questionnaires, responces, next, go, previous}) => {
+const Dashboard = ({users, surveys}) => {
 
-    // const researcher = users.find((u) => u.id === 'NDhSrMAjcFcLO6m8YWGhuUYP2dl2')
 
  
   return (

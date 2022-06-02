@@ -1,8 +1,8 @@
 import React from 'react'
 import './pricing.css'
 import {motion} from 'framer-motion'
-import { useForm, useStep } from 'react-hooks-helper'
-import { useState } from 'react'
+import { useForm } from 'react-hooks-helper'
+
 import { Link } from "react-router-dom";
 import Footer from '../footer/Footer'
 import TopBar from '../topbar/TopBar'
@@ -24,10 +24,7 @@ const Pricing = () => {
 
     const {questionnaires, questions, periods} = formData
 
-    // const {value, setValue} = useState(100)
-
-    console.log('qest', questionnaires)
-    console.log('que', questions)
+  
   return (
       <>
       <TopBar/>
