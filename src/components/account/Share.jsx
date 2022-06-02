@@ -22,48 +22,40 @@ import {
   // TelegramShareButton
 } from "react-share";
 
-const Share = () => {
+const Share = ({cuUser, activeQuestionnaire, setShare, userUrl}) => {
 
-  const shareUrl = 'https://www.albarrusurvey.com/amzuu/questionnaire'
+  const shareUrl = userUrl
   return (
-    <motion.div 
-        initial={{ y: '-100vw'}}
-        animate={{y:0}} 
-        transition={{ ease: "easeOut", duration: 0.5 }} 
-        className="account_body">
-          <div className="share_inner">
-              <h2>Share your questionnaire to your respondents through the following platforms;</h2>
+  
+             
               <div className="shared_icons">
                 <WhatsappShareButton
-                  url={shareUrl}                  >
-                    <WhatsappIcon size={40} round={true}/>
+                  url={shareUrl}>
+                  <WhatsappIcon size={25} round={true}/>
                 </WhatsappShareButton>
-                <EmailShareButton>
-                    <EmailIcon size={40} round={true}/>
-                </EmailShareButton>
-                <MailruShareButton>
-                  <MailruIcon size={40} round={true}/>
-                </MailruShareButton>
-                <TwitterShareButton>
-                  <TwitterIcon size={40} round={true}/>
+                <EmailShareButton
+                  url={shareUrl} >                    
+                  <EmailIcon size={25} round={true}/>
+                </EmailShareButton>            
+                <TwitterShareButton
+                  url={shareUrl}>
+                  <TwitterIcon size={25} round={true}/>
                 </TwitterShareButton>
-                <FacebookShareButton>
-                  <FacebookMessengerIcon size={40} round={true}/>
+                <FacebookShareButton
+                  url={shareUrl}>
+                  <FacebookMessengerIcon size={25} round={true}/>
                 </FacebookShareButton>
-                <FacebookShareButton>
-                  <FacebookIcon size={40} round={true}/>
+                <FacebookShareButton
+                  url={shareUrl}>
+                  <FacebookIcon size={25} round={true}/>
                 </FacebookShareButton>
-                {/* <InstapaperShareButton>
-                  <InstapaperIcon size={40} round={true}/>
-                </InstapaperShareButton> */}
-                <TelegramShareButton>
-                  <TelegramIcon size={40} round={true}/>
+                <TelegramShareButton
+                  url={shareUrl}>
+                  <TelegramIcon size={25} round={true}/>
                 </TelegramShareButton>
 
               </div>
-          </div>
-      
-    </motion.div>
+   
   )
 }
 

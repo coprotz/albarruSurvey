@@ -39,22 +39,23 @@ const Home = () => {
             <FiUsers/>
             <h2>Prepare your audiences</h2>
           </div> */}
-          <div className="work">
-            <FiUsers/>
-            <h2>Prepare your questions</h2>
-          </div>
+          
           <div className="work">
             <FiUser/>
             <h2>Create an account</h2>
           </div>
           <div className="work">
-            <GrNotes/>
-            <h2>Review your questionnaire</h2>
+            <FiUsers/>
+            <h2>Prepare your questions</h2>
           </div>
           <div className="work">
+            <GrNotes/>
+            <h2>Share your questionnaire</h2>
+          </div>
+          {/* <div className="work">
             <MdOutlinePayment/>
             <h2>Pay your Costs</h2>
-          </div>
+          </div> */}
           <div className="work">
             <VscFiles/>
             <h2>Watch your results roll in</h2>

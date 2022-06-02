@@ -11,130 +11,147 @@ import { useState } from 'react';
 import { IoIosAttach } from "react-icons/io";
 import { addDoc, collection, serverTimestamp, setDoc, doc } from 'firebase/firestore' 
 import { auth, db, storage } from '../../firebase';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useEffect } from 'react';
+import { FcGoogle} from "react-icons/fc";
+import { useUserAuth } from '../../context/UserAuthContext';
 
 
 
 const defaultData = {
-    firstname: '',
-    lastname: '',
+    username: '',  
     email: '', 
     password: '',
     confirmPassword: '',
-    questionnaires: '100',
-    questions: '',
-    period: '',
-   
+  
   
 }
 
 const Request = () => {
 
     const [formData, setForm] = useForm(defaultData)
-    const {firstname, lastname, email, password, confirmPassword, questionnaires, questions, period } = formData
-    const [file, setFile] = useState(null)
-    const [perc, setPerc] = useState(null)
-    const [url, setUrl] = useState(null)
+    const {username, email, password, confirmPassword, terms } = formData
+    const [sending, setSending] = useState(null)
     const navigate = useNavigate()
+    const [err, setErr] = useState(null)
+    const { signUp, user, googleSignIn } = useUserAuth();
 
-    useEffect(() => {
-        const uploadFile = () => {
+    console.log('terms', user)
 
-            const name = new Date().getTime() + file.name
-
-            console.log(name)
-
-            const storageRef = ref(storage, file.name);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const progress = 
-                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log("upload is " + progress + "% done");
-                    setPerc(progress)
-                    switch (snapshot.state) {
-                        case "paused":
-                            console.log("upload is paused");
-                            break;
-                        case "running":
-                            console.log("Upload is running");
-                            break;
-                        default:
-                            break;
-                    }
-                },
-                (error) => {
-                    console.log(error)
-                },
-                async () => {
-                    const url = await getDownloadURL(uploadTask.snapshot.ref)
-                        setUrl(url)
-                        console.log("File available at", url)
-                        
-                    
-             
-                }
-             
-            );
-        };
-        file && uploadFile()
-    },[file])
-
-    // const [error, setError] = useState(errorMessage)
-
-    console.log(url)
-
+   
     const data = {
-        firstname: firstname,
-        lastname: lastname,
-        email: email,  
-        questionnaires: questionnaires,
-        questions: questions,
-        password: password,
-        period: period,
-        file: url
+        username: username,    
+        email: email,        
+        password: password,      
+        role: 'user',
+       
     }
 
-    // console.log(file)
-
     const handleRegister = async (e) => {
-        e.preventDefault();       
+        e.preventDefault();  
+        setSending(true)  
+        setErr("")   
 
         try {
-            const res = await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );   
-
-            await setDoc(doc(db, "users", res.user.uid), {
-                ...data,
-                timeStamp: serverTimestamp(),
+            await signUp(email, password)  
+                console.log(user)
+        
+                await setDoc(doc(db, "users", user.user.uid), {
+                    ...data,
+                    timeStamp: serverTimestamp(),
+                    
                 
             });
-            navigate('/login')
+            // JSON.parse(localStorage.getItem(user,'user'));
+            setSending(null)
+            navigate('/account')
+
+          
           
         } catch (error) {
-            console.log(error)
+            setErr(error.message)
             // setError(true)
             // const errorMessage = error.message
         }
+        
+        // localStorage.setItem("user", JSON.stringify(user))
+        
     };
+
+
+    // onAuthStateChanged(auth, (currentUser) => {
+    //     setUser(currentUser)
+    // })
+
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    //         setUser(currentUser);
+    //     });
+    //     return () => {
+    //         unsubscribe();
+    //     }
+    // },[])
+
+
+
+    // const handleRegister = async (e) => {
+    //     e.preventDefault();  
+    //     setSending(true)     
+
+    //     try {
+    //         const user = await createUserWithEmailAndPassword(
+    //             auth,
+    //             email,
+    //             password
+    //         );   
+    //             console.log(user)
+    //             await setDoc(doc(db, "users", user.user.uid), {
+    //                 ...data,
+    //                 timeStamp: serverTimestamp(),
+                    
+                
+    //         });
+    //         setSending(null)
+    //         localStorage.setItem("user", JSON.stringify(user))
+    //         navigate('/account')
+      
+          
+          
+    //     } catch (error) {
+    //         setErr(error.message)
+            
+    //     }
+        
+    // };
+
+    const signWithGoogle = async (e) => {
+        e.preventDefault();
+
+        try {
+           await googleSignIn()
+           navigate('/account')
+            
+        } catch (error) {
+            setErr(error.message)
+        }
+
+    }
+
+ 
 
 
   
   return (
     <>
-    <TopBar/>
+    <TopBar user={user}/>
     <motion.div 
         initial={{ x: '-100vw'}}
         animate={{x:0}} 
         transition={{ ease: "easeOut", duration: 0.5 }}     
         className='request_form'>        
         <form className="request_inner" onSubmit={handleRegister}>
+            {err && <div className="error">{err}</div> } 
             <div className="register_top">
                 <h3 className='request_title'>Register</h3>
                 <div className="have_account">
@@ -143,29 +160,22 @@ const Request = () => {
                 </div>
               
             </div> 
-            {/* {errorMessage}       */}
-        
+
             <div className="group">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="">Username</label>
                 <div className="request_input">
-                    <input 
-                        type="text" 
-                        placeholder='FirstName' 
-                        value={firstname} 
-                        name='firstname' 
-                        onChange={setForm}
-                        required
-                        id='firstname'
+                    <div className="email">                
+                        <input 
+                            type="text" 
+                            placeholder='Your Username'
+                            value={username} 
+                            name='username' 
+                            onChange={setForm}
+                            required
+                            id='username'
                         />
-                    <input 
-                        type="text" 
-                        placeholder='LasttName'
-                        value={lastname} 
-                        name='lastname' 
-                        onChange={setForm}
-                        required
-                        id='lastname'
-                        />
+                        </div>
+                                       
                 </div>
             </div>
             <div className="group">
@@ -173,7 +183,7 @@ const Request = () => {
                 <div className="request_input">
                     <div className="email">                
                         <input 
-                            type="text" 
+                            type="email" 
                             placeholder='Your Email Address'
                             value={email} 
                             name='email' 
@@ -182,18 +192,7 @@ const Request = () => {
                             id='email'
                         />
                         </div>
-                        {/* <div className="mobile">
-                            <input 
-                                type="text" 
-                                placeholder='Your Mobile Numbers'
-                                value={phone} 
-                                name='phone' 
-                                onChange={setForm}
-                                required
-                                /> 
-                            
-                        </div> */}
-                
+                                       
                 </div>
             </div>
             <div className="group">
@@ -221,112 +220,52 @@ const Request = () => {
                 </div>
                 {password !==confirmPassword? <div className='error'>Password not match</div> : null}
             </div>
-            <div className="group_define">
-                <label htmlFor="" className='label'>How many completed questionnaires do you plan<span>(min 100)</span></label>
-                <div className="input">
-                    <input 
-                    type="number" 
-                    min={100} 
-                    max='1000'
-                    name='questionnaires'
-                    className='request_input'  
-                    step='1' 
-                    value={questionnaires}
-                    onChange={setForm}
-                    required
-                    id='questionnaires'
-                    />
-                </div>
-                                
-            </div>
-            <div className="group_define">
-                <label htmlFor="" className='label'>How many questions in each questionnaire do you need?</label>
-                <div className="input">                        
-                    <select 
-                        name="questions" 
-                        id='questions'
-                        className='request_input'
-                        value={questions}
-                        onChange={setForm}
-                        required
-                        >
-                        <option value="">--Select questions--</option>
-                        <option value="1 - 5 questions">1 - 5 questions</option>
-                        <option value="6 - 10 questions">6 - 10 questions</option>
-                        <option value="11 - 15 questions">11 - 15 questions</option>
-                        <option value="16- 20 questions">16- 20 questions</option>
-                        <option value="21 - 25 questions">21 - 25 questions</option>
-                        <option value="26 - 30 questions">26 - 30 questions</option>
-                        <option value="31 - 35 questions">31 - 35 questions</option>
-                        <option value="36 - 40 questions">36 - 40 questions</option>
-                        <option value="41 - 45 questions">41 - 45 questions</option>
-                        <option value="46 - 50 questions">46 - 50 questions</option>                         
-                    </select>
-                </div>
-            </div>
-            <div className="group_define">
-                <label htmlFor="" className='label'>How long does your survey last?</label>
-                <div className="input">                        
-                    <select 
-                        name="period" id="period" 
-                        className='request_input'
-                        value={period}
-                        onChange={setForm} 
-                        required
-                        >                               
-                        <option value="">--Select months--</option>                 
-                        <option value="1 - 3 months">1 - 3 months</option>
-                        <option value="4 - 6 months">4 - 6 months</option>
-                        <option value="7 - 9 months">7 - 9 months</option>
-                        <option value="10 - 12 months">10 - 12 months</option>                                                           
-                    </select>
-                </div>
-            </div>
-            <div className="group_file">           
-                {file &&
-                    <div className="file_display">
-                        <div>{file.name}</div>           
-                        <button onClick={() => setFile("")}><BiX/></button>      
-                    </div>
-                }
-                <div className="file_input">                
-                    <label 
-                        htmlFor="file" 
-                        className='file_label'><IoIosAttach/>Attach Questions</label>
-                    <input 
-                        type="file"
-                        id='file'
-                        style={{display: "none"}}                
-                        onChange={(e) => setFile(e.target.files[0])}
-                    />
-                </div>
-                
-            </div>
+
             <div className="request_check">
-                {/* <div className="check_group">
+                <div className="check_group">
                     <input 
                         type="checkbox"                    
-                        value={plan} 
-                        name='plan' 
+                        value={terms} 
+                        name='terms' 
                         onChange={setForm}
-                        />By Submit this request, you have accepted our <Link to='/pricing'>Pricing plan</Link>
-                </div> */}
-                {/* {plan ===  '' || plan === false?
-                <button 
-                    className='request_btn invalid'            
-                    >Register
-                </button>
-                    : */}
+                        />By Submit this request, you have accepted our <Link to='/terms'>Terms of Use</Link>
+                        </div>
+                        {!terms?
+                            <button 
+                                className='request_btn invalid'                    
+                                >
+                                Register
+                            </button>
+                            :
+                            <button 
+                                className=' request_btn'
+                                type='submit'
+                                onClick={handleRegister}
+                                >
+                                {sending? 'Registering...':'Register'}
+                            </button>
+                        }
+            </div> 
+            <div className="google">
+                <h3>OR</h3>
+                <button onClick={signWithGoogle}><FcGoogle/>Sign In with Google</button>
+            </div> 
+            
+            
+          
+      
+            {/* <div className="request_check">
+              
                 <button 
                     className=' request_btn'
                     type='submit'
-                    disabled={perc !== null && perc <100}
+                    // disabled={perc !== null && perc <100}
                     // onClick={handleRegister}
                     // onClick={() => alert("mambo?")}
-                    >Register
+                    >{sending? 'Registering...':'Register'}
                 </button>
-                {/* } */}
-            </div>
+               
+            </div> */}
         
 
           

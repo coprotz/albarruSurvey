@@ -4,10 +4,46 @@ import { useState } from 'react'
 import { HiOutlineX } from "react-icons/hi";
 import { useEffect } from 'react';
 import Billing from '../bills/Billing';
+import { useForm, useStep } from 'react-hooks-helper'
+import { AiOutlineClose } from "react-icons/ai";
+import { doc, setDoc, collection, addDoc, serverTimestamp,  } from "firebase/firestore";  
+import { db } from "../../firebase";
+
+
+const defaultData = {
+    description: '',
+    cost: '',
+    userId: '',
+    invoiceNo:'',
+    date:'',
+    status:'Unpaid'
+}
+
+const setupFee = {
+    name: 'Setup Questionnaires Fee', cost: '7'
+}
 
 const Users = ({users}) => {
 
-const [invoice, setInvoice] = useState(null)
+    const [formData, setForm] = useForm(defaultData)
+
+    const {description, cost, date, status} = formData
+
+    const [invoice, setInvoice] = useState(null)
+    const [createInvoice, setCreateInvoice] = useState(null)
+
+    console.log(setupFee.name)
+
+    const getRandomId = (min = 0, max = 500000) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        const num =  Math.floor(Math.random() * (max - min + 1)) + min;
+        return num.toString().padStart(6, "0")
+      };
+      
+      console.log(getRandomId());
+
+
 
     console.log(users)
 
@@ -19,6 +55,21 @@ const [invoice, setInvoice] = useState(null)
         //     console.log(error)
         // }
     }
+
+    const handleCreateInvoice = async (e) => {
+        e.preventDefault()
+
+        await addDoc(collection(db, "invoices"), {            
+            userId: createInvoice.id,
+            description: description,
+            cost: description === setupFee.name && setupFee.cost,
+            date: date,
+            status:status,
+            invoiceNo: 1026+getRandomId(),
+            timeStamp: serverTimestamp(),
+          });
+    }
+
   return (
     <motion.div 
         initial={{ y: '-100vw'}}
@@ -64,6 +115,7 @@ const [invoice, setInvoice] = useState(null)
                                         <div className="actions">
                                             <button>View</button>
                                             <button onClick={handleDelete}>Delete</button>
+                                            <button onClick={() => setCreateInvoice(user)}>Create Invoice</button>
                                         </div>
                                     </td>
                                 </tr> 
@@ -71,7 +123,41 @@ const [invoice, setInvoice] = useState(null)
                     </tbody>
                 </table>
                  }
-            {/* </div> */}
+                 {createInvoice? 
+                    <div className="invoice_create">
+                        <div className="inner__create"> 
+                            <button className='invoice__btn' onClick={() => setCreateInvoice(null)}><AiOutlineClose/></button>                       
+                            <h3>Create Invoice</h3>
+                            <div className="bill_to">
+                                Bill to:
+                                <div>
+                                    {createInvoice?.firstname} {createInvoice?.lastname}
+                                </div>
+                                    {createInvoice?.email}
+                                
+                            </div>
+                            <div className="invoice_input">
+                                <label htmlFor="">Description</label>
+                                <select name="description" id="" value={description} onChange={setForm}>
+                                    <option value="">--select--</option>
+                                    <option value="Setup Questionnaires Fee">Setup Questionnaires Fee</option>
+                                </select>
+                            </div>
+                            <div className="invoice_input" >
+                                <label htmlFor="">Rate</label>
+                                <input type="number" name='cost' value={description === setupFee.name? setupFee.cost : cost} onChange={setForm}/>
+                                
+                            </div>
+                            <div className="invoice_input" >
+                                <label htmlFor="">Due Date</label>
+                                <input type="date" name='date' value={date} onChange={setForm}/>
+                                
+                            </div>
+                            <button className='btn_submit' onClick={handleCreateInvoice}>Create Invoice</button>
+                        </div> 
+                    </div>
+                 : null}
+           
       
     </motion.div>
   )

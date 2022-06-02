@@ -1,0 +1,20 @@
+.group_define2{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 10px 0;
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.group_define2 label{
+    font-weight: 700;
+    font-size: 17px;
+}
+
+.group_define2 span{
+    font-weight: 400;
+    font-size: 16px;
+    color: blue;
+}

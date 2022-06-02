@@ -1,0 +1,96 @@
+.invoice_table{
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.invoice_table td, .invoice_table th{
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+}
+
+.invoice_table th{
+    background-color: blue;
+    color: white;
+}
+
+.invoice_table tbody tr:nth-child(even){
+    background-color: #f5f5f5;
+}
+
+.billing__invoice{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.billing__invoice h3{
+    margin: 15px 0;
+}
+
+.billing__btn{
+    border: none;
+    background: transparent;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.payment__inner{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.method__inner{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.method__inner span{
+    width:35%;
+    border: 1px solid white;
+    height: 50px;
+    display: flex;;
+    justify-content: center;
+    background: #f2f5f5;
+    align-items: center;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+}
+
+.descr span{
+    font-weight: 700;
+}
+
+.paidInvoice{
+    font-weight: 900;
+    color: red;
+    font-size: 40px;
+}
+
+.desc_wrapper{
+    display: flex;
+    flex-direction: column;
+    font-weight: 700;
+    color: blue;
+}
+
+.dec_grup{
+    display: flex;
+    justify-content: space-between;
+    gap: 10%;
+}
+
+.dec_grup span{
+    text-align: right;
+    font-weight: 500;
+    color: black;
+}
+
+.bill_btn{
+    margin-top: 15px;
+}

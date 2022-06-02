@@ -40,6 +40,7 @@
 .define{
     padding: 20px;
     background: #f4f5f7;
+    width: 100%;
 }
 
 .pricing_left h2{
@@ -52,6 +53,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 10px 0;
 }
 
 .group_define label{
@@ -62,6 +64,7 @@
 .group_define span{
     font-weight: 400;
     font-size: 16px;
+    color: blue;
 }
 
 .pricing_right{
@@ -90,6 +93,8 @@
 
 .input{
     width: 200px;
+    border: none;
+    outline: none;
     
 }
 
@@ -100,6 +105,17 @@
     border: none;
     outline: none;
     height: 40px;
+    background-color: rgb(217, 217, 250);
+    margin: 3px;
+    padding: 10px;
+    font-size: 17px;
+}
+
+.group_input1{
+    width: 100%;
+    border: none;
+    outline: none;
+    /* height: 40px; */
     background-color: rgb(217, 217, 250);
     margin: 3px;
     padding: 10px;
@@ -128,6 +144,7 @@
     .group_define{
         margin-bottom: 20px;
         flex-direction: column;
+        width: 100%;
      
     }
 

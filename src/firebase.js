@@ -1,7 +1,11 @@
+// import firebase from "./firebase";
+// import "firebase/firestore"
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getDatabase } from "firebase/database";
+
 
 const firebaseConfig = {
 //   apiKey: "AIzaSyCtIwQNS1fDKIpEjwxfit-9PeWvHXoYato",
@@ -11,7 +15,7 @@ const firebaseConfig = {
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGE_ID,
   appId: process.env.REACT_APP_FIREBASE_APPID,
 
-  // authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
   // projectId: "albarrusurvey-b428c",
   // storageBucket: "albarrusurvey-b428c.appspot.com",
   // messagingSenderId: "1019322829703",
@@ -21,5 +25,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
-export const auth = getAuth();
+export const auth = getAuth(app);
 export const storage = getStorage(app);
+export const database = getDatabase(app);
+
+export const provider = new GoogleAuthProvider(app);
+// export const provider = new firebase.auth.GoogleAuthProvider();
+// export default firebase

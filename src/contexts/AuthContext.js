@@ -12,11 +12,9 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
 
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState();
+    const value = { currentUser }
 
-    const value = {
-        currentUser
-    }
   return (
     <AuthContext.Provider value={value}>
       {children}

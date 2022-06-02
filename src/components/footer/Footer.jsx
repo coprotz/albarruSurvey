@@ -13,7 +13,8 @@ const Footer = () => {
         <div className="footer_right">
           <small><Link to='/contact'>Contact</Link></small>
           <small><Link to='/terms'>Terms of Use</Link></small>
-          <small> <Link to='/privacy'>Privacy</Link>  </small>       
+          <small> <Link to='/privacy'>Privacy</Link>  </small>   
+          
         </div>
       </div>
     </div>

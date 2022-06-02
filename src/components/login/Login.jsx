@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import './login.css'
 import {motion} from 'framer-motion'
 import { Link, useNavigate } from "react-router-dom";
@@ -6,62 +6,74 @@ import { useForm, useStep } from 'react-hooks-helper'
 import Footer from '../footer/Footer';
 import TopBar from '../topbar/TopBar';
 import { useState } from 'react';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../firebase';
 import { BiShow, BiHide} from "react-icons/bi";
-import { useContext } from 'react';
-import {AuthContext} from '../../context/AuthContext'
+import { FcGoogle} from "react-icons/fc";
+import { useUserAuth } from '../../context/UserAuthContext';
+
 
 
 const defaultData = {   
     email: '',
     password: '',
-    terms: ''
+    // terms: ''
    
 }
 
 const Login = () => {
 
-    const [formData, setForm] = useForm(defaultData)
-    const [error, setError] = useState(false)
-    const { email, password, terms } = formData
-    const navigate = useNavigate()
-    const [type, setType] = useState('password')
+    const [formData, setForm] = useForm(defaultData);
+    const { email, password } = formData;
+    const navigate = useNavigate();
+    const [type, setType] = useState('password');
+    const [sending, setSending] = useState(null);
+    const [err, setErr] = useState(null);
+    const { signIn, user, googleSignIn } = useUserAuth();
+ 
 
-    const {dispatch} = useContext(AuthContext)
+    const handleLogin = async (e) => {
+        e.preventDefault();  
+        setSending(true)  
+        
+        try {
+            await signIn(email, password)  
+            setSending(null)
+            navigate('/account')
 
+          
+          
+        } catch (error) {
+            setErr(error.message)
+           
+        }
 
+        
+    };
 
-    const handleLogin = (e) => {
-        e.preventDefault()
-      
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in 
-                const user = userCredential.user;
-                dispatch({type:"LOGIN", payload:user})
-                navigate("/account")
-              
-            })
-            .catch((error) => {
-                setError(true)
-                // const errorCode = error.code;
-                // const errorMessage = error.message;
-            });
+    const signWithGoogle = async (e) => {
+        e.preventDefault();
 
-    
+        try {
+           await googleSignIn()
+           navigate('/account')
+            
+        } catch (error) {
+            setErr(error.message)
+        }
+
     }
+
+
 
  
   return (
       <>
-      <TopBar/>
+      <TopBar user={user}/>
     <motion.div 
         initial={{ x: '-100vw'}}
         animate={{x:0}} 
         transition={{ ease: "easeOut", duration: 0.5 }}     
         className='request_form'>        
-        <form className="request_inner" onSubmit={handleLogin}>
+        <form className="request_inner" >
             <div className="register_top">
                 <h2 className='request_title'>Login</h2>
                 <div className="have_account">
@@ -70,7 +82,7 @@ const Login = () => {
                 </div>
               
             </div> 
-            {error && <div className="error">Wrong email or password, please check and try again!</div> } 
+            {err && <div className="error">{err}</div> } 
   
             <div className="group">
                 <label htmlFor="">Email</label>
@@ -80,6 +92,7 @@ const Login = () => {
                         placeholder='Your Email Address'
                         value={email} 
                         name='email' 
+                        autocomplete="off"
                         onChange={setForm}
                         />
                 
@@ -94,6 +107,7 @@ const Login = () => {
                         placeholder='Password'
                         value={password} 
                         name='password' 
+                        autocomplete="off"
                         onChange={setForm}
                         /> 
                         {type === 'password'? <span onClick={() => setType('text')}><BiShow/></span> : 
@@ -108,30 +122,20 @@ const Login = () => {
             <Link to='/reset'><span>Reset</span></Link>
             </div>   
             <div className="request_check">
-                <div className="check_group">
-                    <input 
-                        type="checkbox"                    
-                        value={terms} 
-                        name='terms' 
-                        onChange={setForm}
-                        />By Submit this request, you have accepted our <Link to='/terms'>Terms of Use</Link>
-                        </div>
-                        {terms ===  '' || terms === false?
-                        <button 
-                        className='request_btn invalid'
-
-                    
-                        >Submit
-                        </button>
-                            :
-                        <button 
-                            className=' request_btn'
-                            type='submit'
-                            onClick={handleLogin}
-                            >Submit
-                        </button>
-                        }
-            </div>     
+                                 
+                <button 
+                    className=' request_btn'
+                    type='submit'
+                    onClick={handleLogin}
+                    >
+                    {sending? 'Submiting...':'Login'}
+                </button>
+                        
+            </div>  
+            <div className="google">
+                <h3>OR</h3>
+                <button onClick={signWithGoogle}><FcGoogle/>Sign In with Google</button>
+            </div>    
         </form>
     
     </motion.div>

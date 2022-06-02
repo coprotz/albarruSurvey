@@ -1,0 +1,267 @@
+.survey_form{
+    width: 100%;
+}
+
+.btn_add_que{
+    padding: 10px;
+    margin: 15px 0;
+    border: none;
+    background-color: white;
+    font-size: 16px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    border-radius: 3px;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+.edit_mode_txt{
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 35px;
+    color: gray;
+    font-weight: 600;
+    height: fit-content;
+    margin: 0;
+    padding: 10px;
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.survey_title{
+    font-size: 35px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #828283;
+    width: fit-content;
+    cursor: pointer;
+    padding:0 10px;
+  
+   
+}
+
+.survey_title:hover{
+    background: #d6d6ff;
+}
+
+.close_supv{
+    background: red !important;
+    color: white;
+    border: none !important;
+}
+
+.survey_descr{
+    padding: 10px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.survey_descr:hover{
+    background-color: aliceblue;
+}
+
+.inputsWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.inputsWrapper button{
+    height: 30px;
+    width: 30px;
+}
+
+.section_inputs{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+    border-radius: 5px;
+    width: 100%;
+}
+.suprv_wrapper{
+    padding: 0 15px;
+    width: 100%;
+}
+
+.supervz{
+    padding: 0 10px;
+    font-size: 13px;
+    color: blue;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.add_supervisor{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.form_sp{
+    display: flex;
+    flex-direction: column;
+}
+
+.btn_add_sp{
+    background: transparent;
+    border: 1px solid blue;
+    width: fit-content;
+    margin: 10px 0;
+    padding: 7px;
+    cursor: pointer;
+}
+
+.add_supervisor_form{
+    display: inline-block;
+    padding: 0 10px;
+    background-color: white;
+    width: fit-content;
+}
+
+.add_supervisor_form button{
+    margin-left: 15px;
+}
+
+.edit_survey_descr{
+    background: transparent;
+    border: 3px solid white;
+    padding: 0 5px;
+    width: 100% !important;
+    height: 100px;
+}
+
+.add_section{
+    /* padding: 20px; */
+    width: 100%;
+}
+
+.textarea_section{
+    width: 100%;
+    font-size: 17px;
+    padding: 0 10px;
+}
+
+.section__title{
+    padding: 10px 0;
+    font-size: 20px;
+    color: blue;
+}
+
+.section__wrapper{
+    padding: 0px 30px;
+}
+
+.group__input{
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    margin: 15px 0;
+}
+
+.group__input label{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.group__input textarea{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    font-size: 17px;
+    margin-top: 15px;
+    border: 1px solid #d9d9d9;
+}
+
+.group_file{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+    padding: 10px;
+    border-radius: 20px;
+    background: rgb(215, 215, 252);
+    width: fit-content;
+}
+
+.group_file:hover{
+    background: rgb(177, 177, 255);
+    cursor: pointer;
+    width: fit-content;
+    
+}
+
+.group_file svg{  
+    font-size: 18px;
+}
+
+.group_define{
+    padding: 10px;
+}
+
+.request_input2{
+   
+    width: 200px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: white;
+    margin: 3px 0;
+    padding: 10px;
+    font-size: 17px;
+    display: flex;
+    gap: 5px;
+   
+
+
+}
+
+.request_input{
+   
+ 
+    border: none;
+    outline: none;
+    height: 40px;
+
+    margin: 3px 0;
+    padding: 10px;
+    font-size: 17px;
+    display: flex;
+    gap: 5px;
+   
+
+
+}
+
+.inner_item{
+    padding: 20px;
+    border-bottom: 5px solid white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.inner1_active_item{
+    border-bottom: 5px solid blue;
+    padding: 20px;
+    
+    
+}
+
+.total_cost{
+    padding: 10px;
+    background-color: #d6d6ff;
+}
+
+.label_cost{
+    font-weight: 400 !important;
+    color: blue;
+}

@@ -10,7 +10,7 @@ import TopBar from '../topbar/TopBar'
 
 const defaultData = {
     questionnaires: '100',
-    questions: '125',
+    questions: '0.05',
     periods: '1'
 }
 
@@ -69,16 +69,16 @@ const Pricing = () => {
                                     onChange={setForm}
                                 >
                                     {/* <option value="">--Select</option> */}
-                                    <option value="125">1 - 5 questions</option>
-                                    <option value="175">6 - 10 questions</option>
-                                    <option value="225">11 - 15 questions</option>
-                                    <option value="275">16- 20 questions</option>
-                                    <option value="325">21 - 25 questions</option>
-                                    <option value="375">26 - 30 questions</option>
-                                    <option value="425">31 - 35 questions</option>
-                                    <option value="475">36 - 40 questions</option>
-                                    <option value="525">41 - 45 questions</option>
-                                    <option value="575">46 - 50 questions</option>                         
+                                    <option value="0.05">1 - 5 questions</option>
+                                    <option value="0.07">6 - 10 questions</option>
+                                    <option value="0.09">11 - 15 questions</option>
+                                    <option value="0.11">16- 20 questions</option>
+                                    <option value="0.13">21 - 25 questions</option>
+                                    <option value="0.15">26 - 30 questions</option>
+                                    <option value="0.17">31 - 35 questions</option>
+                                    <option value="0.19">36 - 40 questions</option>
+                                    <option value="0.21">41 - 45 questions</option>
+                                    <option value="0.22">46 - 50 questions</option>                         
                                 </select>
                             </div>
                             
@@ -103,7 +103,7 @@ const Pricing = () => {
                 </div>
                 <div className="pricing_right">
                     <h2>Total Cost</h2>
-                    <div className='figure'>TZS {(questionnaires * 4 * questions * periods).toLocaleString()}</div>
+                    <div className='figure'>$ {(questionnaires * 2 * questions * periods).toLocaleString()}</div>
                     <div className="figure_submt">
                         <Link to='/request'><button className='btn_submit'>Get Started</button></Link>
                     </div>

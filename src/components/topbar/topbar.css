@@ -127,6 +127,60 @@
     /* border-bottom: 1px solid white; */
   }
 
+  .username_wrapper{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .username{
+    width: 30px;
+    height: 30px;
+    background: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+
+
+  .menu_toggle{
+    position: absolute;
+    background: white;
+    padding: 20px;
+    right: 0px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    overflow: hidden;
+  }
+
+  .menu_toggle span{
+    cursor: pointer;
+   
+  }
+
+  .menu_toggle span:hover{
+
+    color: blue;
+  }
+
+  .photo_url{
+    width: 30px !important;
+    cursor: pointer;
+  }
+
+  .photo_url img{
+    width: 100%;
+    border-radius: 50%;
+  }
+
   /* .humbug_menu button:not(:last-of-type){
     border-bottom: 1px solid white;
   } */

@@ -1,9 +1,23 @@
 .account__container{
     display: flex;
     width: 90%;
+    flex-direction: column;
     min-height: calc(100vh - 120px);
     margin-top:10px;
     
+}
+
+.loading{
+    background-color: blue;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .account_sidebar{
@@ -20,6 +34,23 @@
     border-bottom: 1px solid rgb(173, 172, 172);
     
 
+}
+
+.dash__home{
+    display: flex;
+    align-items: center;
+}
+
+.dash__home svg{
+    color: blue;
+    margin-left: 5px;
+    font-size: 25px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.dash__home svg:hover{
+    transform: scale(1.05);
 }
 
 
@@ -68,50 +99,205 @@
 }
 
 .account_body{
-    width: calc(100vw - 410px);
+    /* width: calc(100vw - 410px); */
+    width: 100%;
     background:rgb(231, 231, 255) ;
-    /* padding: 20px 0; */
-    min-height: calc(100vh - 150px);
+    padding: 20px;
+    min-height: calc(100vh - 350px);
+
     position: relative;
     
     /* border: 1px solid rgb(201, 199, 199); */
 }
 
-.progress{
-    width: 100%;
-    background-color: rgb(193, 193, 253);
-    height: 15px;
-    position: absolute;
-    top: 0;
-    left: 0;
+.billing__invo1{
     display: flex;
-    align-items: center;
-    z-index: 10;
+    justify-content: space-between;
 }
 
-.lineer_progress{
-    background: black;
-    /* width: 50%; */
-    height: 7px;
-}
 
-.dashbord_title{
-    display: block;
-    width: 100%;
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
-    padding: 10px;
-    border-bottom: 1px solid #dadbdb;
-    /* color: white; */
-    font-size: 35px;
-}
+
+
 
 .dashboard{
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+.dash_body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 100%;
+}
+
+.dash_body_inner{
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.inner__1 h3{
+    margin-bottom: 10px;
+}
+
+.inner__1 span{
+    color: blue;
+}
+
+.dashboard h3{
+    color: blue;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.dashboard h1{
+    color: #cccccc;
+    font-weight: 800;
+}
+
+
+
+.dashbord_top{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 20px;
+    background: #f6f6f6;
+}
+
+.dash_body_cards{
     display: grid;
-    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-columns: repeat(auto-fit, 150px);
     align-items: center;
     justify-content: center;
     gap: 10px;
-    height: 80%;
+    margin: 20px;
+    /* border: 1px solid red; */
+    width: 100%;
+
+}
+
+.card_grid{
+    background-color: white;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    padding: 15px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    padding-top: 60px;
+    
+    border-radius: 5px;
+}
+
+.survey_card{
+    background-color: white;
+    /* height: 200px; */
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    /* justify-content: center; */
+    padding: 15px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    /* padding-top: 60px; */
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.inner__title_1{
+    color: blue;
+}
+
+.survey_card span{
+    padding: 15px;
+}
+
+.survey_card span:not(:last-of-type){
+    border-right: 1px solid rgb(190, 190, 190);
+}
+
+.dash_title{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+}
+
+.dash_right{
+    display: flex;
+    flex-direction: column;
+}
+
+.unpaid_invoice{
+    color: red;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.unpaid_invoice:hover{
+    text-decoration: underline;
+}
+
+.dash_title small{
+    color: blue;
+
+}
+
+.dash_title h6{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.dash_span{
+    display: flex;
+}
+
+.dash_span h2{
+    font-weight: 300;
+}
+
+.dash_span h4{
+   color: blue;
+}
+
+.dash_title h4{
+    display: block;
+    width: 80%;
+    font-weight: 600;
+    margin: 7px 0;
+    color: rgb(104, 104, 104);
+}
+
+.card_grid svg{
+    font-size: 25px;
+    color: blue;
+    margin-bottom: 10px;
+   
+}
+
+.btn_create{
+    padding: 13px 17px;
+    background: blue;
+    color: white;
+    margin: 0 auto;
+    width: fit-content;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+
+}
+
+.card_grid h4{
+    font-weight: 300;
 }
 
 .inner__inner{
@@ -197,7 +383,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    height: 150px;
+    /* height: 150px; */
     color: white;
    
 }
@@ -211,7 +397,7 @@
     justify-content: space-between;
     align-items: center;
     background: white;
-    min-height: calc(100vh - 270px);
+    /* min-height: calc(100vh - 270px); */
 }
 
 .bill_body_right{
@@ -219,7 +405,7 @@
 }
 
 .right_inner{
-    margin: 10px 0;
+    /* margin: 10px 0; */
     text-align: right;
     padding: 15px;
 }
@@ -272,8 +458,9 @@
 
 .bill_btn{
    
-    margin-top: 20px;
-    text-align: center;
+    /* margin-top: 20px; */
+    margin-left: 20px;
+    /* text-align: center; */
 }
 
 .how_works{
@@ -306,14 +493,28 @@
     line-height: 1.5;
     margin-top: 10px;
 }
-
-.menu_btn{
-    background: blue;
-    font-size: 18px;
-    color: white;
-    border: none;
-    padding: 10px 0;
+.menu__user{
     display: none;
+    justify-content: space-between;
+    align-items: center;
+    background: blue;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+} 
+
+.menu_btn{   
+    border: none;
+    background: transparent;    
+    display: none;
+    color: white;
+    font-size: 18px;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.menu_btn svg{
+    padding-top: 4px;
 }
 
 .share_inner{
@@ -376,6 +577,20 @@
     cursor: pointer;
 }
 
+.no_survey_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+   
+    gap: 20px;
+
+}
+
+.no_btn{
+   
+    text-align: center;
+}
+
 .showUp{
     margin-top: 0;
     animation: menuUp 0.5s;
@@ -393,7 +608,197 @@
     }
 }
 
+/* .element_single span{
+    display: none;
+} */
 
+/* input:invalid[focused='false']{
+    
+} */
+
+
+input:invalid[focused='true'] ~ span{
+    display:block;
+}
+
+input:invalid[focused='true']{
+    border: 1px solid red;
+}
+
+
+.invoice_create{
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 90%;
+    height: fit-content;
+    background: white;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    align-items: center;
+}
+
+.inner__create{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+    position: relative;
+}
+
+.invoice__btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: white;
+    background: rgb(242, 117, 117);
+    border: none;
+    cursor: pointer;
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invoice__btn:hover{
+    background: red;
+    /* color: black; */
+}
+
+.invoice__btn2{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #f1f2f3;
+    /* color: transparent; */
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash_body_inner{
+    display: flex;
+    /* justify-content: center; */
+    width: 100%;
+    height: 100%;
+    /* align-items: center; */
+}
+
+.inner__1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.invoice__btn2:hover{
+    background: #e1e2e3;
+    color: black;
+}
+
+.invoice_input{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.invoice_input input, .invoice_input select{
+    width: 100%;
+    padding: 5px;
+    margin-top: 3px;
+    height: 30px;
+}
+
+.bill_to{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dont_hv{
+    display: flex;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.message_alert{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 6px 20px;
+    background-color: #e4e4ff;
+    border-left: 4px solid blue;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    animation: message 0.5s;
+    opacity: 1;
+    max-width: 450px;
+}
+
+@keyframes message{
+    0%{
+        right: -500px;
+        opacity: 0;
+    }
+    100%{
+        right: 20px;
+        opacity: 1;
+    }
+}
+
+.bill_body_left{
+    width: 100%;
+}
+
+@media screen and (max-width:920px){
+    
+    .user_table thead{
+        display: none;
+    }
+
+    .user_table, .user_table tbody, .user_table tr, .user_table td{
+        display: block;
+        width: 100%;
+    }
+
+    .user_table tr{
+        margin-bottom: 15px;
+    }
+
+    .user_table td{
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .user_table td::before{
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        text-align: left;
+        font-weight: bold;
+    }
+}
 
 
 
@@ -433,6 +838,7 @@
         top: 60px;
         /* height: 650px; */
         border-bottom: 1px solid rgb(173, 172, 172);
+
     
     }
 
@@ -441,7 +847,7 @@
         /* background:rgb(231, 231, 255) ; */
         padding: 10px;
         /* border: 1px solid rgb(201, 199, 199); */
-        /* height: 100%; */
+        height:calc(100% - 60px);
     }
 
     .dashbord_title{
@@ -453,6 +859,12 @@
         /* color: white; */
         font-size: 25px;
         text-align: center;
+        justify-items: center;
+    }
+
+    .menu__user{
+        display: flex;
+        
     }
 
     .card{
@@ -543,6 +955,17 @@
         right: 20px;
         top: 20px;
        
+    }
+
+    .bill_btn{
+   
+        margin-top: 20px;
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    .survey_wrapper5{
+        padding: 10px !important;
     }
     
     
