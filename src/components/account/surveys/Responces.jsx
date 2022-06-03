@@ -17,10 +17,10 @@ const Responces = ({
  
     const values = userResponces?.map((s) => s.values)
 
-    console.log('values', values)
+    // console.log('values', values)
 
-    const name = values.map(item => item.fname)
-    const email = values.map(item => item.fEmail)
+    // const name = values.map(item => item.fname)
+    // const email = values.map(item => item.fEmail)
 
     const [respondents, setRespondents] = useState(null)
 

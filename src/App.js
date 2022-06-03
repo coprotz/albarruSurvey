@@ -11,23 +11,23 @@ import Works from './components/account/Works';
 import Terms from './components/account/Terms';
 import Privacy from './components/account/Privacy';
 import Reset from './components/reset/Reset';
-import { AuthContext } from './context/AuthContext'
-import { useContext } from 'react';
+// import { AuthContext } from './context/AuthContext'
+// import { useContext } from 'react';
 import { useState } from 'react';
 import Thanks from './components/thanks/Thanks';
 import Settings from './components/settings/Settings';
 import {
   collection,
-  getDocs,
-  deleteDoc,
-  doc,
+  // getDocs,
+  // deleteDoc,
+  // doc,
   onSnapshot,
 } from "firebase/firestore";
 import { db, auth } from "../src/firebase";
 import { useEffect } from 'react';
 import Admin from './components/admin/Admin';
 import RenderSurvey from './components/account/createForm/RenderSurvey';
-import { UserAuthContextProvider, useUserAuth } from './context/UserAuthContext';
+import { useUserAuth } from './context/UserAuthContext';
 
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
   const { user } = useUserAuth();
 
 
-  console.log("user", user)
+  // console.log("user", user)
 
   useEffect(() => {
 
@@ -49,7 +49,7 @@ function App() {
           list.push({ id: doc.id, ...doc.data() });
         });
         setUsers(list)
-        console.log(list)
+        // console.log(list)
       },
       (error) => {
         console.log(error)
@@ -113,8 +113,8 @@ useEffect(() => {
 
 
 
-  console.log(user)
-  console.log('cu', cuUser)
+  // console.log(user)
+  // console.log('cu', cuUser)
 
  
   const RequireAuth = ({children}) => {

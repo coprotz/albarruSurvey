@@ -11,7 +11,7 @@ import { FormContext } from '../../../contexts/FormContext';
 import { useForm } from 'react-hook-form'
 
 
-export const RenderFields = ({e, watch, register, errors}) => { 
+export const RenderFields = ({e, watch, register, errors, activeQuestionnaire, activeQue}) => { 
 
     
 

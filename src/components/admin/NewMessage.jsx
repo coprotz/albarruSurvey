@@ -1,17 +1,10 @@
 import React, {useState} from 'react'
 import {motion} from 'framer-motion'
-import { useForm } from 'react-hooks-helper'
+// import { useForm } from 'react-hooks-helper'
 import { AiOutlineClose } from "react-icons/ai";
 
-import {
-    collection,  
-    addDoc,
-    serverTimestamp,
-    setDoc,
-    doc
-    
-  } from "firebase/firestore";
-  import { db } from '../../firebase';
+import { collection,  addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from '../../firebase';
 
 const defaultData = {   
     sendTo: '',
@@ -23,11 +16,14 @@ const defaultData = {
 
 
 
-const NewMessage = ({currentUser, s, setNewMsg, newMsg}) => {
+const NewMessage = ({currentUser, s, setNewMsg, newMsg, user, setMessageAlert}) => {
 
-    const [messageAlert, setMessageAlert] = useState('')
-    const [formData, setForm] = useForm(defaultData)
-    const { sendTo, from, body } = formData
+  // const [sendTo, setSendTo] = useState(newMsg?.id)
+    const [err, setErr] = useState('')
+   
+    const [body, setBody] = useState('')
+    // const [formData, setForm] = useForm(defaultData)
+    // const { sendTo, from, body } = formData
     const [sending, setSending] = useState(null)
 
     const handleMessage = async(e) => {
@@ -37,25 +33,26 @@ const NewMessage = ({currentUser, s, setNewMsg, newMsg}) => {
     
         const data = {
           sendTo: newMsg?.id,
-          from: currentUser?.uid,
+          from: user?.uid,
           body:body,
         }
-    
+        // console.log('data',data)
         try {
           await addDoc(collection(db, "sentItems"), {
             ...data,
             timeStamp: serverTimestamp(),
             
           });
+          setMessageAlert('Your message has been delivered successiful!')
+          setTimeout(() => {
+            setMessageAlert('')
+          }, 4000);
+          setSending(null)
+          setNewMsg(null)
         } catch (error) {
-          console.log(error)
+          setErr(error.message)
         }
-        setMessageAlert('Your message has been delivered successiful, our team will contact you soon, thank you.')
-        setTimeout(() => {
-          setMessageAlert('')
-        }, 6000);
-        setSending(null)
-        setNewMsg(null)
+        
        
       }
 
@@ -72,6 +69,8 @@ const NewMessage = ({currentUser, s, setNewMsg, newMsg}) => {
         className='new_message'> 
         <button className='invoice__btn' onClick={() => setNewMsg(null)}><AiOutlineClose/></button>       
         <form >
+          {err && <span className='error'>{err}</span>}
+         
             <div className="register_top">
                 <h2 className='new_title'>New Message</h2>
             </div> 
@@ -80,11 +79,11 @@ const NewMessage = ({currentUser, s, setNewMsg, newMsg}) => {
                 <div className="request_input">
                     <input 
                         type="text" 
-                        placeholder='Your Email Address'
+                        // placeholder='Your Email Address'
                         value={newMsg?.name} 
                         name='sendTo' 
                         className='new_input'
-                        onChange={setForm}
+                        
                         />
                 
                 </div>
@@ -98,7 +97,7 @@ const NewMessage = ({currentUser, s, setNewMsg, newMsg}) => {
                         placeholder='Message'
                         value={body} 
                         name='body' 
-                        onChange={setForm}
+                        onChange={(e) =>setBody(e.target.value)}
                         className='new_input'
                         >
                         </textarea> 

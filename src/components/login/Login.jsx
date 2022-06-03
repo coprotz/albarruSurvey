@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import './login.css'
 import {motion} from 'framer-motion'
 import { Link, useNavigate } from "react-router-dom";
-import { useForm, useStep } from 'react-hooks-helper'
+// import { useForm, useStep } from 'react-hooks-helper'
 import Footer from '../footer/Footer';
 import TopBar from '../topbar/TopBar';
 import { useState } from 'react';
@@ -12,22 +12,24 @@ import { useUserAuth } from '../../context/UserAuthContext';
 
 
 
-const defaultData = {   
-    email: '',
-    password: '',
-    // terms: ''
+// const defaultData = {   
+//     email: '',
+//     password: '',
+//     // terms: ''
    
-}
+// }
 
 const Login = () => {
 
-    const [formData, setForm] = useForm(defaultData);
-    const { email, password } = formData;
+    // const [formData, setForm] = useForm(defaultData);
+    // const { email, password } = formData;
     const navigate = useNavigate();
     const [type, setType] = useState('password');
     const [sending, setSending] = useState(null);
     const [err, setErr] = useState(null);
     const { signIn, user, googleSignIn } = useUserAuth();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
  
 
     const handleLogin = async (e) => {
@@ -93,7 +95,7 @@ const Login = () => {
                         value={email} 
                         name='email' 
                         autocomplete="off"
-                        onChange={setForm}
+                        onChange={(e) => setEmail(e.target.value)}
                         />
                 
                 </div>
@@ -108,7 +110,7 @@ const Login = () => {
                         value={password} 
                         name='password' 
                         autocomplete="off"
-                        onChange={setForm}
+                        onChange={(e) => setPassword(e.target.value)}
                         /> 
                         {type === 'password'? <span onClick={() => setType('text')}><BiShow/></span> : 
                         <span onClick={() => setType("password")}><BiHide/></span>  }
@@ -128,7 +130,7 @@ const Login = () => {
                     type='submit'
                     onClick={handleLogin}
                     >
-                    {sending? 'Submiting...':'Login'}
+                    {sending && !err? 'Submiting...':'Login'}
                 </button>
                         
             </div>  

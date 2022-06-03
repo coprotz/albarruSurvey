@@ -12,6 +12,7 @@ const RenderReponces = ({
     activeResponce,
     cuUser,
     go,
+    setPage,
     s
 }) => {
     const [respondents, setRespondents] = useState(null)
@@ -28,6 +29,7 @@ const RenderReponces = ({
                     s={s}
                     respondents={respondents}
                     setRespondents={setRespondents}
+                    setPage={setPage}
                 />
             )
             default:

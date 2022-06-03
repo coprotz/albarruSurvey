@@ -2,13 +2,13 @@ import React from 'react'
 
 const Responces = ({responces, users, Questionnaires, surveys}) => {
 
-  const t = surveys.map(s => s.period)
+  // const t = surveys.map(s => s.period)
 
-  console.log('t', t)
+  // console.log('t', t)
   
-  const RenderPeriod =() => {
-    // switch()
-  }
+  // const RenderPeriod =() => {
+  //   // switch()
+  // }
 
 
   return (

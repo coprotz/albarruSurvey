@@ -8,13 +8,13 @@ import {motion} from 'framer-motion'
 import Logo from '../images/albarru.png'
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { signOut } from "firebase/auth";
+// import { signOut } from "firebase/auth";
 import {
   collection,
   getDocs,
-  deleteDoc,
-  doc,
-  onSnapshot,
+  // deleteDoc,
+  // doc,
+  // onSnapshot,
 } from "firebase/firestore";
 import { db, auth } from "../../firebase";
 import { useEffect } from 'react';
@@ -34,7 +34,7 @@ const TopBar = ({cuUser }) => {
   const {currentUser} = useContext(AuthContext)
   const [show,setShow] = useState(null)
 
-  console.log('nav', user)
+  // console.log('nav', user)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +51,7 @@ const TopBar = ({cuUser }) => {
     fetchData()
 },[]);
 
-console.log('cu', cuUser)
+// console.log('cu', cuUser)
 
 const handleLogout = async () => {
   try {

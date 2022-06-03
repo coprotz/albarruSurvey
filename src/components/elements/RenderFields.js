@@ -11,27 +11,10 @@ import { useForm } from 'react-hook-form'
 
 const RenderFields = ({e, p, sub, setActiveField, setName, activeField, data, register, watch, errors}) => {
 
+    let watchCategory = watch(e.name['category'])  
 
-    let values = watch(e.name['name'])
-
-    console.log('sub2', sub)
-
-
-    let watchTaneps = watch(e.name['taneps'])
-
-
-    let watchCategory = watch(e.name['category'])
-
-    let showConsultant = e.visibleIf ? watchCategory[e.visibleIf['category']] ===  'consultant' : null;
-    if(showConsultant) return
-
-    let showContractor = e.visibleIf ? watchCategory[e.visibleIf['category']] ===  'contractor' : null;
-    if(showContractor) return
-
-    let watchValues = watch(e.name['taneps']) ;
-    let showField = e.visibleIf ? watchValues[e.visibleIf['name']] === e.visibleIf['value'] : true;
-            
-    if(!showField) return;
+    let watchTaneps = watch(e.name['taneps']) ;
+   
 
 
 
@@ -93,6 +76,63 @@ const RenderFields = ({e, p, sub, setActiveField, setName, activeField, data, re
                 />                       
             )
 
+            case 'rado' :  
+             return (   
+                 <>
+                {!watchTaneps.taneps &&                    
+                    <Checkbox 
+                        e={e} 
+                    
+                        setActiveField={setActiveField}
+                        setName={setName}
+                        activeField={activeField}
+                        register={register}
+                        watch={watch}
+                        errors={errors} 
+                        sub={sub}
+                    />   
+                }   
+                </>                 
+            )
+
+            case 'contractor' :  
+            return (   
+                <>
+               {watchCategory.category == 'contractor' &&                    
+                   <Checkbox 
+                       e={e} 
+                   
+                       setActiveField={setActiveField}
+                       setName={setName}
+                       activeField={activeField}
+                       register={register}
+                       watch={watch}
+                       errors={errors} 
+                       sub={sub}
+                   />   
+               }   
+               </>                 
+           )
+
+           case 'consultant' :  
+           return (   
+               <>
+              {watchCategory.category == 'consultant' &&                    
+                  <Checkbox 
+                      e={e} 
+                  
+                      setActiveField={setActiveField}
+                      setName={setName}
+                      activeField={activeField}
+                      register={register}
+                      watch={watch}
+                      errors={errors} 
+                      sub={sub}
+                  />   
+              }   
+              </>                 
+          )
+
         // case 'kido' : 
         //     return (                       
         //         <>{renderContractor(e, setName, setActiveField, activeField)}  </>                        
@@ -133,13 +173,13 @@ const RenderFields = ({e, p, sub, setActiveField, setName, activeField, data, re
                 />                   
             )
         default: 
-            return(
+            return (
                 <div>
                     <span>Invalid Field</span>
                 </div>
             )
     
-}
+    }
 }
 
  

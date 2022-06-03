@@ -17,7 +17,7 @@ import {
 } from "firebase/firestore";
 import {  db } from '../../../../firebase';
 
-const ThewayForward = ({go, sub, setSub, responces, next, previous, activeQue, quest, name, setName, activeField, setActiveField, activeQuestionnaire, setActiveQuestionnaire }) => {
+const ThewayForward = ({go, sub, setSub, responces, setPage, previous, activeQue, quest, name, setName, activeField, setActiveField, activeQuestionnaire, setActiveQuestionnaire }) => {
 
   let { register, handleSubmit, formState: { errors, isValid }, setError, clearError, watch } = useForm({mode: 'all'});
 
@@ -114,7 +114,7 @@ let watchValues = watch(activeField?.name['name']) ;
     <san>{err? err : null}</san>
        <div className="welcome_input">
         <div className="welcome_action">
-          <button onClick={() => {previous()}} className='back1'><FaChevronLeft/></button>
+          <button onClick={() => {setPage(5)}} className='back1'><FaChevronLeft/></button>
           <small className='main__title'>{activeQue?.title || activeQuestionnaire.title}</small>
         </div>
         <h3  className='pages_title'>{page6.title}</h3>

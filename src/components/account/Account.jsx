@@ -3,45 +3,16 @@ import Topbar from '../topbar/TopBar'
 import Footer from '../footer/Footer'
 import {motion} from 'framer-motion'
 import './account.css'
-import { useForm, useStep } from 'react-hooks-helper'
+
 import Dashbord from './Dashbord';
-import BillingMain from './BillingMain';
+
 import { useState } from 'react';
-import Share from './Share';
-import Users from './Users';
-import Survey from './surveys/Survey';
+
 import SurveyLists from './surveys/SurveyLists';
 import Invoice from '../bills/Invoice';
 import CreateSurvey from './surveys/CreateSurvey';
 import RenderSurvey from './createForm/RenderSurvey';
 import RenderReponces from './createForm/RenderReponces';
-
-const defaultData = {
-  title: '',
-  welcome: '',
-  prefix: '',
-  firstname:'',
-  lastname:'',
-  supervisors:'',
-  target: '',
-  sec_Name:'',
-
-}
-
-
-const steps = [
-    {id: 'SurveyList', Component: SurveyLists},
-    {id: 'Dashbord', Component: Dashbord},
-    {id: 'Questionnaire', Component: RenderSurvey},
-    {id: 'Analysis', Component: RenderReponces},
-    {id: 'Billing', Component: BillingMain},
-    {id: 'Share', Component: Share},
-    {id: 'Users', Component: Users},
-    {id: 'Survey', Component: Survey},    
-    {id: 'Invoices', Component: Invoice},
-    {id: 'CreateSurvey', Component: CreateSurvey},
-
-]
 
 
 
@@ -51,10 +22,7 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
 
     const [activeSurvey, setActiveSurvey] = useState(false)
     const [activeQuestionnaire, setActiveQuestionnaire] = useState(null)
-    const { step, navigation} = useStep({ steps, initialStep: 0 })
-    const { Component} = step
-    const { go, next, previous } = navigation
-    const [formData, setForm] = useForm(defaultData)
+
     const [invoices, setInvoices] = useState([])
     const [createInvoice, setCreateInvoices] = useState(null)
     const [payInvoice, setPayInvoice] = useState(null)
@@ -68,47 +36,67 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
     const userSurveys = surveys.filter((s) => s.userId === cuUser?.id)
     const [activeResponce, setActiveResponce] = useState(null)
 
-  
+
+    const [page, setPage] = useState(0);
+
+     
  
-  const props = { 
-    go, 
-    setActive,
-    next, 
-    previous,
-    userSurveys, 
-    steps, 
-    userInvoices, 
-    cuUser, users, 
-    invoices, 
-    setInvoices, 
-    setForm, 
-    formData, 
-    setActiveSurvey, 
-    activeSurvey ,
-    createInvoice,
-    setCreateInvoices,
-    payInvoice,
-    setPayInvoice,
-    viewInvoice,
-    setViewInvoice,
-    createSurvey,
-    setCreateSurvey,
-    surveys,
-    setSurveys,
-    setActiveQuestionnaire,
-    activeQuestionnaire,
-    responces,
-    unPaidInvoice, 
-    setMessageAlert,
-    activeResponce,
-    setActiveResponce,
-    user
-  }
+    const props = { 
+      setPage,
+      setActive, 
+      userSurveys,  
+      userInvoices, 
+      cuUser, users, 
+      invoices, 
+      setInvoices, 
+      // setForm, 
+      // formData, 
+      setActiveSurvey, 
+      activeSurvey ,
+      createInvoice,
+      setCreateInvoices,
+      payInvoice,
+      setPayInvoice,
+      viewInvoice,
+      setViewInvoice,
+      createSurvey,
+      setCreateSurvey,
+      surveys,
+      setSurveys,
+      setActiveQuestionnaire,
+      activeQuestionnaire,
+      responces,
+      unPaidInvoice, 
+      setMessageAlert,
+      activeResponce,
+      setActiveResponce,
+      user
+    }
+
+    const PageDisplay = () => {
+      if(page === 0){
+        return <SurveyLists {...props}/>
+      }else if(page === 1){
+        return <Dashbord {...props}/>
+      }else if(page === 2){
+        return <RenderSurvey {...props}/>
+      }else if(page === 3){
+        return <RenderReponces {...props}/>
+      // }else if(page === 4){
+      //   return <BillingMain {...props}/>
+      // }else if (page === 5){
+      //   return <Share />
+      }else if(page === 6){
+        return <Invoice {...props}/>
+      }else if(page === 7){
+        return <CreateSurvey {...props}/>
+      }
+      
+      
+    }
   
 
   return (
-
-    
     <>
     {user?.email? 
 
@@ -136,7 +124,7 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
                 <div className="dash_right">
                    {!unPaidInvoice.length != '0' ? null
                       
-                    : <small className="unpaid_invoice" onClick={() => {go('Invoices'); setActive(3)}}>
+                    : <small className="unpaid_invoice" onClick={() => {setPage(6); setActive(3)}}>
                         {`You have ${unPaidInvoice?.length} unpaid Invoice(s)`}
                       </small> 
                     }
@@ -148,13 +136,13 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
           <div className="components">
           <div className="survey_inner1_top">
                 <div className="inner1_top_left">
-                    <span className={`${active === 1? 'inner1_active_item': 'inner_item '}`} onClick={() => {go('SurveyList'); setActive(1)}}>Home</span>
-                    <span className={`${active === 2? 'inner1_active_item': 'inner_item '}`} onClick={() => {go('Dashbord'); setActive(2)}}>Surveys</span> 
-                    <span className={`${active === 3? 'inner1_active_item': 'inner_item '}`} onClick={() => {go('Invoices'); setActive(3)}}>Invoices</span> 
+                    <span className={`${active === 1? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(0); setActive(1)}}>Home</span>
+                    <span className={`${active === 2? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(1); setActive(2)}}>Surveys</span> 
+                    <span className={`${active === 3? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(6); setActive(3)}}>Invoices</span> 
                 </div>                
             </div>
-
-            <Component {...props}/> 
+                {PageDisplay()}
+            {/* <Component {...props}/>  */}
           </div>
                 
      

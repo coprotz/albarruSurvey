@@ -4,7 +4,6 @@ import '../styles/admin.css'
 import TopBar from '../topbar/TopBar';
 import Footer from '../footer/Footer';
 import {Questionnaires} from '../../data/surveys';
-import { useStep } from 'react-hooks-helper'
 import Users from './Users'
 import Dashboard from './Dashboard';
 import Responces from './Responces';
@@ -20,14 +19,6 @@ import {
 import { db } from "../../firebase";
 import NewMessage from './NewMessage';
 
-const steps = [
-  {id: '1', Component: Dashboard},
-  {id: '2', Component: Users},
-  {id: '3', Component: Quests},
-  {id: '4', Component: Surveys},
-  {id: '5', Component: Responces},
-  {id: '6', Component: Messages},
-]
 
 const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) => {
 
@@ -43,6 +34,7 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
 
   const paid = totalPaid.reduce((a, b) => a + b.totalCost, 0)
   const unPaid = totalUnpaid.reduce((a, b) => a + b.totalCost, 0)
+
 
  
   useEffect(() => {
@@ -68,22 +60,41 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
 
 },[]);
 
-  const { step, navigation } = useStep({ steps, initialStep:0 })
-  const { Component } = step
-  const { go, next, previous } = navigation
 
-  const props = { go, next, previous, responces, surveys, questionnaires, users, messages, currentUser, Questionnaires,newMsg, setNewMsg }
+  const [messageAlert, setMessageAlert] = useState('')
+  const [page, setPage] = useState(0)
 
+  const props = { responces, surveys, questionnaires, users, messages, currentUser, Questionnaires,newMsg, setNewMsg, user, setPage }
+
+  
+  const PageDisplay = () => {
+    if(page === 0){
+      return <Dashboard {...props}/>
+    }else if(page === 1){
+      return <Users {...props}/>
+    }else if(page === 2){
+      return <Quests {...props}/>
+    }else if(page === 3){
+      return <Surveys {...props}/>
+    }else if(page === 4){
+      return <Responces {...props}/>
+    }else if (page === 5){
+      return <Messages {...props}/>
+    }
+    
+    
+  }
 
   return (
     <>
     {cuUser ? 
     <>
     {newMsg && 
-      <NewMessage newMsg={newMsg} setNewMsg={setNewMsg} currentUser={currentUser}/>
+      <NewMessage newMsg={newMsg} setNewMsg={setNewMsg} user={user} setMessageAlert={setMessageAlert}/>
     }
     
     <TopBar user={user} cuUser={cuUser}/>
+    {messageAlert && <div className='success'>{messageAlert}</div>}
     <motion.div 
         initial={{ x: '-100vw'}}
         animate={{x:0}} 
@@ -91,12 +102,12 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
         className='account__container'>
          <div className="admin_wrraper">
           <div className="admin_left">
-            <span className={active === 1? 'admin_active' : 'admin_link'}  onClick={() => {go('1'); setActive(1)}}>Dashboard</span>
-            <span className={active === 2? 'admin_active' : 'admin_link'}  onClick={() => {go('2'); setActive(2)}}>Researchers</span>
-            <span className={active === 3? 'admin_active' : 'admin_link'}  onClick={() => {go('3'); setActive(3)}}>Questionnaires</span>
-            <span className={active === 4? 'admin_active' : 'admin_link'}  onClick={() => {go('4'); setActive(4)}}>Surveys</span>
-            <span className={active === 5? 'admin_active' : 'admin_link'}  onClick={() => {go('5'); setActive(5)}}>Responces</span>
-            <span className={active === 6? 'admin_active' : 'admin_link'}  onClick={() => {go('6'); setActive(6)}}>Messages</span>
+            <span className={active === 1? 'admin_active' : 'admin_link'}  onClick={() => {setPage(0); setActive(1)}}>Dashboard</span>
+            <span className={active === 2? 'admin_active' : 'admin_link'}  onClick={() => {setPage(1); setActive(2)}}>Researchers</span>
+            <span className={active === 3? 'admin_active' : 'admin_link'}  onClick={() => {setPage(2); setActive(3)}}>Questionnaires</span>
+            <span className={active === 4? 'admin_active' : 'admin_link'}  onClick={() => {setPage(3); setActive(4)}}>Surveys</span>
+            <span className={active === 5? 'admin_active' : 'admin_link'}  onClick={() => {setPage(4); setActive(5)}}>Responces</span>
+            <span className={active === 6? 'admin_active' : 'admin_link'}  onClick={() => {setPage(5); setActive(6)}}>Messages</span>
           </div>
 
           <div className="admin_right">
@@ -136,7 +147,7 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
                     <h2>$ {unPaid}</h2>
                   </div>
               </div>
-              <Component {...props} />
+              {PageDisplay()}
             </div>
             
           </div>

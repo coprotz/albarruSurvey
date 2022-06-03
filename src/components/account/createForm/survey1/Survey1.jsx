@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { useStep } from 'react-hooks-helper'
+// import { useStep } from 'react-hooks-helper'
 import FirmDetails from './FirmDetails'
 import Establishment from './Establishments'
 import Implementation from './Implementation'
@@ -14,52 +14,51 @@ import { ValuesContext } from '../../../../contexts/ValuesContext';
 
 
 
-const steps = [
-    {id: '1', Component: Welcome},
-    {id: '2', Component: FirmDetails},
-    {id: '3', Component: Establishment},
-    {id: '4', Component: Implementation},
-    {id: '5', Component: Challenges},
-    {id: '6', Component: Benefits},
-    {id: '7', Component: ThewayForward},
+// const steps = [
+//     {id: '1', Component: Welcome},
+//     {id: '2', Component: FirmDetails},
+//     {id: '3', Component: Establishment},
+//     {id: '4', Component: Implementation},
+//     {id: '5', Component: Challenges},
+//     {id: '6', Component: Benefits},
+//     {id: '7', Component: ThewayForward},
 
-]
+// ]
 
-const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire, setActiveResponce, responces, Questionnaires, activeQue}) => {
-
-
+const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire, setActiveResponce, responces, activeQue}) => {
 
 
-    const { step, navigation } = useStep({ steps, initialStep: 0 })
-    const { Component } = step
-
+    // const { step, navigation } = useStep({ steps, initialStep: 0 })
+    // const { Component } = step
     const [pages, setPages] = useState(activeQue?.pages || activeQuestionnaire?.pages)
-
     const [values, setValues] = useState(null)
     const [sub, setSub] = useState(null)
-  
-
-
-    const { go, next, previous } = navigation
+    // const { go, next, previous } = navigation    
     
-    const width = (step.id/steps.length)*100
     let { register, handleSubmit, watch } = useForm({mode: 'all'});
 
     const [name, setName] = useState(true)
     const [activeField, setActiveField] = useState(null)
     const [survey, setSurvey] = useState(activeQue)
+    const [page, setPage] = useState(0)
+
+    const width = (page/6)*100
+
+    // console.log('active', activeQuestionnaire)
+
+    // console.log('width',page)
 
 
     const props = { 
-        go, 
-        next, 
-        previous, 
-        steps, 
+        // go, 
+        // next, 
+        // previous, 
+        // steps, 
   
         register, 
         handleSubmit, 
         watch, 
-   
+        setPage,
         activeQuestionnaire,
         pages, 
         name, 
@@ -77,6 +76,27 @@ const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire,
         sub,
         setSub
       }
+
+      const PageDisplay = () => {
+        if(page === 0){
+          return <Welcome {...props}/>
+        }else if(page === 1){
+          return <FirmDetails {...props}/>
+        }else if(page === 2){
+          return <Establishment {...props}/>
+        }else if(page === 3){
+          return <Implementation {...props}/>
+        }else if(page === 4){
+          return <Challenges {...props}/>
+        }else if (page === 5){
+          return <Benefits {...props}/>
+        }else if(page === 6){
+          return <ThewayForward {...props}/>
+    
+        }
+        
+        
+      }
  
 
   return (
@@ -93,8 +113,8 @@ const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire,
         transition={{ ease: "easeOut", duration: 0.5 }} 
         className={`${activeQuestionnaire? 'survey_wrapper5' : 'survey_wrapper4'}`}>   
           <ValuesContext.Provider value={{values, setValues}}>                   
-            <div className={`${activeQuestionnaire? 'main_body2' : 'main_body'}`}>  
-              <Component {...props} />
+            <div className={activeQuestionnaire? 'main_body2' : 'main_body'}>  
+              {PageDisplay()}
             </div>
           </ValuesContext.Provider>  
       </motion.div>

@@ -1,21 +1,25 @@
 import React from 'react'
 import './reset.css'
 import {motion} from 'framer-motion'
-import { Link } from "react-router-dom";
-import { useForm, useStep } from 'react-hooks-helper'
+import { useNavigate} from "react-router-dom";
+// import { useForm, useStep } from 'react-hooks-helper'
+import { useState } from 'react';
 
 
-const defaultData = {   
-    email: '',
+// const defaultData = {   
+//     email: '',
    
    
-}
+// }
 
 const Reset = () => {
 
-    const [formData, setForm] = useForm(defaultData)
+    // const [formData, setForm] = useForm(defaultData)
 
-    const { email } = formData
+    // const { email } = formData
+    const navigate = useNavigate();
+
+    const[email, setEmail] = useState('')
 
     const handleReset = (e) => {
         e.preventDefault()
@@ -54,7 +58,7 @@ const Reset = () => {
                     placeholder='Your Email Address'
                     value={email} 
                     name='email' 
-                    onChange={setForm}
+                    onChange={(e) => setEmail(e.target.value)}
                     />
               
             </div>
@@ -62,13 +66,18 @@ const Reset = () => {
        
          
         <div className="request_check">
-                          
-                    <button 
-                        className=' request_btn'
-                        type='submit'
-                        onClick={handleReset}
-                        >Submit
-                    </button>
+            <button 
+                className=' request_btn'
+                type='submit'
+                onClick={handleReset}
+                >Submit
+            </button>
+            <button 
+                className=' request_btn'
+                type='submit'
+                onClick={() => navigate('/login')}
+                >Cancel
+            </button>
                   
         </div>
        

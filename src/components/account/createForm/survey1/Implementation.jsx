@@ -16,7 +16,7 @@ import {
 } from "firebase/firestore";
 import {  db } from '../../../../firebase';
 
-const Implementation = ({go, responces, next, activeQue, previous, quest, name, setName, activeField, setActiveField, activeQuestionnaire, sub, setSub}) => {
+const Implementation = ({go, responces, next, activeQue, previous, setPage, name, setName, activeField, setActiveField, activeQuestionnaire, sub, setSub}) => {
 
   let { register, handleSubmit, formState: { errors, isValid }, setError, clearError, watch } = useForm({mode: 'all'});
 
@@ -84,7 +84,7 @@ const handleNext = async(e) => {
 
 
   setSending(null) 
-  go('5')
+  setPage(4)
  
 }
 
@@ -96,7 +96,7 @@ const handleNext = async(e) => {
     className="survey_wrapper3"> 
     <div className="welcome_input">
         <div className="welcome_action">
-          <button onClick={() => {previous()}} className='back1'><FaChevronLeft/></button>
+          <button onClick={() => {setPage(2)}} className='back1'><FaChevronLeft/></button>
           <small className='main__title'>{activeQue?.title || activeQuestionnaire.title}</small>
         </div>
         <h3  className='pages_title'>{page3.title}</h3>

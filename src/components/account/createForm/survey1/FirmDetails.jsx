@@ -23,6 +23,7 @@ const FirmDetails = ({
     go, 
     previous, 
     activeQue, 
+    next,
     name, 
     setName, 
     activeField, 
@@ -31,12 +32,15 @@ const FirmDetails = ({
     setActiveQuestionnaire,
     responces,
     sub,
-    setSub
+    setSub,
+    setPage,
+    currentQue
    }) => {
 
   let { register, formState: { errors, isValid }, watch } = useForm({mode: 'all'});
   
   const { pages, setPages } = useContext(SurveyContext)
+  console.log('pages', pages)
   const page1 = pages.find((p) => p.name === 'page1')
   const [err, setErr] = useState(null)
   let watchValues = watch(name['name']) ;
@@ -81,24 +85,22 @@ const temp_res = responces?.filter((f) => f?.surveyId === activeQuestionnaire?.i
 
 const next2 = temp_res?.find(v => v?.values?.fEmail === watchValues?.fEmail)
 
+const newSurvey = {
+  title: activeQue?.title || activeQuestionnaire?.title,
+  userId: activeQue?.userId || activeQuestionnaire?.userId,
+  surveyId: activeQue?.id || activeQuestionnaire?.id,
+  values: watchValues
+}
 
 
 
-  const handleNext = async(e) => {
+const handleNext = async(e) => {
     e.preventDefault()
     setSending(true)
 
-    const newSurvey = {
-      title: activeQue?.title || activeQuestionnaire?.title,
-      userId: activeQue?.userId || activeQuestionnaire?.userId,
-      surveyId: activeQue?.id || activeQuestionnaire?.id,
-      values: watchValues
-    }
-
-
     if(watchValues.taneps){
       setSub(newSurvey)
-      go('3')
+      setPage(2)
     }else{
        try {
           await addDoc(collection(db, "responces"), {
@@ -109,6 +111,7 @@ const next2 = temp_res?.find(v => v?.values?.fEmail === watchValues?.fEmail)
           setSending(null)
           if(activeQuestionnaire && !watchValues.taneps){
             setActiveQuestionnaire(null)
+            
           }else if(!activeQuestionnaire && !watchValues.taneps){
             navigate('/thanks')
           }
@@ -133,7 +136,7 @@ const next2 = temp_res?.find(v => v?.values?.fEmail === watchValues?.fEmail)
     className="survey_wrapper3"> 
       <div className="welcome_input">
         <div className="welcome_action">
-          <button type='button' onClick={btnBack} className='back1'><FaChevronLeft/></button>
+          <button type='button' onClick={() => setPage(0)} className='back1'><FaChevronLeft/></button>
           <small className='main__title'>{activeQue?.title || activeQuestionnaire.title}</small>
         </div>
         <h3  className='pages_title'>{page1.title}</h3>
@@ -152,6 +155,8 @@ const next2 = temp_res?.find(v => v?.values?.fEmail === watchValues?.fEmail)
                 register={register}
                 watch={watch}
                 errors={errors}
+                activeQuestionnaire={activeQuestionnaire}
+                activeQue={activeQue}
                 sub={sub}
                 />
             ))} 

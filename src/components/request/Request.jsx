@@ -2,56 +2,64 @@ import React from 'react'
 import './request.css'
 import {motion} from 'framer-motion'
 import { Link, useNavigate } from "react-router-dom";
-import { useForm, useStep } from 'react-hooks-helper'
+// import { useForm, useStep } from 'react-hooks-helper'
 import Footer from '../footer/Footer';
 import TopBar from '../topbar/TopBar';
-import { GrAttachment, GrClose } from "react-icons/gr";
-import { BiX } from "react-icons/bi";
+
 import { useState } from 'react';
-import { IoIosAttach } from "react-icons/io";
-import { addDoc, collection, serverTimestamp, setDoc, doc } from 'firebase/firestore' 
-import { auth, db, storage } from '../../firebase';
-import { createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useEffect } from 'react';
+
+import {  serverTimestamp, setDoc, doc } from 'firebase/firestore' 
+import { db } from '../../firebase';
+
+
+
 import { FcGoogle} from "react-icons/fc";
 import { useUserAuth } from '../../context/UserAuthContext';
 
 
 
-const defaultData = {
-    username: '',  
-    email: '', 
-    password: '',
-    confirmPassword: '',
+// const defaultData = {
+//     username: '',  
+//     email: '', 
+//     password: '',
+//     confirmPassword: '',
   
   
-}
+// }
 
 const Request = () => {
 
-    const [formData, setForm] = useForm(defaultData)
-    const {username, email, password, confirmPassword, terms } = formData
+    // const [formData, setForm] = useForm(defaultData)
+    // const {username, email, password, confirmPassword, terms } = formData
     const [sending, setSending] = useState(null)
     const navigate = useNavigate()
     const [err, setErr] = useState(null)
     const { signUp, user, googleSignIn } = useUserAuth();
 
-    console.log('terms', user)
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [terms, setTerms] = useState('')
+
+    // console.log('terms', terms)
 
    
-    const data = {
-        username: username,    
-        email: email,        
-        password: password,      
-        role: 'user',
-       
-    }
+ 
 
     const handleRegister = async (e) => {
         e.preventDefault();  
         setSending(true)  
-        setErr("")   
+        setErr("")  
+        
+        const data = {
+            username: username,    
+            email: email,        
+            password: password,      
+            role: 'user',
+            terms: terms
+           
+        }
 
         try {
             await signUp(email, password)  
@@ -63,7 +71,7 @@ const Request = () => {
                     
                 
             });
-            // JSON.parse(localStorage.getItem(user,'user'));
+  
             setSending(null)
             navigate('/account')
 
@@ -71,59 +79,13 @@ const Request = () => {
           
         } catch (error) {
             setErr(error.message)
-            // setError(true)
-            // const errorMessage = error.message
+      
         }
         
-        // localStorage.setItem("user", JSON.stringify(user))
+
         
     };
 
-
-    // onAuthStateChanged(auth, (currentUser) => {
-    //     setUser(currentUser)
-    // })
-
-    // useEffect(() => {
-    //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-    //         setUser(currentUser);
-    //     });
-    //     return () => {
-    //         unsubscribe();
-    //     }
-    // },[])
-
-
-
-    // const handleRegister = async (e) => {
-    //     e.preventDefault();  
-    //     setSending(true)     
-
-    //     try {
-    //         const user = await createUserWithEmailAndPassword(
-    //             auth,
-    //             email,
-    //             password
-    //         );   
-    //             console.log(user)
-    //             await setDoc(doc(db, "users", user.user.uid), {
-    //                 ...data,
-    //                 timeStamp: serverTimestamp(),
-                    
-                
-    //         });
-    //         setSending(null)
-    //         localStorage.setItem("user", JSON.stringify(user))
-    //         navigate('/account')
-      
-          
-          
-    //     } catch (error) {
-    //         setErr(error.message)
-            
-    //     }
-        
-    // };
 
     const signWithGoogle = async (e) => {
         e.preventDefault();
@@ -170,7 +132,7 @@ const Request = () => {
                             placeholder='Your Username'
                             value={username} 
                             name='username' 
-                            onChange={setForm}
+                            onChange={(e) => setUsername(e.target.value)}
                             required
                             id='username'
                         />
@@ -187,7 +149,7 @@ const Request = () => {
                             placeholder='Your Email Address'
                             value={email} 
                             name='email' 
-                            onChange={setForm}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                             id='email'
                         />
@@ -203,7 +165,7 @@ const Request = () => {
                         placeholder='Password'
                         value={password} 
                         name='password' 
-                        onChange={setForm}
+                        onChange={(e) => setPassword(e.target.value)}
                         required
                         id='password'
                     />
@@ -212,7 +174,7 @@ const Request = () => {
                         placeholder='Confirm Password'
                         value={confirmPassword} 
                         name='confirmPassword' 
-                        onChange={setForm}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         required
                     />
 
@@ -227,7 +189,7 @@ const Request = () => {
                         type="checkbox"                    
                         value={terms} 
                         name='terms' 
-                        onChange={setForm}
+                        onChange={(e) => setTerms(e.target.checked)}
                         />By Submit this request, you have accepted our <Link to='/terms'>Terms of Use</Link>
                         </div>
                         {!terms?

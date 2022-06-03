@@ -19,7 +19,7 @@ const Messages = ({messages, setNewMsg}) => {
           <th className='total'>Actions</th>
         </thead>
         <tbody className='total'>
-          {messages.map((s, index) => (
+          {messages?.map((s, index) => (
             <tr key={s.id}>
               <td data-label='SN'>{index+1}</td>     
               <td data-label='From' className='tab_column'>{s.name}</td>

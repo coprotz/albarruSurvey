@@ -56,7 +56,7 @@ const Questionnaire = ({activeQue}) => {
         setQuestionnaire(questionnaire[0].elements)
     },[])
 
-    console.log("kwesh", questionnaire)
+    // console.log("kwesh", questionnaire)
 
     const submitSurvey = () => {
         console.log(questionnaire)

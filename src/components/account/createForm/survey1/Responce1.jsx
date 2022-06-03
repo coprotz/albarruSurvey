@@ -6,6 +6,7 @@ const Responce1 = ({
     setActiveResponce, 
     activeQuestionnaire, 
     responces,
+    setPage,
     activeResponce,
     cuUser,
     go,
@@ -55,7 +56,7 @@ const Responce1 = ({
 
   return (
     <div className="account_body">
-      <button className='survey_active_close' onClick={() =>  go('Dashbord')}>X</button>
+      <button className='survey_active_close' onClick={() =>  setPage(1)}>X</button>
       <h2 className='dashbord_title1'>{activeResponce?.title}</h2>
       {!respondents?
       <>

@@ -1,9 +1,15 @@
 import React from 'react'
 import {motion} from 'framer-motion'
-import RenderFields from '../../../elements/RenderFields'
+// import RenderFields from '../../../elements/RenderFields'
+// import { SurveyContext } from '../../../../contexts/SurveyContext';
+// import { useContext } from 'react';
 import Share from '../../Share'
 
-const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, setActiveQuestionnaire, setActiveResponce}) => {
+const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, setActiveQuestionnaire, setPage}) => {
+
+  // console.log('activeW', activeQuestionnaire)
+  // const { pages, setPages } = useContext(SurveyContext)
+  // console.log('pages', pages)
   return (
     <motion.div 
           initial={{ y: '-100vw'}}
@@ -18,7 +24,7 @@ const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, set
                 <small>Share this Questionnaire</small>
                 <Share activeQuestionnaire={activeQuestionnaire} userUrl={`https://albarrusurvey.com/questionnaires/${activeQuestionnaire?.id}`}/>
               </div>
-         
+              {/* <button onClick={() => setActiveResponce(true)} className='view_res_btn'>View Responces</button> */}
             </div>
           }
           <div className="survey_body">
@@ -27,7 +33,7 @@ const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, set
           <div className="welcome">
                 <h2>{activeQue?.description || activeQuestionnaire?.description}</h2>
           </div>
-          <button className='get_start' onClick={() => {next()}}>Get Started</button>
+          <button className='get_start' onClick={() => {setPage(1)}}>Get Started</button>
         </div>
   </motion.div>
   )

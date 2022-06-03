@@ -90,7 +90,7 @@ export const Questionnaires = [
         ]
        },
        {
-        type: "radio",
+        type: "contractor",
         name: "contractor",
         visibleIf: { name: 'category', value: 'contractor'},
         title: "Contractor",
@@ -115,7 +115,7 @@ export const Questionnaires = [
         ]
        },
        {
-        type: "radio",
+        type: "consultant",
         name: "consultant",
         visibleIf: { name: 'category', value: 'consultant'},
         title: "Consultant",
@@ -148,7 +148,7 @@ export const Questionnaires = [
        
        },
        {
-        type: "radio",
+        type: "rado",
         name: "whyNo",
         visibleIf:{ name: 'taneps', value: false},
         title: "Why your firm is not registered with TANeps?",

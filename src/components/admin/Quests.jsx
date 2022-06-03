@@ -3,17 +3,17 @@ import React from 'react'
 
 const Quests = ({Questionnaires, users}) => {
 
-  const ft = Questionnaires.map((f) => f.userId)
+  // const ft = Questionnaire.map((f) => f.userId)
 
 
 
-  const tem_user = users.map((u) =>{
-    if(ft.includes(u.id)) return u
+  // const tem_user = users.map((u) =>{
+  //   if(ft.includes(u.id)) return u
     
-  })
-  console.log('users', users)
+  // })
+  // console.log('users', users)
 
-  console.log('tem_user', tem_user)
+  // console.log('tem_user', tem_user)
   return (
     <div>
         <h4 className='admin_tab_title'>QUESTIONNAIRES</h4>

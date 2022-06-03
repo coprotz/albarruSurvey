@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 
 
 
-const Establishments = ({go,  activeQue, previous, quest, name, setName, activeField, setActiveField, activeQuestionnaire,sub, setSub, responces}) => {
+const Establishments = ({go,  activeQue, previous, setPage, name, setName, activeField, setActiveField, activeQuestionnaire,sub, setSub, responces}) => {
 
   let { register, formState: { errors, isValid }, setError, clearError, watch } = useForm({mode: 'all'});
 
@@ -71,7 +71,7 @@ const handleNext = async(e) => {
 
 
   setSending(null) 
-  go('4')
+  setPage(3)
  
 }
 
@@ -83,7 +83,7 @@ const handleNext = async(e) => {
     className="survey_wrapper3"> 
      <div className="welcome_input">
         <div className="welcome_action">
-          <button onClick={() => {previous()}} className='back1'><FaChevronLeft/></button>
+          <button onClick={() => {setPage(1)}} className='back1'><FaChevronLeft/></button>
           <small className='main__title'>{activeQue?.title || activeQuestionnaire.title}</small>
         </div>
         <h3  className='pages_title'>{page2.title}</h3>

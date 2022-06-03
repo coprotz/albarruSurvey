@@ -266,7 +266,14 @@
 
 .dash_span h4{
    color: blue;
+   height: 50px;
+   border-bottom: 1px solid gainsboro;
+   margin-bottom: 10px;
 }
+
+/* .dash_h{
+    margin-top: 20px;
+} */
 
 .dash_title h4{
     display: block;

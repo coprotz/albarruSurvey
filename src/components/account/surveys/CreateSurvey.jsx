@@ -44,7 +44,7 @@ const periods = [
 
 
 
-const CreateSurvey = ({cuUser, go, createSurvey, setCreateSurvey, setActive, setMessageAlert}) => {
+const CreateSurvey = ({cuUser, go, createSurvey, setCreateSurvey, setActive, setMessageAlert, setPage}) => {
   const [title, setTitle] = useState('')
   const [questions, setQuestions] = useState(null)
   const [questionnaires, setQuestionnaires] = useState(100)
@@ -128,7 +128,7 @@ const CreateSurvey = ({cuUser, go, createSurvey, setCreateSurvey, setActive, set
               // setQuestionnaires(100)
               // setQuestions(null)
               // setFile(null)
-              go('SurveyList')
+              setPage(0)
               setActive(1)
                       
             } catch (error) {
@@ -165,7 +165,7 @@ const CreateSurvey = ({cuUser, go, createSurvey, setCreateSurvey, setActive, set
         <div className="survey_inner1">
             <div className="form_heading">
               <h3>{createSurvey?.id? 'Edit Survey' : 'Create a Survey'}</h3>
-              <button className='invoice__btn' onClick={() => {setCreateSurvey(null);go('SurveyList')}}><AiOutlineClose/></button>
+              <button className='invoice__btn' onClick={() => {setCreateSurvey(null);setPage(1)}}><AiOutlineClose/></button>
             </div>
             { error && <span className='error'>{error}</span>}
               

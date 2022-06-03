@@ -1,28 +1,25 @@
 import React from 'react'
-import {motion} from 'framer-motion'
+
 import {
   EmailShareButton,
   EmailIcon,
   FacebookShareButton,
-  InstapaperShareButton, 
-  MailruShareButton,
-  MailruIcon,
-  PocketShareButton,
+
   TelegramShareButton,
   TwitterShareButton,
-  ViberShareButton,
+
   WhatsappShareButton,
   WhatsappIcon,
   TwitterIcon,
-  WorkplaceShareButton,
+
   FacebookMessengerIcon,
   FacebookIcon,
-  InstapaperIcon,
+
   TelegramIcon,
-  // TelegramShareButton
+
 } from "react-share";
 
-const Share = ({cuUser, activeQuestionnaire, setShare, userUrl}) => {
+const Share = ({ userUrl}) => {
 
   const shareUrl = userUrl
   return (

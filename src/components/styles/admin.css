@@ -132,6 +132,31 @@
     color: black !important;
 }
 
+.success{
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 20;
+    background-color: rgb(209, 255, 209);
+    padding: 20px;
+    border-left: 4px solid green;
+    max-width: 400px;
+    animation: success 0.5s;
+    opacity: 1;
+}
+
+@keyframes success{
+    0%{
+        right: -1000px;
+        opacity: 0;
+    }
+
+    100%{
+        right: 10px;
+        opacity: 1;
+    }
+}
+
 /* .messages_text{
     text-align: left;
    border: 1px solid red;

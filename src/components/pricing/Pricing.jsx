@@ -1,18 +1,41 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './pricing.css'
 import {motion} from 'framer-motion'
-import { useForm } from 'react-hooks-helper'
+// import { useForm } from 'react-hooks-helper'
 
 import { Link } from "react-router-dom";
 import Footer from '../footer/Footer'
 import TopBar from '../topbar/TopBar'
 
 
-const defaultData = {
-    questionnaires: '100',
-    questions: '0.05',
-    periods: '1'
-}
+// const defaultData = {
+//     questionnaires: '100',
+//     questions: '0.05',
+//     periods: '1'
+// }
+
+const ques = [
+    {id: '1 - 5 questions', value: 0.05},
+    {id: '6 - 10 questions', value: 0.07},
+    {id: '11 - 15 questions', value: 0.09},
+    {id: '16 - 20 questions', value: 0.11},
+    {id: '21 - 25 questions', value: 0.13},
+    {id: '26 - 30 questions', value: 0.13},
+    {id: '31 - 35 questions', value: 0.17},
+    {id: '36 - 40 questions', value: 0.19},
+    {id: '41 - 45 questions', value: 0.21},
+    {id: '46 - 50 questions', value: 0.23},
+    
+    
+  ]
+  
+  const periods = [
+    {id: '1 - 3 months', value: 1},
+    {id: '4 - 6 months', value: 1.5},
+    {id: '7 - 9 months', value: 2},
+    {id: '10 - 12 months', value: 2.5}
+  ]
+  
 
 
 
@@ -20,9 +43,16 @@ const Pricing = () => {
 
     
 
-    const [formData, setForm] = useForm(defaultData)
+    // const [formData, setForm] = useForm(defaultData)
+    const [questionnaires, setQuestionnaires] = useState('100')
+    const [questions, setQuestions] = useState(0.05)
+    const [period, setPeriod] = useState(1)
 
-    const {questionnaires, questions, periods} = formData
+    const qns = ques?.find((q) => q?.id === questions)  
+    const time = periods?.find((p) => p?.id === period) 
+    const totalCost = (questionnaires * 2 * qns?.value * time?.value).toLocaleString(undefined, {minimumFractionDigits:2})
+
+    // const {questionnaires, questions, periods} = formData
 
   
   return (
@@ -51,7 +81,7 @@ const Pricing = () => {
                                     className='group_input'  
                                     step='1' 
                                     value={questionnaires}
-                                    onChange={setForm}
+                                    onChange={(e) => setQuestionnaires(e.target.value)}
                                 />
                             </div>
                             
@@ -63,19 +93,19 @@ const Pricing = () => {
                                     name="questions" id="" 
                                     className='group_input'
                                     value={questions}
-                                    onChange={setForm}
+                                    onChange={(e) => setQuestions(e.target.value)}
                                 >
                                     {/* <option value="">--Select</option> */}
-                                    <option value="0.05">1 - 5 questions</option>
-                                    <option value="0.07">6 - 10 questions</option>
-                                    <option value="0.09">11 - 15 questions</option>
-                                    <option value="0.11">16- 20 questions</option>
-                                    <option value="0.13">21 - 25 questions</option>
-                                    <option value="0.15">26 - 30 questions</option>
-                                    <option value="0.17">31 - 35 questions</option>
-                                    <option value="0.19">36 - 40 questions</option>
-                                    <option value="0.21">41 - 45 questions</option>
-                                    <option value="0.22">46 - 50 questions</option>                         
+                                    <option value="1 - 5 questions">1 - 5 questions</option>
+                                      <option value="6 - 10 questions">6 - 10 questions</option>
+                                      <option value="11 - 15 questions">11 - 15 questions</option>
+                                      <option value="16 - 20 questions">16- 20 questions</option>
+                                      <option value="21 - 25 questions">21 - 25 questions</option>
+                                      <option value="26 - 30 questions">26 - 30 questions</option>
+                                      <option value="31 - 35 questions">31 - 35 questions</option>
+                                      <option value="36 - 40 questions">36 - 40 questions</option>
+                                      <option value="41 - 45 questions">41 - 45 questions</option>
+                                      <option value="46 - 50 questions">46 - 50 questions</option>                        
                                 </select>
                             </div>
                             
@@ -86,13 +116,13 @@ const Pricing = () => {
                                 <select 
                                     name="periods" id="" 
                                     className='group_input'
-                                    value={periods}
-                                    onChange={setForm}                                >
+                                    value={period}
+                                    onChange={(e) => setPeriod(e.target.value)}                                >
                                     {/* <option value="">--Select</option> */}
-                                    <option value="1">1 - 3 months</option>
-                                    <option value="1.5">4 - 6 months</option>
-                                    <option value="2">7 - 9 months</option>
-                                    <option value="2.5">10 - 12 months</option>                                                           
+                                    <option value="1 - 3 months">1 - 3 months</option>
+                                      <option value="4 - 6 months">4 - 6 months</option>
+                                      <option value="7 - 9 months">7 - 9 months</option>
+                                      <option value="10 - 12 months">10 - 12 months</option>                                                           
                                 </select>
                             </div>
                         </div>
@@ -100,9 +130,9 @@ const Pricing = () => {
                 </div>
                 <div className="pricing_right">
                     <h2>Total Cost</h2>
-                    <div className='figure'>$ {(questionnaires * 2 * questions * periods).toLocaleString()}</div>
+                    <div className='figure'>$ {totalCost}</div>
                     <div className="figure_submt">
-                        <Link to='/request'><button className='btn_submit'>Get Started</button></Link>
+                        <Link to='/register'><button className='btn_submit'>Get Started</button></Link>
                     </div>
                     
                 </div>

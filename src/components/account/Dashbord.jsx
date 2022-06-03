@@ -7,7 +7,7 @@ import RenderSurvey from './createForm/RenderSurvey';
 
 
 const Dashbord = ({
-    go,    
+    setPage,    
     cuUser,
     activeQuestionnaire,
     setActiveQuestionnaire,
@@ -20,15 +20,9 @@ const Dashbord = ({
    
 
         const userQuestionnaires = Questionnaires?.filter((q) => q?.userId === cuUser?.id)
-        const userResponces = responces?.filter((q) => q?.userId === cuUser?.id)
-
-        const t = surveys.find(u => u.id === 'frXPvYTjoiVsOztljAUR').period
-
+        const userResponces = responces?.filter((q) => q?.userId === cuUser?.id)   
         const currentQue = userQuestionnaires.find((u) => u.type)
-
-        const completed = userResponces.filter((u) => u.completed === 'true')
-   
-  
+        const completed = userResponces.filter((u) => u.completed === 'true')  
         const [share, setShare] = useState(null)
 
      
@@ -57,31 +51,39 @@ const Dashbord = ({
                                      
                                         <span>
                                             <h4>Completed</h4>
-                                            <h5>{completed? completed.length : '0'}</h5>
+                                            <div className="dash_h">
+                                                 <h5>{completed? completed.length : '0'}</h5>
+                                            </div>                                           
                                         </span>
                                         <span>
                                             <h4>Target</h4>
-                                            <h5>{surveys.find(u => u.id === s.id).questionnaires}</h5>
+                                            <div className="dash_h">
+                                            <h5>{surveys.find(u => u.id === s.id).questionnaires}</h5></div>
                                         </span>
                                         <span>
-                                            <h4>Achievement</h4>
-                                            <h5>{(completed.length)/(surveys.find(u => u.id === s.id).questionnaires)*100}%</h5>
+                                            <h4>Completion Rate</h4>
+                                            <div className="dash_h">
+                                            <h5>{(completed.length)/(surveys.find(u => u.id === s.id).questionnaires)*100}%</h5></div>
                                         </span>
                                         <span>
                                             <h4>Period</h4>
-                                            <h5>{surveys.find(u => u.id === s.id).period}</h5>
+                                            <div className="dash_h">
+                                            <h5>{surveys.find(u => u.id === s.id).period}</h5></div>
                                         </span>
                                         <span>
                                             <h4>Started</h4>
-                                            <h5>{new Date(surveys.find(su => su.id ===s.id).timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h5>
+                                            <div className="dash_h">
+                                            <h5>{new Date(surveys.find(su => su.id ===s.id).timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h5></div>
                                         </span>
                                         <span>
                                             <h4>Responces</h4>
-                                            <button onClick={() =>  {setActiveResponce(s); go('Analysis')}}>View</button>
+                                            <div className="dash_h">
+                                            <button onClick={() =>  {setActiveResponce(s); setPage(3)}}>View</button></div>
                                         </span>
                                         <span>
                                             <h4>Questionnaires</h4>
-                                            <button onClick={() => setActiveQuestionnaire(s)}>View</button>
+                                            <div className="dash_h">
+                                            <button onClick={() => setActiveQuestionnaire(s)}>View</button></div>
                                         </span>
                                     </div> 
                                 </div>
@@ -97,7 +99,7 @@ const Dashbord = ({
                     <div className='no_survey_wrapper'>
                         <span className='dont_hv'>You have either unprocessed survey or no Survey at all</span> 
                         <div className="no_btn">
-                            <button className="btn_submit" onClick={() => {go('CreateSurvey'); setActive(1)}}>Create A Survey</button>
+                            <button className="btn_submit" onClick={() => {setPage(7); setActive(1)}}>Create A Survey</button>
                         </div>
                     </div>
             

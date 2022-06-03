@@ -51,9 +51,9 @@ const SurveyLists = ({
 
     const ft = Questionnaires.map((f) => f.id)
 
-    console.log('filter', ft)
+    // console.log('filter', ft)
 
-    console.log('su', userSurveys)
+    // console.log('su', userSurveys)
 
     const types = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword']
 
@@ -68,7 +68,7 @@ const SurveyLists = ({
 
     
 
-    console.log('ft', tem_sur?.id)
+    // console.log('ft', tem_sur?.id)
 
     // console.log('che', checked)
   
@@ -109,7 +109,7 @@ const SurveyLists = ({
     const handleQues = async(id) => {
       // e.preventDefault();
 
-      console.log('id', id)
+      // console.log('id', id)
 
       try {
         const surveyRef = doc(db, 'surveys', `${id}`)
@@ -127,7 +127,7 @@ const SurveyLists = ({
 
     }
 
-    console.log('url', url)
+    // console.log('url', url)
     
   return (
     <motion.div 
