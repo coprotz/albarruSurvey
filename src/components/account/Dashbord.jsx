@@ -58,22 +58,22 @@ const Dashbord = ({
                                         <span>
                                             <h4>Target</h4>
                                             <div className="dash_h">
-                                            <h5>{surveys.find(u => u.id === s.id).questionnaires}</h5></div>
+                                            <h5>{surveys.find(u => u.id === s.id)?.questionnaires}</h5></div>
                                         </span>
                                         <span>
                                             <h4>Completion Rate</h4>
                                             <div className="dash_h">
-                                            <h5>{(completed.length)/(surveys.find(u => u.id === s.id).questionnaires)*100}%</h5></div>
+                                            <h5>{(completed.length)/(surveys.find(u => u.id === s.id)?.questionnaires)*100}%</h5></div>
                                         </span>
                                         <span>
                                             <h4>Period</h4>
                                             <div className="dash_h">
-                                            <h5>{surveys.find(u => u.id === s.id).period}</h5></div>
+                                            <h5>{surveys.find(u => u.id === s.id)?.period}</h5></div>
                                         </span>
                                         <span>
                                             <h4>Started</h4>
                                             <div className="dash_h">
-                                            <h5>{new Date(surveys.find(su => su.id ===s.id).timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h5></div>
+                                            <h5>{new Date(surveys.find(su => su.id ===s.id)?.timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h5></div>
                                         </span>
                                         <span>
                                             <h4>Responces</h4>

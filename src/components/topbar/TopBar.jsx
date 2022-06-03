@@ -61,16 +61,6 @@ const handleLogout = async () => {
     console.log(error)
   }
  
-
-  // signOut(auth).then(() => {
-   
-  //   dispatch({type: "LOGOUT"})
-  //   console.log('successful')
-  //   navigate('/')
-    
-  // }).catch((error) => {
-  //   console.log(error)
-  // })
 }
 
 const handleUpdate = (e) => {
@@ -79,13 +69,6 @@ const handleUpdate = (e) => {
   navigate('/settings');
 }
 
-
-// const cuUser = users?.find((u) => u?.id === currentUser?.uid)
-
-
-// console.log(cuUser)
-
-// console.log(users)
   
   return (
     <div className="topbar">
@@ -133,6 +116,7 @@ const handleUpdate = (e) => {
                  {user?
                  <>
                   <Link to='/account' onClick={() => setActive(!active)}><button>My Account</button></Link>
+                  <Link to='/account' onClick={handleLogout} className='top_logout'><button>LOGOUT</button></Link>
                   <div className='username'>
                     {cuUser?.firstname[0]}
                     <div className="menu_toggle">

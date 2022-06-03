@@ -23,8 +23,7 @@ import { Questionnaires } from '../../../data/surveys';
 
 const SurveyLists = ({
     go, 
-    next, 
-    previous, 
+    setPage,
     surveys, 
     cuUser, 
     setSurveys, 
@@ -62,15 +61,6 @@ const SurveyLists = ({
       
     })
 
-    // const checked = tem_sur.find(item => item.true)
-
-    // console.log('tem', checked)
-
-    
-
-    // console.log('ft', tem_sur?.id)
-
-    // console.log('che', checked)
   
     const selectedFile = (e, id) => {
       let selected = e.target.files[0]
@@ -84,7 +74,7 @@ const SurveyLists = ({
         setError('Please select a word file (doc or docx)')
       }
    
-        console.log('id', id)
+      
         if(url !== null){
            setSending(null)
          }
@@ -92,7 +82,7 @@ const SurveyLists = ({
         }
 
     const deleteSurvey = async (id) => {
-      console.log(id)
+     
       try {
         await deleteDoc(doc(db, 'surveys', id))
         setSurveys(surveys.filter((item) => item.id !==id))
@@ -107,10 +97,7 @@ const SurveyLists = ({
     };
 
     const handleQues = async(id) => {
-      // e.preventDefault();
-
-      // console.log('id', id)
-
+    
       try {
         const surveyRef = doc(db, 'surveys', `${id}`)
         await updateDoc(surveyRef, {
@@ -126,8 +113,6 @@ const SurveyLists = ({
       }, 5000);
 
     }
-
-    // console.log('url', url)
     
   return (
     <motion.div 
@@ -146,7 +131,7 @@ const SurveyLists = ({
                         You have {userSurveys?.length} survey(s)
                     </div>
                     <div className="survey_top_2">
-                        <button className='survey_btn'onClick={() => {go('CreateSurvey'); setActive(1)}}>Create A Survey</button>
+                        <button className='survey_btn'onClick={() => {setPage(7); setActive(1)}}>Create A Survey</button>
                     </div>
                 </div>
                 <table className="table">
@@ -251,7 +236,7 @@ const SurveyLists = ({
                       </div>
                   </div>
 
-                  <button className='btn_create' onClick={() => {go('CreateSurvey'); setActive(1)}}>Create a Survey</button>
+                  <button className='btn_create' onClick={() => {setPage(7); setActive(1)}}>Create a Survey</button>
               </div>
           </div>
        
