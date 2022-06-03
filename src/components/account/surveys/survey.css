@@ -1527,7 +1527,7 @@
         right: 10px;
     }
     .survey_wrapper3{
-        padding: 10px;
+        padding: 0px;
     }
 
     .elements_wrapper{
@@ -1544,6 +1544,19 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+
+    .element_single{
+        padding: 20px 10px;
+    }
+
+    .progress{
+        height: 10px;
+        margin-bottom: 5px;
+    }
+
+    .lineer_progress{
+        height: 3px;
     }
 }
   
