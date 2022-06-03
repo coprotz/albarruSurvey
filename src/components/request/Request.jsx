@@ -65,7 +65,7 @@ const Request = () => {
             await signUp(email, password)  
                 console.log(user)
         
-                await setDoc(doc(db, "users", user.user.uid), {
+                await setDoc(doc(db, "users", user.uid), {
                     ...data,
                     timeStamp: serverTimestamp(),
                     

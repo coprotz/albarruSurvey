@@ -8,7 +8,7 @@ import RenderSurvey from './createForm/RenderSurvey';
 
 const Dashbord = ({
     setPage,    
-    cuUser,
+    user,
     activeQuestionnaire,
     setActiveQuestionnaire,
     responces,
@@ -19,11 +19,14 @@ const Dashbord = ({
 
    
 
-        const userQuestionnaires = Questionnaires?.filter((q) => q?.userId === cuUser?.id)
-        const userResponces = responces?.filter((q) => q?.userId === cuUser?.id)   
+        const userQuestionnaires = Questionnaires?.filter((q) => q?.userId === user?.uid)
+        const userResponces = responces?.filter((q) => q?.userId === user?.uid)   
         const currentQue = userQuestionnaires.find((u) => u.type)
         const completed = userResponces.filter((u) => u.completed === 'true')  
         const [share, setShare] = useState(null)
+
+
+        console.log('user', user.uid)
 
      
   return (
