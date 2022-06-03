@@ -44,7 +44,7 @@ const periods = [
 
 
 
-const CreateSurvey = ({cuUser, go, createSurvey, setCreateSurvey, setActive, setMessageAlert, setPage}) => {
+const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAlert, setPage, user}) => {
   const [title, setTitle] = useState('')
   const [questions, setQuestions] = useState(null)
   const [questionnaires, setQuestionnaires] = useState(100)
@@ -95,7 +95,7 @@ const CreateSurvey = ({cuUser, go, createSurvey, setCreateSurvey, setActive, set
       setSending(true)
     
        const data = {
-        userId: cuUser?.id,
+        userId: user.uid,
         title: title, 
         questions: questions,
         questionnaires: questionnaires,

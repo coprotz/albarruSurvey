@@ -39,6 +39,8 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
 
     const [page, setPage] = useState(0);
 
+    console.log('cu', cuUser)
+
      
  
     const props = { 
