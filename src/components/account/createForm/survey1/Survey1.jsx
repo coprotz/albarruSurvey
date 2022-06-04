@@ -25,7 +25,7 @@ import { ValuesContext } from '../../../../contexts/ValuesContext';
 
 // ]
 
-const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire, setActiveResponce, responces, activeQue}) => {
+const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire, setActiveResponce, responces, activeQue, user}) => {
 
 
     // const { step, navigation } = useStep({ steps, initialStep: 0 })
@@ -44,17 +44,7 @@ const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire,
 
     const width = (page/6)*100
 
-    // console.log('active', activeQuestionnaire)
-
-    // console.log('width',page)
-
-
     const props = { 
-        // go, 
-        // next, 
-        // previous, 
-        // steps, 
-  
         register, 
         handleSubmit, 
         watch, 
@@ -74,7 +64,8 @@ const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire,
         activeQue,
         responces,
         sub,
-        setSub
+        setSub, 
+        user
       }
 
       const PageDisplay = () => {

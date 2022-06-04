@@ -5,7 +5,7 @@ import {motion} from 'framer-motion'
 // import { useContext } from 'react';
 import Share from '../../Share'
 
-const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, setActiveQuestionnaire, setPage}) => {
+const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, setActiveQuestionnaire, setPage, user}) => {
 
   // console.log('activeW', activeQuestionnaire)
   // const { pages, setPages } = useContext(SurveyContext)
@@ -16,7 +16,9 @@ const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, set
           animate={{y:0}} 
           transition={{ ease: "easeOut", duration: 0.5 }} 
           className='container'>
+            {user &&
             <button className='survey_active_close' onClick={() => setActiveQuestionnaire(false)}>X</button>
+            }
         <div className="welcom_page">
           {activeQuestionnaire &&
             <div className="action2b">

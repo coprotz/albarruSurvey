@@ -122,6 +122,7 @@ const Dashbord = ({
                     setActiveResponce={setActiveResponce}
                     responces={responces}
                     currentQue={currentQue}
+                    user={user}
                 /> 
                 
   

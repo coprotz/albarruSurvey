@@ -7,7 +7,7 @@ import Survey1 from "./survey1/Survey1"
 
 
 
-const RenderSurvey = ({activeQuestionnaire, share,setShare,setActiveQuestionnaire,setActiveResponce, responces, currentQue }) => {
+const RenderSurvey = ({activeQuestionnaire, share,setShare,setActiveQuestionnaire,setActiveResponce, responces, currentQue, user }) => {
 
     const { queId } = useParams();
 
@@ -32,6 +32,7 @@ const RenderSurvey = ({activeQuestionnaire, share,setShare,setActiveQuestionnair
                     responces={responces}
                     Questionnaires={Questionnaires}
                     activeQue={activeQue}
+                    user={user}
                 />
             )
             // case '2':
