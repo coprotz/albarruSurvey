@@ -13,6 +13,7 @@ import Invoice from '../bills/Invoice';
 import CreateSurvey from './surveys/CreateSurvey';
 import RenderSurvey from './createForm/RenderSurvey';
 import RenderReponces from './createForm/RenderReponces';
+import Loading from '../Loading'
 
 
 
@@ -100,7 +101,7 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
 
   return (
     <>
-    {user?.email? 
+    {user?.photoURL || cuUser?.username ? 
 
     <>
     <Topbar cuUser={cuUser} user={user}/>
@@ -151,7 +152,7 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
     </motion.div>
     <Footer/>
     </>
-    : <div className='loading'>Loading....</div>
+    : <Loading />
   }
 
     </>

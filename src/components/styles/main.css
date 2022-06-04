@@ -413,6 +413,41 @@
     font-size: 15px;
 }
 
+.loading{
+    background-color: #e4e4ff;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading svg{
+    width: 100px;
+    height: 100px;
+}
+
+.loading svg rect{
+    width: 100px;
+    height: 100px;
+    fill: none;
+    stroke-width: 100px;
+    stroke: blue !important;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 50%;
+    animation: animate 1s linear infinite;
+}
+
+@keyframes animate{
+    to{
+        stroke-dashoffset: 250%;
+    }
+}
+
 
 @media screen and (max-width: 440px){
     .main_wrraper{
