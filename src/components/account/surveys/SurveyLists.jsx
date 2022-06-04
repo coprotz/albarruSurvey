@@ -3,7 +3,6 @@ import {motion} from 'framer-motion'
 import Billing from '../../bills/Billing'
 import CreateSurvey from './CreateSurvey'
 import { IoIosCreate, IoIosStats, IoMdShare, IoIosAddCircle, IoIosAttach } from "react-icons/io";
-import { getDatabase, ref, child, push, update,get, remove } from "firebase/database";
 import {
   collection,
   getDocs,
@@ -37,7 +36,8 @@ const SurveyLists = ({
     activeSurvey,
     setActiveSurvey,
     setActive,
-    setMessageAlert
+    setMessageAlert,
+    user
   }) => {
 
 
@@ -207,6 +207,7 @@ const SurveyLists = ({
                 setCreateSurvey={setCreateSurvey} 
                 go={go} 
                 cuUser={cuUser}
+                user={user}
                 
             /> 
           }

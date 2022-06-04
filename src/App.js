@@ -34,10 +34,16 @@ function App() {
   const [surveys, setSurveys] = useState([])
   const [responces, setResponces] = useState([])
   const [users, setUsers] = useState([])
+  const [terms, setTerms] = useState([])
+  const [privacy, setPrivacy] = useState([])
   const { user } = useUserAuth();
 
+  const term = terms?.find((u) => u.id)
+  const priv = privacy?.find((u) => u.id)
 
-  // console.log("user", user)
+
+  console.log("user", terms)
+  console.log("priv", priv)
 
   useEffect(() => {
 
@@ -109,12 +115,58 @@ useEffect(() => {
   
   },[]);
 
+  useEffect(() => {
+
+    const unsub = onSnapshot(
+      collection(db, "terms"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setTerms(list)
+   
+      },
+      (error) => {
+        console.log(error)
+      }  
+    );
+    
+    return () => {
+        unsub();
+  }
+  
+  },[]);
+
+  useEffect(() => {
+
+    const unsub = onSnapshot(
+      collection(db, "privacy"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setPrivacy(list)
+   
+      },
+      (error) => {
+        console.log(error)
+      }  
+    );
+    
+    return () => {
+        unsub();
+  }
+  
+  },[]);
+
   const cuUser = users?.find((u) => u.id === user?.uid)
 
 
 
   // console.log(user)
-  // console.log('cu', cuUser)
+  console.log('terms', term)
 
  
   const RequireAuth = ({children}) => {
@@ -159,8 +211,8 @@ useEffect(() => {
                   <Route exact path="/login" element={<Login user={user}/>} />   
                   <Route exact path="/pricing" element={<Pricing />} />  
                   <Route exact path="/works" element={<Works />} />      
-                  <Route exact path="/terms" element={<Terms />} />   
-                  <Route exact path="/privacy" element={<Privacy />} />  
+                  <Route exact path="/terms" element={<Terms term={term}/>} />   
+                  <Route exact path="/privacy" element={<Privacy priv={priv}/>} />  
                   <Route exact path="/reset" element={<Reset />} />   
                   <Route exact path="/thanks" element={<Thanks />} />  
                   <Route exact path="/admin" element={

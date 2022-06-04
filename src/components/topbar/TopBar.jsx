@@ -37,7 +37,7 @@ const TopBar = () => {
   
 
   const cuUser = users.find((u) => u.id === user?.uid)
-console.log('nav', user)
+// console.log('nav', user)
   useEffect(() => {
     const fetchData = async () => {
             try {
@@ -54,7 +54,7 @@ console.log('nav', user)
 },[]);
 
 
-console.log('users', users)
+// console.log('users', users)
 
 // console.log('cu', cuUser)
 

@@ -24,7 +24,7 @@ const Dashboard = ({users, surveys}) => {
             <tr key={s.id}>
               <td data-label='SN'>{index+1}</td>     
               <td data-label='Survey Title' className='tab_column'>{s.title}</td>
-              <td data-label='Researcher'>{users.find(u => u.id === s.userId)?.username}</td>
+              <td data-label='Researcher'>{s.name}</td>
               <td data-label='Survey Cost'>{s.totalCost}</td>
               <td data-label='Payments Status'>{s.status}</td>
               <td data-label='Questions Attached'>{s.file? 'attached' : 'Not Attached'}</td>

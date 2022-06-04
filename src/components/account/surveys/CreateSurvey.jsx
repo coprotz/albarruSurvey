@@ -18,6 +18,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import ProgressBar from '../../progress/Progress';
 import useStorage from '../../../hook/useStorage';
 import { uid } from 'uid'
+import { updateCurrentUser } from 'firebase/auth';
 
 
 const ques = [
@@ -44,7 +45,7 @@ const periods = [
 
 
 
-const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAlert, setPage, user}) => {
+const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAlert, setPage, user, cuUser}) => {
   const [title, setTitle] = useState('')
   const [questions, setQuestions] = useState(null)
   const [questionnaires, setQuestionnaires] = useState(100)
@@ -86,6 +87,8 @@ const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAler
       const num =  Math.floor(Math.random() * (max - min + 1)) + min;
       return num.toString().padStart(6, "0")
     };
+
+    
     
   
   
@@ -96,6 +99,7 @@ const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAler
     
        const data = {
         userId: user.uid,
+        name: user?.displayName || cuUser?.username,
         title: title, 
         questions: questions,
         questionnaires: questionnaires,

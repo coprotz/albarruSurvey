@@ -442,6 +442,15 @@
     animation: animate 1s linear infinite;
 }
 
+.how_works p{
+    margin: 15px 0;
+}
+
+
+
+
+
+
 @keyframes animate{
     to{
         stroke-dashoffset: 250%;

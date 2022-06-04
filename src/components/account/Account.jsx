@@ -40,7 +40,7 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
 
     const [page, setPage] = useState(0);
 
-    console.log('cu', cuUser)
+    // console.log('cu', cuUser)
 
      
  
@@ -73,7 +73,8 @@ const Account = ({responces, users, surveys, setSurveys, user}) => {
       setMessageAlert,
       activeResponce,
       setActiveResponce,
-      user
+      user,
+      cuUser
     }
 
     const PageDisplay = () => {

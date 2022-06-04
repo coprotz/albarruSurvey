@@ -145,6 +145,22 @@
     opacity: 1;
 }
 
+.admin_terms{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin_terms{
+    margin: 10px 0;
+}
+
+.body_terms{
+    min-height: 600px;
+    padding: 10px;
+}
+
+
 @keyframes success{
     0%{
         right: -1000px;

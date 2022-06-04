@@ -18,6 +18,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import NewMessage from './NewMessage';
+import Terms from './Terms';
+import Privacy from './Privacy';
 
 
 const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) => {
@@ -29,6 +31,8 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
   const [active, setActive] = useState(1)
   const [messages, setMessages] = useState([])
   const [newMsg, setNewMsg] = useState(null)
+  const [terms, setTerms] = useState([])
+  const [privacy, setPrivacy] = useState([])
 
 
 
@@ -60,11 +64,58 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
 
 },[]);
 
+useEffect(() => {
+
+  const unsub = onSnapshot(
+    collection(db, "terms"),
+    (snapShot) => {
+      let list = [];
+      snapShot.docs.forEach((doc) => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      setTerms(list)
+ 
+    },
+    (error) => {
+      console.log(error)
+    }  
+  );
+  
+  return () => {
+      unsub();
+}
+
+},[]);
+
+useEffect(() => {
+
+  const unsub = onSnapshot(
+    collection(db, "privacy"),
+    (snapShot) => {
+      let list = [];
+      snapShot.docs.forEach((doc) => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      setPrivacy(list)
+ 
+    },
+    (error) => {
+      console.log(error)
+    }  
+  );
+  
+  return () => {
+      unsub();
+}
+
+},[]);
+
 
   const [messageAlert, setMessageAlert] = useState('')
   const [page, setPage] = useState(0)
+  const [errMessage, setErrMessage] = useState('')
 
-  const props = { responces, surveys, questionnaires, users, messages, currentUser, Questionnaires,newMsg, setNewMsg, user, setPage }
+  const props = { terms, privacy, responces, setErrMessage, surveys, questionnaires, users, messages, currentUser, Questionnaires,newMsg, setNewMsg, user, setPage, setMessageAlert }
 
   
   const PageDisplay = () => {
@@ -80,6 +131,10 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
       return <Responces {...props}/>
     }else if (page === 5){
       return <Messages {...props}/>
+    }else if (page === 6){
+      return <Terms {...props}/>
+    }else if (page === 7){
+      return <Privacy {...props}/>
     }
     
     
@@ -95,6 +150,7 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
     
     <TopBar user={user} cuUser={cuUser}/>
     {messageAlert && <div className='success'>{messageAlert}</div>}
+    {errMessage && <div className='error'>{errMessage}</div>}
     <motion.div 
         initial={{ x: '-100vw'}}
         animate={{x:0}} 
@@ -108,6 +164,8 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
             <span className={active === 4? 'admin_active' : 'admin_link'}  onClick={() => {setPage(3); setActive(4)}}>Surveys</span>
             <span className={active === 5? 'admin_active' : 'admin_link'}  onClick={() => {setPage(4); setActive(5)}}>Responces</span>
             <span className={active === 6? 'admin_active' : 'admin_link'}  onClick={() => {setPage(5); setActive(6)}}>Messages</span>
+            <span className={active === 7? 'admin_active' : 'admin_link'}  onClick={() => {setPage(6); setActive(7)}}>Terms</span>
+            <span className={active === 8? 'admin_active' : 'admin_link'}  onClick={() => {setPage(7); setActive(8)}}>Privacy</span>
           </div>
 
           <div className="admin_right">

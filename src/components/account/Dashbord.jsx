@@ -28,8 +28,8 @@ const Dashbord = ({
 
         
 
-        const userSurvey =  surveys.find((u) => u.userId === 'LW9yzBTqH2VxnPFTq7r9im9j6BB3').status === 'Paid'
-        console.log('userSurv', userSurvey)
+        // const userSurvey =  surveys.find((u) => u.userId === 'LW9yzBTqH2VxnPFTq7r9im9j6BB3').status === 'Paid'
+        // console.log('userSurv', userSurvey)
      
   return (
     <motion.div 

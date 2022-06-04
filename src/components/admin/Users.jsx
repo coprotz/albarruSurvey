@@ -1,6 +1,23 @@
 import React from 'react'
+import { deleteDoc, doc} from "firebase/firestore";
+import { db } from "../../firebase";
 
-const Users = ({users, surveys}) => {
+const Users = ({users, surveys, setMessageAlert, setErrMessage}) => {
+
+  const deleteUser = async (id) => {
+    // e.preventDefault()
+     
+    try {
+      await deleteDoc(doc(db, 'users', id))
+      // setSurveys(surveys.filter((item) => item.id !==id))
+    } catch (error) {
+      setErrMessage(error.message)
+    }
+    setMessageAlert('User deleted successiful')
+    setTimeout(() => {
+      setMessageAlert('')
+    }, 3000);
+  };
 
   return (
     <div>
@@ -23,7 +40,7 @@ const Users = ({users, surveys}) => {
                 <td data-label='Email'>{s.email}</td>
                 <td data-label='No of Survey'>{surveys?.filter(su => su?.userId === s.id)?.length}</td>
               
-                <td data-label='Actions'><button>Delete</button></td>
+                <td data-label='Actions' onClick={() => deleteUser(s.id)}><button>Delete</button></td>
               </tr>
             ))}
         </tbody>
