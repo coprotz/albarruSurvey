@@ -22,20 +22,22 @@ import { useUserAuth } from '../../context/UserAuthContext';
 
 
 
-const TopBar = ({cuUser }) => {
+const TopBar = () => {
 
   const {user, logOut} = useUserAuth()
 
   const navigate = useNavigate()
-  const {dispatch} = useContext(AuthContext)
+  // const {dispatch} = useContext(AuthContext)
 
   const [active, setActive] = useState(null)
   const [users, setUsers] = useState([])
-  const {currentUser} = useContext(AuthContext)
+  // const {currentUser} = useContext(AuthContext)
   const [show,setShow] = useState(null)
 
-  // console.log('nav', user)
+  
 
+  const cuUser = users.find((u) => u.id === user?.uid)
+console.log('nav', user)
   useEffect(() => {
     const fetchData = async () => {
             try {
@@ -50,6 +52,9 @@ const TopBar = ({cuUser }) => {
     };
     fetchData()
 },[]);
+
+
+console.log('users', users)
 
 // console.log('cu', cuUser)
 
@@ -84,15 +89,18 @@ const handleUpdate = (e) => {
         <Link to='/contact'><button className='top_btn'>Let's talk</button></Link> 
           {user ? 
              <>
-             {cuUser?.role === 'admin' && <Link to='/admin'><button className='top_btn'>Admin</button></Link>}
+             
              
              <Link to='/account' onClick={() => setActive(!active)}><button className='top_btn'>My Dashboard</button></Link>
              <div className="username_wrapper">            
                 <div className={cuUser? 'username' : 'photo_url'} onClick={() => setShow(!show)}>{!cuUser? <div ><img src={`${user?.photoURL}`} alt='B' ></img></div> : cuUser?.username[0] }</div>  
                 {show && 
                 <div className="menu_toggle">
-                  <span onClick={handleLogout}>Logout</span>
+                  
                   {cuUser && <span onClick={handleUpdate}>Setting</span>}
+                  {cuUser?.role === 'admin' && <span onClick={() => navigate('/admin')}>Admin</span>}
+                  <span onClick={() => navigate('/account')}>My Account</span>
+                  <span onClick={handleLogout}>LOG OUT</span>
                   
                 </div>} 
              </div>
@@ -102,8 +110,8 @@ const handleUpdate = (e) => {
             <Link to='/login'><button className='top_btn'>LOG IN</button></Link>
             <Link to='/register'><button className='top_btn btn_submit'>REGISTER</button></Link>
             </>}
-            <div className="humbug">
-               <button className='hambug' onClick={() => setActive(!active)}>{active? <AiOutlineClose/> : <GiHamburgerMenu/>}</button>
+            {/* <div className="humbug"> */}
+               {/* <button className='hambug' onClick={() => setActive(!active)}>{active? <AiOutlineClose/> : <GiHamburgerMenu/>}</button>
                {active? 
                <motion.div 
                initial={{ x: '100vw'}}
@@ -112,13 +120,13 @@ const handleUpdate = (e) => {
                 className="humbug_menu">
                  <Link to='/works' onClick={() => setActive(!active)}><button>How it Works</button></Link>
                  <Link to='/pricing' onClick={() => setActive(!active)}><button>Pricing</button></Link>
-                 <Link to='/contact' onClick={() => setActive(!active)}><button>Let's talk</button></Link>
-                 {user?
+                 <Link to='/contact' onClick={() => setActive(!active)}><button>Let's talk</button></Link> */}
+                 {/* {user?
                  <>
                   <Link to='/account' onClick={() => setActive(!active)}><button>My Account</button></Link>
                   <Link to='/account' onClick={handleLogout} className='top_logout'><button>LOGOUT</button></Link>
                   <div className='username'>
-                    {cuUser?.firstname[0]}
+                    {cuUser?.firstname}
                     <div className="menu_toggle">
                       <span onClick={handleLogout}>Logout</span>
                       <span>Setting</span>
@@ -129,11 +137,11 @@ const handleUpdate = (e) => {
                  : <>
                   <Link to='/login' onClick={() => setActive(!active)}><button>LogIn</button></Link>
                   <Link to='/register' onClick={() => setActive(!active)}><button>Register</button></Link>
-                 </>}
+                 </>} */}
                  
                  
-               </motion.div> : null}
-            </div>
+               {/* </motion.div> : null} */}
+            {/* </div> */}
            
         </div>
       </div>

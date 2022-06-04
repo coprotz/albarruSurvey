@@ -151,18 +151,24 @@
   .menu_toggle{
     position: absolute;
     background: white;
-    padding: 20px;
+    padding: 10px;
     right: 0px;
     top: 40px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     overflow: hidden;
+    width: 150px;
   }
 
   .menu_toggle span{
     cursor: pointer;
+    background-color: #e4e4ff;
+    padding: 10px 3px;
+    color: blue;
+    font-weight: 600;
+    border: 1px solid #9292ff;
    
   }
 

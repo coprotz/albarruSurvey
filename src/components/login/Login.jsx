@@ -94,7 +94,7 @@ const Login = () => {
                         placeholder='Your Email Address'
                         value={email} 
                         name='email' 
-                        autocomplete="off"
+                        autoComplete="off"
                         onChange={(e) => setEmail(e.target.value)}
                         />
                 
@@ -109,7 +109,7 @@ const Login = () => {
                         placeholder='Password'
                         value={password} 
                         name='password' 
-                        autocomplete="off"
+                        autoComplete="off"
                         onChange={(e) => setPassword(e.target.value)}
                         /> 
                         {type === 'password'? <span onClick={() => setType('text')}><BiShow/></span> : 

@@ -1500,6 +1500,7 @@
 
     .dash_span{
         flex-direction: column !important;
+        width: 100%;
     }
 
     .survey_card span:not(:last-of-type){

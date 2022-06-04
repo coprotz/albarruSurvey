@@ -18,12 +18,12 @@ import {
   } from "firebase/firestore";
   import { auth, db, storage, database } from '../../firebase';
 
-const Settings = ({users}) => {
+const Settings = ({users, user}) => {
 
     const navigate = useNavigate()
 
     const {currentUser} = useContext(AuthContext)
-    const cuUser = users?.find((u) => u?.id === currentUser?.uid)
+    const cuUser = users?.find((u) => u?.id === user?.uid)
 
     const [firstname, setFname] = useState(cuUser?.firstname)
     const [lastname, setLname] = useState(cuUser?.lastname)

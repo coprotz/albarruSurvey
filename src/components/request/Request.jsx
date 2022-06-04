@@ -5,32 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 // import { useForm, useStep } from 'react-hooks-helper'
 import Footer from '../footer/Footer';
 import TopBar from '../topbar/TopBar';
-
 import { useState } from 'react';
-
 import {  serverTimestamp, setDoc, doc } from 'firebase/firestore' 
 import { db } from '../../firebase';
-
-
-
 import { FcGoogle} from "react-icons/fc";
 import { useUserAuth } from '../../context/UserAuthContext';
 
-
-
-// const defaultData = {
-//     username: '',  
-//     email: '', 
-//     password: '',
-//     confirmPassword: '',
-  
-  
-// }
-
 const Request = () => {
 
-    // const [formData, setForm] = useForm(defaultData)
-    // const {username, email, password, confirmPassword, terms } = formData
     const [sending, setSending] = useState(null)
     const navigate = useNavigate()
     const [err, setErr] = useState(null)
@@ -61,26 +43,41 @@ const Request = () => {
            
         }
 
-        try {
-            await signUp(email, password)  
-                console.log(user)
-        
-                await setDoc(doc(db, "users", user.uid), {
-                    ...data,
-                    timeStamp: serverTimestamp(),
-                    
-                
+        signUp(email, password).then(cred => {
+            return setDoc(doc(db, 'users', `${cred.user.uid}`) ,{
+                ...data,
+                timeStamp: serverTimestamp(),
             });
-  
+            
+        }).then(() => {
             setSending(null)
             navigate('/account')
+        }).catch((error) => {
+            setErr(error.message)
+        })
+
+        // try {
+        //     await signUp(email, password)  
+        //         console.log(user)
+        
+        //         await setDoc(doc(db, "users", `${user?.uid}`), {
+        //             ...data,
+        //             timeStamp: serverTimestamp(),
+                    
+                
+        //     });
+
+        //     // console.log('id', user.uid)
+  
+        //     setSending(null)
+        //     navigate('/account')
 
           
           
-        } catch (error) {
-            setErr(error.message)
+        // } catch (error) {
+        //     setErr(error.message)
       
-        }
+        // }
         
 
         
