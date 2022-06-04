@@ -165,7 +165,7 @@ const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAler
         <div className="survey_inner1">
             <div className="form_heading">
               <h3>{createSurvey?.id? 'Edit Survey' : 'Create a Survey'}</h3>
-              <button className='invoice__btn' onClick={() => {setCreateSurvey(null);setPage(1)}}><AiOutlineClose/></button>
+              <button className='invoice__btn' onClick={() => {setCreateSurvey(null);setPage(0)}}><AiOutlineClose/></button>
             </div>
             { error && <span className='error'>{error}</span>}
               
@@ -189,7 +189,7 @@ const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAler
                             <div className="input">
                               <input 
                                   type="number" 
-                                  min={100} 
+                                  min='100' 
                                   max='1000'
                                   name='questionnaires'
                                   className='group_input'  

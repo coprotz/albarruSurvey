@@ -26,8 +26,10 @@ const Dashbord = ({
         const [share, setShare] = useState(null)
 
 
-        console.log('user', user.uid)
+        
 
+        const userSurvey =  surveys.find((u) => u.userId === 'LW9yzBTqH2VxnPFTq7r9im9j6BB3').status === 'Paid'
+        console.log('userSurv', userSurvey)
      
   return (
     <motion.div 
@@ -100,7 +102,7 @@ const Dashbord = ({
                     </div>                    
                     :
                     <div className='no_survey_wrapper'>
-                        <span className='dont_hv'>You have either unprocessed survey or no Survey at all</span> 
+                        <span className='dont_hv'>{surveys.find((u) => u.userId === user.uid)?.status === 'Paid' ? 'Your Survey is processing' : 'No survey created'}</span> 
                         <div className="no_btn">
                             <button className="btn_submit" onClick={() => {setPage(7); setActive(1)}}>Create A Survey</button>
                         </div>

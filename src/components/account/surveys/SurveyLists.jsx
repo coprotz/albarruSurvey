@@ -217,7 +217,7 @@ const SurveyLists = ({
                   <div className="inner__1">                    
                       <h3>To get started is only <span>Four Simple steps</span> from here..</h3>
                       <div className="dash_body_cards">
-                          <div className="card_grid">
+                          <div className="card_grid" onClick={() =>setPage(7)}>
                               <IoIosCreate/>
                               <h4>Create A Survey</h4>
                           </div>
