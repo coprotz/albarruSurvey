@@ -14,15 +14,10 @@ import Tiptak from '../Tiptap';
 const Terms = ({setMessageAlert, setError, terms, user}) => {
     const [sending, setSending] = useState(null)
     const [body, setBody] = useState('')
-    // const handleBody = (e) => {
-    //     e.preventDefault();
-    //     console.log(e)
-    //     setBody(e)
-    // }
+  
 
     const term = terms.find((t) => t?.createdBy === user?.uid)
 
-    // console.log('Body', body)
     console.log('terms', term)
 
     const handleTerms = async (e) => {

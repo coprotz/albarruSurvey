@@ -6,6 +6,7 @@ import TopBar from '../topbar/TopBar';
 import parser from 'html-react-parser'
 
 const Privacy = ({priv}) => {
+  
   return (
       <>
       <TopBar/>
@@ -15,8 +16,8 @@ const Privacy = ({priv}) => {
     transition={{ ease: "easeOut", duration: 0.5 }} 
     className="how_works">        
         <h1 className='works_title'>Privacy Policy</h1>
-        <h3>Last updated on:  {new Date(priv.timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h3>
-        <p>{parser(priv.body)}</p>
+        <h3>Last updated on:  {new Date(priv?.timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h3>
+        <p>{parser(priv?.body)}</p>
      </motion.div>
     <Footer/>
     </>
