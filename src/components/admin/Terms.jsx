@@ -1,7 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import ReactQuill from 'react-quill'
-import '../../../node_modules/react-quill/dist/quill.snow.css'
 import {
     collection,  
     addDoc,
