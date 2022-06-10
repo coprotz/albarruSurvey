@@ -13,11 +13,11 @@ const RenderSurvey = ({activeQuestionnaire, share,setShare,setActiveQuestionnair
 
     const activeQue = Questionnaires?.find(q => q.id === queId)
 
-    console.log('active', activeQuestionnaire)
+    // console.log('active', activeQuestionnaire)
 
-    console.log('active', activeQue)
+    // console.log('active', activeQue)
 
-    console.log('currentQue', currentQue)
+    // console.log('currentQue', currentQue)
 
     switch(currentQue?.type || activeQue?.type){
         case '1':

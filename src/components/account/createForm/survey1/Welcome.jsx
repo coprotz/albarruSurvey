@@ -5,11 +5,14 @@ import {motion} from 'framer-motion'
 // import { useContext } from 'react';
 import Share from '../../Share'
 
-const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, setActiveQuestionnaire, setPage, user}) => {
+const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, setActiveQuestionnaire, setPage, user, currentQue}) => {
 
   // console.log('activeW', activeQuestionnaire)
   // const { pages, setPages } = useContext(SurveyContext)
   // console.log('pages', pages)
+
+  // console.log('cur', currentQue)
+  // console.log('cur', activeQue)
   return (
     <motion.div 
           initial={{ y: '-100vw'}}
@@ -30,10 +33,10 @@ const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, set
             </div>
           }
           <div className="survey_body">
-                <h1>{activeQue?.title || activeQuestionnaire?.title} </h1>
+                <h1>{currentQue?.title || activeQuestionnaire?.title} </h1>
           </div>
           <div className="welcome">
-                <h2>{activeQue?.description || activeQuestionnaire?.description}</h2>
+                <h2>{currentQue?.description || activeQuestionnaire?.description}</h2>
           </div>
           <button className='get_start' onClick={() => {setPage(1)}}>Get Started</button>
         </div>

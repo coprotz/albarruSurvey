@@ -84,11 +84,7 @@ const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
       }else if(page === 2){
         return <RenderSurvey {...props}/>
       }else if(page === 3){
-        return <RenderReponces {...props}/>
-      // }else if(page === 4){
-      //   return <BillingMain {...props}/>
-      // }else if (page === 5){
-      //   return <Share />
+        return <RenderReponces {...props}/>     
       }else if(page === 6){
         return <Invoice {...props}/>
       }else if(page === 7){

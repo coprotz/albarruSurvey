@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form'
 
 
 
-const Challenges = ({setPage, responces, activeQue, previous,  name, setName, activeField, setActiveField, activeQuestionnaire, sub, setSub}) => {
+const Challenges = ({setPage, responces, activeQue, currentQue,  name, setName, activeField, setActiveField, activeQuestionnaire, sub, setSub}) => {
 
   let { register,  formState: { errors, isValid },  watch } = useForm({mode: 'all'});
 
@@ -84,7 +84,7 @@ const handleNext = async(e) => {
       <div className="welcome_input">
         <div className="welcome_action">
           <button onClick={() => {setPage(3)}} className='back1'><FaChevronLeft/></button>
-          <small className='main__title'>{activeQue?.title || activeQuestionnaire.title}</small>
+          <small className='main__title'>{currentQue?.title || activeQuestionnaire.title}</small>
         </div>
         <h3  className='pages_title'>{page4.title}</h3>
         <h4 className='pages_description'>{page4.description}</h4>

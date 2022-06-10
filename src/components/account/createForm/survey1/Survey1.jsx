@@ -14,18 +14,9 @@ import { ValuesContext } from '../../../../contexts/ValuesContext';
 
 
 
-// const steps = [
-//     {id: '1', Component: Welcome},
-//     {id: '2', Component: FirmDetails},
-//     {id: '3', Component: Establishment},
-//     {id: '4', Component: Implementation},
-//     {id: '5', Component: Challenges},
-//     {id: '6', Component: Benefits},
-//     {id: '7', Component: ThewayForward},
 
-// ]
 
-const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire, setActiveResponce, responces, activeQue, user}) => {
+const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire, setActiveResponce, responces, activeQue, user, currentQue}) => {
 
 
     // const { step, navigation } = useStep({ steps, initialStep: 0 })
@@ -65,7 +56,8 @@ const Survey1 = ({ activeQuestionnaire, share, setShare, setActiveQuestionnaire,
         responces,
         sub,
         setSub, 
-        user
+        user,
+        currentQue
       }
 
       const PageDisplay = () => {

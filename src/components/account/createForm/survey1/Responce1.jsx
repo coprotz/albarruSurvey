@@ -49,11 +49,6 @@ const Responce1 = ({
 
 
 
-    // const below5 = userResponces?.values.filter((v) => v.experience === 'less5yrs')
-
-    // console.log('bel', below5)
-
-
   return (
     <div className="account_body">
       <button className='survey_active_close' onClick={() =>  setPage(1)}>X</button>
