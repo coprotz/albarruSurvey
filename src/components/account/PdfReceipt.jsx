@@ -1,7 +1,7 @@
 import React from 'react'
 import {motion} from 'framer-motion'
 import Logo from '../images/logo-icon.png'
-import Pdf from 'react-to-pdf'
+// import Pdf from 'react-to-pdf'
 import { jsPDF } from "jspdf";
 
 const ref = React.createRef();
@@ -92,7 +92,7 @@ const PdfReceipt = ({setViewInvoice, pdfReceipt, user, cuUser, setActive, setPag
                   </table>
                   <div className="sub_total">
                     <h6>SUBTOTAL <span> ${pdfReceipt.totalCost}</span></h6>
-                    <small>Tax Vat 18% <span>00.00</span></small>
+                    <small>Tax <span>00.00</span></small>
                     <small>Discount <span>00.00</span> </small>
                     <div className="gandTotal">
                       <h6>Grand Total <span>${pdfReceipt.totalCost}</span></h6>
