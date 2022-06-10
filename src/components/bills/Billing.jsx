@@ -32,8 +32,8 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert, subscri
      const data = {
         payment_method_types: ["card"],
         mode: "payment",
-        success_url: "https://albarrusurvey/subscriptions",
-        cancel_url: "https://albarrusurvey/account",
+        success_url: "https://albarrusurvey.com/subscriptions",
+        cancel_url: "https://albarrusurvey.com/account",
         line_items: [
             {
                 quantity: 1,
