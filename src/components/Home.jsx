@@ -46,7 +46,7 @@ const Home = () => {
           </div>
           <div className="work">
             <FiUsers/>
-            <h2>Prepare your questions</h2>
+            <h2>Create a Survey</h2>
           </div>
           <div className="work">
             <GrNotes/>

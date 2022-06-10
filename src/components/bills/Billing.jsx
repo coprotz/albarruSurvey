@@ -1,105 +1,67 @@
-import React from 'react'
+import React, {useEffect}from 'react'
 import {motion} from 'framer-motion'
-
 import Logo from '../images/icon1.png'
 import { useState } from 'react';
 import './billing.css'
 import { AiOutlineClose } from "react-icons/ai";
+import { collection, addDoc, serverTimestamp, doc,updateDoc, onSnapshot} from "firebase/firestore";
+import { db, functions } from '../../firebase';
+import {loadStripe} from '@stripe/stripe-js';
+import {Elements} from '@stripe/react-stripe-js';
+import { useUserAuth } from '../../context/UserAuthContext';
+import StripeCheckout from 'react-stripe-checkout';
+import { httpsCallable } from 'firebase/functions';
+// import Stripe from 'stripe';
 
 
-import {
-  collection,  
-  addDoc,
-  serverTimestamp,
-
-  doc,
-  updateDoc
- 
-  
-} from "firebase/firestore";
-
-import { db } from '../../firebase';
-import { useEffect } from 'react';
-
-
-
-
-const ques = [
-  {id: '1 - 5 questions', value: 0.05},
-  {id: '6 - 10 questions', value: 0.07},
-  {id: '11 - 15 questions', value: 0.09},
-  {id: '16 - 20 questions', value: 0.11},
-  {id: '21 - 25 questions', value: 0.13},
-  {id: '26 - 30 questions', value: 0.13},
-  {id: '31 - 35 questions', value: 0.17},
-  {id: '36 - 40 questions', value: 0.19},
-  {id: '41 - 45 questions', value: 0.21},
-  {id: '46 - 50 questions', value: 0.23},
-  
-  
-]
-
-const queners = [
-  {id: '1 - 3 months', value: 1},
-  {id: '4 - 6 months', value: 1.5},
-  {id: '7 - 9 months', value: 2},
-  {id: '10 - 12 months', value: 2.5}
-]
-
-
-const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert}) => {
-
-
+const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert, subscribes, setActive, setPdfReceipt, setPage }) => {
+  // const Stripe = require('stripe')
   const [sending, setSending] = useState(null)
+  const { user } = useUserAuth()
 
+  // console.log('sub', subscribes)
 
+  const createStripeCheckout = httpsCallable(functions, 'createStripeCheckout');
 
   const handlePay = async(e) => {
     e.preventDefault();
      setSending(true)
 
-    try {
-        const surveyRef = doc(db, 'surveys', `${viewInvoice.id}`)
-        await updateDoc(surveyRef, {
-          status: 'Paid',
-          timeStamp: serverTimestamp()
-        })
-        setMessageAlert('Your bill has been paid successifull, notification has been sent to your email')
-        setTimeout(() => {
-          setMessageAlert('')
-        }, 5000);
-        setSending(null)
-        setViewInvoice(null)
-    } catch (error) {
-        console.log(error)
-    }
-  
-
-    const data = {
-      name: cuUser.lastname,
-      email: cuUser.email,
-      message: `${cuUser?.firstname} ${cuUser?.lastname} has paid his/her invoice no ${viewInvoice?.invoiceNo} the total of $ ${viewInvoice?.totalCost} for title ${viewInvoice?.title}`,
-    }
-
-    try {
-      await addDoc(collection(db, "messages"), {
-        ...data,
-        timeStamp: serverTimestamp(),
-        
-      });
-    } catch (error) {
-      console.log(error)
-    }
-
+     const stripePromise = loadStripe("pk_test_51L7BhfEk74y2bHhrlDyIuTasaYeh5lQ1HwJ49FOUCbL4KvFsRkNnJWXlmaeakpoPybk1Sox6NdyP4K9XR3DzTwGu007evrqtpi")
+     const stripe = await stripePromise;
+     const data = {
+        payment_method_types: ["card"],
+        mode: "payment",
+        success_url: "https://albarrusurvey/subscriptions",
+        cancel_url: "https://albarrusurvey/account",
+        line_items: [
+            {
+                quantity: 1,
+                price_data: {
+                    currency: "usd",
+                    unit_amount: (viewInvoice?.totalCost) * 100,
+                    product_data: {
+                        name: `For Invoice No. ${viewInvoice.invoiceNo}`,
+                    },
+                },
+            },         
+        ],
+        metadata: {
+          id: viewInvoice.id,
+          user:viewInvoice.name,
+          userId: user.uid,
+          paid_amount: viewInvoice.totalCost,
+        },
+       
     
-    
+     };
 
+     createStripeCheckout(data).then(response => {
+       const sessionId = response.data.id      
+       stripe.redirectToCheckout({ sessionId })
+     })
 
   }
-
-  useEffect(() => {
-
-  },[])
 
   return (                  
         <motion.div 
@@ -114,7 +76,7 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert}) => {
                 </div>
                 <div className="bill_right">
                   <h4>AlBarru Survey Inc.</h4>
-                  <h4>Email: sales@albarrusurvey.com</h4>
+                  <h4>Email: info@albarrusurvey.com</h4>
                   <h4>Mobile Number: +44 8885 8888</h4>
 
                 </div>
@@ -151,8 +113,14 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert}) => {
                       </tbody>
                     </table>
                     <div className="bill_btn">
-                      {viewInvoice?.status === 'Paid'? <h1 className='paidInvoice'>PAID</h1> :
-                      <button className='btn_submit' onClick={handlePay}>{sending? 'Paying...' : 'Pay a Bill'}</button> 
+                      {subscribes?.find((s)=> s.surveyId === viewInvoice.id)?.status ==='paid'?  
+                      <div className='receipt_get'>
+                         <h1 className='paidInvoice'>PAID</h1> 
+                         <button className='btn' onClick={() => {setPdfReceipt(viewInvoice); setPage(8); setActive(8)}}>View Receipt</button>
+                      </div>
+                     
+                      :                   
+                      <button className='btn_submit' onClick={handlePay}>{sending? 'Open Secured Payment Gateway...' : 'Pay a Bill'}</button> 
                       }
                     </div>
                     
@@ -160,7 +128,7 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert}) => {
                 <div className="bill_body_right">
                   <div className="right_inner">
                     <label htmlFor="">Amount Due</label>
-                    <h1><span>$ {viewInvoice?.status === 'Paid'? '0' : viewInvoice?.totalCost}</span></h1>
+                    <h1><span>$ {subscribes?.find((s)=> s.surveyId === viewInvoice.id)?.status ==='paid'?  '0' : viewInvoice?.totalCost}</span></h1>
                   </div>
                   <div className="right_inner">
                     <label htmlFor="">Bill To</label>
@@ -168,12 +136,12 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert}) => {
                     <h4>{ cuUser?.email}</h4>
                   </div>
                   <div className="right_inner">
-                    <label htmlFor="">{viewInvoice?.status === 'Paid'? 'Receipt Number' : 'Invoice Number'}</label>
+                    <label htmlFor="">{subscribes?.find((s)=> s.surveyId === viewInvoice.id)?.status ==='paid'?  'Receipt Number' : 'Invoice Number'}</label>
                     <h4>{viewInvoice?.invoiceNo}</h4>
                   </div>
                   <div className="right_inner">
-                    <label htmlFor="">{viewInvoice?.status === 'Paid' ? 'Paid Date' : 'Date of Issue'}</label>
-                    <h4>{new Date(viewInvoice?.timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h4>
+                    <label htmlFor="">{subscribes?.find((s)=> s.surveyId === viewInvoice.id)?.status ==='paid'?  'Paid Date' : 'Date of Issue'}</label>
+                    <h4>{new Date(subscribes?.find((s)=> s.surveyId === viewInvoice.id)?.time?.seconds * 1000).toLocaleDateString("en-US")}</h4>
                   </div>
                  
                 

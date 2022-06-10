@@ -1,7 +1,6 @@
 import React from 'react'
 
-const Dashboard = ({users, surveys}) => {
-
+const Dashboard = ({users, surveys, subscribes}) => {
 
  
   return (
@@ -13,7 +12,7 @@ const Dashboard = ({users, surveys}) => {
           <th className='descr'>SN</th>
           <th className='qty'>Survey Title</th>
           <th className='total'>Owners</th>
-          <th className='total'>Survey Cost ($)</th>
+          <th className='total'>Survey Cost</th>
           <th className='total'>Payment Status</th>
           <th className='total'>Questions Attached</th>
           {/* <th className='total'>Status</th> */}
@@ -25,8 +24,8 @@ const Dashboard = ({users, surveys}) => {
               <td data-label='SN'>{index+1}</td>     
               <td data-label='Survey Title' className='tab_column'>{s.title}</td>
               <td data-label='Researcher'>{s.name}</td>
-              <td data-label='Survey Cost'>{s.totalCost}</td>
-              <td data-label='Payments Status'>{s.status}</td>
+              <td data-label='Survey Cost'>$ {s.totalCost}</td>
+              <td data-label='Payments Status'>{subscribes?.find((d)=> d.surveyId === s.id)?.status ==='paid'? 'Paid' : 'Unpaid' }</td>
               <td data-label='Questions Attached'>{s.file? 'attached' : 'Not Attached'}</td>
               {/* <td data-label='Status'></td> */}
               <td data-label='Actions'></td>

@@ -124,7 +124,7 @@ const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAler
                 setMessageAlert('')
               }, 3000);
       
-              setCreateSurvey(null)
+              // setCreateSurvey(null)
               setSending(null)
               // setPeriod(null)
               // setTitle('')

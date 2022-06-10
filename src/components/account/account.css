@@ -749,6 +749,45 @@ input:invalid[focused='true']{
     max-width: 450px;
 }
 
+.subscrip{
+    background-color: #e4e4ff;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub_wrapper{
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+.sub_wrapper small{
+    color: blue;
+}
+
+.sub_wrapper h2{
+    line-height: 1.5;
+}
+
+.subscrip_btn{
+    margin-top: 20px;
+}
+
+.btn{
+    padding: 8px 14px;
+    background-color: transparent;
+    border: 1px solid blue;
+    cursor: pointer;
+    margin: 5px;
+    color: blue;
+}
+
 @keyframes message{
     0%{
         right: -500px;
@@ -762,6 +801,214 @@ input:invalid[focused='true']{
 
 .bill_body_left{
     width: 100%;
+}
+
+
+.receipt_wrapper{
+    width: 595px;
+    height: 842px;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.receipt_info span{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 10px;
+    width: 110px;
+}
+
+.slogan{
+    font-style: italic;
+    color: blue;
+    font-size: 9px;
+    
+}
+
+.payment_method{
+    margin: 50px 0;
+}
+
+.payment_method h4{
+    color: #9c9d9e;
+    font-size: 13px;
+}
+
+.form_clm{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 10px 0;
+    /* height: 300px; */
+}
+
+.form_clm span{
+    text-align: left;
+    margin-top: 5px;
+}
+
+.receivedFrm{
+    color: blue;
+    font-weight: 900;
+    font-size: 30px;
+    font-size: 20px;
+}
+
+.payment_method small{
+    font-size: 11px;
+}
+
+.receipt_info small{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+}
+
+.rec_tp{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.comp_info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.comp_logo{
+    width: 60px;
+}
+
+.comp_logo img{
+    width: 100%;
+    border: 1px solid #d4d4ff;
+    padding: 0;
+    margin: 0;
+}
+
+
+.receipt_info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.sub_total{
+    float: right;
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    gap: 10px;
+    font-size: 18px;
+}
+
+
+
+.sub_total h6, small{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub_total small{
+    font-size: 9px;
+}
+
+.gandTotal{
+    background-color: blue;
+    color: white;
+    
+    padding: 5px;
+}
+
+.gandTotal h3{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form_clm div{
+    color: blue;
+    font-weight: 600;
+    /* font-style: italic; */
+}
+
+.table_info{
+    margin: 10px 0;
+}
+
+.table1{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9px;
+
+    margin: 0 auto;
+    transition: all 0.8s ease;
+}
+
+.table1 td, .table th{
+    padding: 10px;
+    border: 1px solid #ddd;
+    /* color: #5e5e5e; */
+    text-align: center;
+    
+}
+
+.pdf_wrapper{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cancel{
+    background-color: red;
+    border: none;
+    padding: 3px 10px;
+    height: 30px;
+    color: white;
+    cursor: pointer;
+}
+
+.table1 th{
+    background-color: blue;
+    color: white;
+}
+
+.table1 tr{
+    transition: all 0.8s ease;
+}
+
+.table1 tbody tr:nth-child(even){
+    background-color: white;
+    /* box-shadow: 1px 2px 5px #dadbdb; */
+}
+
+.receipt_footer{
+    /* border: 1px solid red; */
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 20px;
+    width: 595px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.company_details{
+    display: flex;
+    font-size: 9px;
+    gap: 10px;
+    color: blue;
+    margin-top: 2px;
 }
 
 @media screen and (max-width:920px){
@@ -984,6 +1231,26 @@ input:invalid[focused='true']{
     }
     .dash_title{
         border-bottom: 1px solid #c1c2c3 !important;
+    }
+
+    .sub_wrapper{
+        width: 100%;
+        padding: 15px;
+        
+        /* margin: 0 auto;
+        text-align: center;
+        display: flex;
+        flex-direction: column; */
+       
+    }
+
+    .sub_wrapper h2{
+        font-weight: 400;
+    }
+
+    .receipt_wrapper{
+        width: 100%;
+        padding: 15px;
     }
     
     

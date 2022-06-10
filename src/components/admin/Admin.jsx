@@ -20,14 +20,15 @@ import { db } from "../../firebase";
 import NewMessage from './NewMessage';
 import Terms from './Terms';
 import Privacy from './Privacy';
+import Subscribers from './Subscribers';
 
 
-const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) => {
+const Admin = ({users, surveys, responces, questionnaires, currentUser, user, subscribes}) => {
 
   const cuUser = users?.find((u) => u.id === user?.uid)
   
-  const totalPaid = surveys.filter((s) => s.status === 'Paid')
-  const totalUnpaid = surveys.filter((s) => s.status === 'Unpaid')
+  // const totalPaid = surveys.filter((s) => s.status === 'Paid')
+  // const totalUnpaid = surveys.filter((s) => s.status === 'Unpaid')
   const [active, setActive] = useState(1)
   const [messages, setMessages] = useState([])
   const [newMsg, setNewMsg] = useState(null)
@@ -36,8 +37,12 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user}) =
 
 
 
-  const paid = totalPaid.reduce((a, b) => a + b.totalCost, 0)
-  const unPaid = totalUnpaid.reduce((a, b) => a + b.totalCost, 0)
+  // const paid = totalPaid.reduce((a, b) => a + b.totalCost, 0)
+  const unPaid = surveys.reduce((a, b) => a + b.totalCost, 0)
+
+  const paid = subscribes?.reduce((a, b) => a + b.paid_amount, 0)
+
+  console.log('paid2', parseInt(paid))
 
 
  
@@ -115,7 +120,23 @@ useEffect(() => {
   const [page, setPage] = useState(0)
   const [errMessage, setErrMessage] = useState('')
 
-  const props = { terms, privacy, responces, setErrMessage, surveys, questionnaires, users, messages, currentUser, Questionnaires,newMsg, setNewMsg, user, setPage, setMessageAlert }
+  const props = { 
+    terms, 
+    privacy, 
+    responces, 
+    setErrMessage, 
+    surveys, 
+    questionnaires, 
+    users, messages, 
+    currentUser, 
+    Questionnaires,
+    newMsg, 
+    setNewMsg, 
+    user, 
+    setPage, 
+    setMessageAlert,
+    subscribes,
+   }
 
   
   const PageDisplay = () => {
@@ -131,11 +152,15 @@ useEffect(() => {
       return <Responces {...props}/>
     }else if (page === 5){
       return <Messages {...props}/>
-    }else if (page === 6){
+    }else if (page === 8){
+      return <Subscribers {...props}/>
+    }
+    else if (page === 6){
       return <Terms {...props}/>
     }else if (page === 7){
       return <Privacy {...props}/>
     }
+
     
     
   }
@@ -164,6 +189,7 @@ useEffect(() => {
             <span className={active === 4? 'admin_active' : 'admin_link'}  onClick={() => {setPage(3); setActive(4)}}>Surveys</span>
             <span className={active === 5? 'admin_active' : 'admin_link'}  onClick={() => {setPage(4); setActive(5)}}>Responces</span>
             <span className={active === 6? 'admin_active' : 'admin_link'}  onClick={() => {setPage(5); setActive(6)}}>Messages</span>
+            <span className={active === 9? 'admin_active' : 'admin_link'}  onClick={() => {setPage(8); setActive(9)}}>Subscribers</span>
             <span className={active === 7? 'admin_active' : 'admin_link'}  onClick={() => {setPage(6); setActive(7)}}>Terms</span>
             <span className={active === 8? 'admin_active' : 'admin_link'}  onClick={() => {setPage(7); setActive(8)}}>Privacy</span>
           </div>
@@ -200,7 +226,7 @@ useEffect(() => {
                     <h2>$ {paid}</h2>
                   </div>
                   <div className="admin_card">
-                  <small>Total Unpaid:</small>
+                  <small>Total Surveys Value:</small>
                     
                     <h2>$ {unPaid}</h2>
                   </div>
@@ -217,5 +243,6 @@ useEffect(() => {
     : <div>You are not allowed..</div>}</>
   )
 }
+
 
 export default Admin

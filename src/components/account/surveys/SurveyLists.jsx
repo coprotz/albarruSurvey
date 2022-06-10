@@ -37,7 +37,9 @@ const SurveyLists = ({
     setActiveSurvey,
     setActive,
     setMessageAlert,
-    user
+    user,
+    subscribes,
+    setPdfReceipt,
   }) => {
 
 
@@ -52,7 +54,7 @@ const SurveyLists = ({
 
     // console.log('filter', ft)
 
-    // console.log('su', userSurveys)
+    // console.log('su', surveys)
 
     const types = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword']
 
@@ -113,6 +115,12 @@ const SurveyLists = ({
       }, 5000);
 
     }
+
+    
+
+    // const paid = subscribes?.find((s)=> s.surveyId === "3yn8aqIG37nLvxq3vcyu").status
+
+    // console.log('paid', paid)
     
   return (
     <motion.div 
@@ -138,9 +146,9 @@ const SurveyLists = ({
                     <thead>
                       <th>Title</th>
                       <th>Questions</th>
-                      <th>Payment Status</th>
+                      {/* <th>Payment Status</th> */}
                       <th>Invoice No.</th>
-                      <th>Status</th>
+                      <th>Payment Status</th>
                       <th>Actions</th>
                     </thead>
                     <tbody>
@@ -175,11 +183,12 @@ const SurveyLists = ({
                             }
                           </a>
                         </td>  
-                        <td data-label='Payment Status'>{item.status}</td>                
+                        {/* <td data-label='Payment Status'>{item.status}</td>                 */}
                         <td data-label='Invoice No'><button className='billing__btn' onClick={() => setViewInvoice(item)}>{item.invoiceNo}</button></td>
-                        <td data-label='Status'>{tem_sur?.id == item.id? 'Completed' :  item.status === 'Unpaid'? 'Pending' : 'Processing' }</td>
+                        {/* <td data-label='Status'>{tem_sur?.id == item.id? 'Completed' :  item.status === 'Unpaid'? 'Pending' : 'Processing' }</td> */}
+                        <td data-label='Payment Status'>{subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? 'Paid' : 'Unpaid' }</td>
                         <td data-label='Actions'>
-                          {item.status === 'Paid'? 'NA':
+                          {subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? <button onClick={() => {setPdfReceipt(item); setPage(8); setActive(8)}} className='btn'>View Receipt</button>:
                           <>
                           <button onClick={() => setCreateSurvey(item)}>Update</button>
                           <button onClick={() => deleteSurvey(item.id)}>Delete</button>
@@ -199,6 +208,10 @@ const SurveyLists = ({
                 viewInvoice={viewInvoice}
                 setViewInvoice={setViewInvoice}
                 setMessageAlert={setMessageAlert}
+                subscribes={subscribes}
+                setActive={setActive}
+                setPage={setPage}
+                setPdfReceipt={setPdfReceipt}
             /> 
             }
             </>

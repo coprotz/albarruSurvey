@@ -8,17 +8,19 @@ import { AiOutlineClose } from "react-icons/ai";
 
 
 const Invoice = ({
-
+    user,
     userSurveys, 
-
     cuUser, 
-
     setViewInvoice,
     viewInvoice,
-    setMessageAlert
+    setMessageAlert,
+    subscribes,
+    setPage,
+    setActive,
+    setPdfReceipt
   }) => {
 
-   
+    // console.log('sub', subscribes)
    
   return (
     
@@ -45,14 +47,14 @@ const Invoice = ({
                     </td>
                     <td data-label='Description'>Questions: {item.questions}, Questionnaires: {item.questionnaires}, Period: {item.period} </td>
                     <td data-label='Amount'>$ {item.totalCost}</td>
-                    <td data-label='Status'>{item.status}</td>
+                    <td data-label='Status'>{subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? 'Paid' : 'Unpaid' }</td>
                   </tr>
                   ))}
                   
                 </tbody>
               </table>
 
-              : <span className='dont_hv'>You dont have any unpaid Invoice</span>
+              : <span className='dont_hv'>You dont have an invoice</span>
             
           }
         </>
@@ -62,6 +64,11 @@ const Invoice = ({
             cuUser={cuUser}
             setViewInvoice={setViewInvoice}
             viewInvoice={viewInvoice}
+            user={user}
+            subscribes={subscribes}
+            setActive={setActive}
+            setPage={setPage}
+            setPdfReceipt={setPdfReceipt}
             /> }
         
         

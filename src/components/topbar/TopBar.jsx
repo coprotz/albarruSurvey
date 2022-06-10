@@ -14,11 +14,13 @@ import {
   getDocs,
   // deleteDoc,
   // doc,
-  // onSnapshot,
+  onSnapshot,
 } from "firebase/firestore";
 import { db, auth } from "../../firebase";
 import { useEffect } from 'react';
 import { useUserAuth } from '../../context/UserAuthContext';
+import { GrNotification} from "react-icons/gr";
+import moment from 'moment'
 
 
 
@@ -33,11 +35,13 @@ const TopBar = () => {
   const [users, setUsers] = useState([])
   // const {currentUser} = useContext(AuthContext)
   const [show,setShow] = useState(null)
+  const [noti, showNoti] = useState(null)
+  const [notificatios, setNotifications] = useState(null)
 
   
 
   const cuUser = users.find((u) => u.id === user?.uid)
-// console.log('nav', user)
+// console.log('nav', cuUser)
   useEffect(() => {
     const fetchData = async () => {
             try {
@@ -51,6 +55,29 @@ const TopBar = () => {
         
     };
     fetchData()
+},[]);
+
+useEffect(() => {
+
+  const unsub = onSnapshot(
+    collection(db, "notifications"),
+    (snapShot) => {
+      let list = [];
+      snapShot.docs.forEach((doc) => {
+        list.push({ id: doc.id, ...doc.data() });
+      });
+      setNotifications(list)
+      // console.log(list)
+    },
+    (error) => {
+      console.log(error)
+    }  
+  );
+  
+  return () => {
+      unsub();
+}
+
 },[]);
 
 
@@ -92,6 +119,32 @@ const handleUpdate = (e) => {
              
              
              <Link to='/account' onClick={() => setActive(!active)}><button className='top_btn'>My Dashboard</button></Link>
+             {cuUser?.role === 'admin' && 
+             <div className="notification">
+               <button className='noti_on'><GrNotification/></button>
+               <div className="noti_last" onClick={() => showNoti(!noti)}>{notificatios && notificatios?.length}</div>
+               {noti &&
+               <div className="not_items">
+                 <ul>
+                   {notificatios && notificatios?.map(item => {
+                     return (
+                       <li key={item.id}>
+                         <div className='item_span'>
+                            <span>{item.user}</span>
+                            <span>{item.content}</span>
+                         </div>
+                         
+                         <div className="item_moment">
+                          {moment(item.time.toDate()).fromNow()}
+                         </div>
+                       </li>
+                     )
+                   })}
+                
+                 </ul>
+               </div>}
+             </div>}
+               
              <div className="username_wrapper">            
                 <div className={cuUser? 'username' : 'photo_url'} onClick={() => setShow(!show)}>{!cuUser? <div ><img src={`${user?.photoURL}`} alt='B' ></img></div> : cuUser?.username[0] }</div>  
                 {show && 
@@ -110,38 +163,7 @@ const handleUpdate = (e) => {
             <Link to='/login'><button className='top_btn'>LOG IN</button></Link>
             <Link to='/register'><button className='top_btn btn_submit'>REGISTER</button></Link>
             </>}
-            {/* <div className="humbug"> */}
-               {/* <button className='hambug' onClick={() => setActive(!active)}>{active? <AiOutlineClose/> : <GiHamburgerMenu/>}</button>
-               {active? 
-               <motion.div 
-               initial={{ x: '100vw'}}
-               animate={{x:0}} 
-               transition={{ ease: "easeOut", duration: 0.5 }} 
-                className="humbug_menu">
-                 <Link to='/works' onClick={() => setActive(!active)}><button>How it Works</button></Link>
-                 <Link to='/pricing' onClick={() => setActive(!active)}><button>Pricing</button></Link>
-                 <Link to='/contact' onClick={() => setActive(!active)}><button>Let's talk</button></Link> */}
-                 {/* {user?
-                 <>
-                  <Link to='/account' onClick={() => setActive(!active)}><button>My Account</button></Link>
-                  <Link to='/account' onClick={handleLogout} className='top_logout'><button>LOGOUT</button></Link>
-                  <div className='username'>
-                    {cuUser?.firstname}
-                    <div className="menu_toggle">
-                      <span onClick={handleLogout}>Logout</span>
-                      <span>Setting</span>
-                    </div>
-                    </div>
-                 </>
-                
-                 : <>
-                  <Link to='/login' onClick={() => setActive(!active)}><button>LogIn</button></Link>
-                  <Link to='/register' onClick={() => setActive(!active)}><button>Register</button></Link>
-                 </>} */}
-                 
-                 
-               {/* </motion.div> : null} */}
-            {/* </div> */}
+          
            
         </div>
       </div>

@@ -14,7 +14,7 @@ const Terms = ({term}) => {
     animate={{y:0}} 
     transition={{ ease: "easeOut", duration: 0.5 }} 
     className="how_works">        
-        <h1 className='works_title'>Terms and Condtions</h1>
+        <h1 className='works_title'>Terms of Use</h1>
         <h3>Last updated on:  {new Date(term.timeStamp.seconds * 1000).toLocaleDateString("en-US")}</h3>
         <p>{parser(term.body)}</p>
      </motion.div>

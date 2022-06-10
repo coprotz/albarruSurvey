@@ -1,3 +1,4 @@
+import "@stripe/stripe-js"
 import './App.css';
 import Home from './components/Home';
 import './components/styles/main.css'
@@ -28,6 +29,7 @@ import { useEffect } from 'react';
 import Admin from './components/admin/Admin';
 import RenderSurvey from './components/account/createForm/RenderSurvey';
 import { useUserAuth } from './context/UserAuthContext';
+import Subscriptions from "./components/account/Subscriptions";
 
 
 function App() {
@@ -36,14 +38,15 @@ function App() {
   const [users, setUsers] = useState([])
   const [terms, setTerms] = useState([])
   const [privacy, setPrivacy] = useState([])
+  const [subscribes, setSubscribes] = useState([])
   const { user } = useUserAuth();
 
   const term = terms?.find((u) => u.id)
   const priv = privacy?.find((u) => u.id)
 
 
-  console.log("user", terms)
-  console.log("priv", priv)
+  // console.log("user", terms)
+  // console.log("priv", priv)
 
   useEffect(() => {
 
@@ -55,6 +58,29 @@ function App() {
           list.push({ id: doc.id, ...doc.data() });
         });
         setUsers(list)
+        // console.log(list)
+      },
+      (error) => {
+        console.log(error)
+      }  
+    );
+    
+    return () => {
+        unsub();
+  }
+  
+  },[]);
+
+  useEffect(() => {
+
+    const unsub = onSnapshot(
+      collection(db, "subscriptions"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setSubscribes(list)
         // console.log(list)
       },
       (error) => {
@@ -165,8 +191,8 @@ useEffect(() => {
 
 
 
-  // console.log(user)
-  console.log('terms', term)
+  // console.log(viewInvoice)
+
 
  
   const RequireAuth = ({children}) => {
@@ -192,6 +218,9 @@ useEffect(() => {
                         surveys={surveys}
                         responces={responces}
                         setSurveys={setSurveys}
+                        subscribes={subscribes}
+                        // viewInvoice={viewInvoice}
+                        // setViewInvoice={setViewInvoice}
                         // setUsers={setUsers}
                         user={user}
                         // activeSurvey={activeSurvey} 
@@ -215,6 +244,11 @@ useEffect(() => {
                   <Route exact path="/privacy" element={<Privacy priv={priv}/>} />  
                   <Route exact path="/reset" element={<Reset />} />   
                   <Route exact path="/thanks" element={<Thanks />} />  
+                  <Route exact path="/subscriptions" element={
+                    <RequireAuth>
+                      <Subscriptions user={user} surveys={surveys} cuUser={cuUser} />
+                    </RequireAuth>                 
+                  } />  
                   <Route exact path="/admin" element={
                     <RequireAuth>
                     <Admin 
@@ -224,7 +258,7 @@ useEffect(() => {
                       setSurveys={setSurveys}
                       setUsers={setUsers}
                       setResponces={setResponces}
-                   
+                      subscribes={subscribes}
                       user={user}
                     />
                     </RequireAuth>

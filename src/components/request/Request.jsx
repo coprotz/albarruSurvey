@@ -26,7 +26,14 @@ const Request = () => {
 
     // console.log('terms', terms)
 
-   
+    const data = {
+        username: username,    
+        email: email,        
+        password: password,      
+        role: 'user',
+        terms: terms
+       
+    }
  
 
     const handleRegister = async (e) => {
@@ -34,14 +41,7 @@ const Request = () => {
         setSending(true)  
         setErr("")  
         
-        const data = {
-            username: username,    
-            email: email,        
-            password: password,      
-            role: 'user',
-            terms: terms
-           
-        }
+    
 
         signUp(email, password).then(cred => {
             return setDoc(doc(db, 'users', `${cred.user.uid}`) ,{
@@ -56,46 +56,47 @@ const Request = () => {
             setErr(error.message)
         })
 
-        // try {
-        //     await signUp(email, password)  
-        //         console.log(user)
-        
-        //         await setDoc(doc(db, "users", `${user?.uid}`), {
-        //             ...data,
-        //             timeStamp: serverTimestamp(),
-                    
-                
-        //     });
-
-        //     // console.log('id', user.uid)
-  
-        //     setSending(null)
-        //     navigate('/account')
-
-          
-          
-        // } catch (error) {
-        //     setErr(error.message)
-      
-        // }
-        
-
         
     };
 
 
     const signWithGoogle = async (e) => {
         e.preventDefault();
-
-        try {
-           await googleSignIn()
-           navigate('/account')
-            
-        } catch (error) {
+        setSending(true)  
+        setErr("")  
+    
+        googleSignIn().then(cred => {
+            return setDoc(doc(db, 'users', `${cred.user.uid}`), {
+                username: cred.user.displayName,
+                email: cred.user.email,
+                terms: true,
+                role: 'user',
+                timeStamp: serverTimestamp(),
+            });
+        }).then(() => {
+            setSending(null)
+            navigate('/account') 
+        }).catch((error) => {
             setErr(error.message)
-        }
-
+        })
+           
+            
+       
     }
+
+    // const signWithGoogle = async (e) => {
+    //     e.preventDefault();
+
+    //     try {
+    //        await googleSignIn()
+    //        navigate('/account')
+            
+    //     } catch (error) {
+    //         setErr(error.message)
+    //     }
+
+    // }
+
 
  
 
@@ -109,7 +110,7 @@ const Request = () => {
         animate={{x:0}} 
         transition={{ ease: "easeOut", duration: 0.5 }}     
         className='request_form'>        
-        <form className="request_inner" onSubmit={handleRegister}>
+        <form className="request_inner">
             {err && <div className="error">{err}</div> } 
             <div className="register_top">
                 <h3 className='request_title'>Register</h3>
