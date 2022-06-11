@@ -28,10 +28,10 @@ const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, set
             </div>
           }
           <div className="survey_body">
-                <h1>{currentQue?.title || activeQuestionnaire?.title} </h1>
+                <h1>{activeQue?.title || activeQuestionnaire?.title} </h1>
           </div>
           <div className="welcome">
-                <h2>{currentQue?.description || activeQuestionnaire?.description}</h2>
+                <h2>{activeQue?.description || activeQuestionnaire?.description}</h2>
           </div>
           <button className='get_start' onClick={() => {setPage(1)}}>Get Started</button>
         </div>

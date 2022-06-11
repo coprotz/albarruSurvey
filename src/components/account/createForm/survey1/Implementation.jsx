@@ -97,7 +97,7 @@ const handleNext = async(e) => {
     <div className="welcome_input">
         <div className="welcome_action">
           <button onClick={() => {setPage(2)}} className='back1'><FaChevronLeft/></button>
-          <small className='main__title'>{currentQue?.title || activeQuestionnaire.title}</small>
+          <small className='main__title'>{activeQue?.title || activeQuestionnaire.title}</small>
         </div>
         <h3  className='pages_title'>{page3.title}</h3>
         <h4 className='pages_description'>{page3.description}</h4>
