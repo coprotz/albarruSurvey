@@ -204,5 +204,9 @@
         padding: 50px 20px;
      
     }
+
+    .inner1_top_left{
+        gap: 0 !important;
+    }
    
 }

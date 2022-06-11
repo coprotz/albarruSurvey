@@ -44,7 +44,7 @@ const Admin = ({users, surveys, responces, questionnaires, currentUser, user, su
 
   const paid = subscribes?.reduce((a, b) => a + b.paid_amount, 0)
 
-  console.log('paid2', parseInt(paid))
+  console.log('paid2', parseInt(unPaid))
 
 
  
@@ -235,7 +235,7 @@ useEffect(() => {
                   <div className="admin_card">
                   <small>Total Surveys Value:</small>
                     
-                    <h2>$ {unPaid}</h2>
+                    <h2>$ {parseInt(unPaid)}</h2>
                   </div>
               </div>
               {PageDisplay()}

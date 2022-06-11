@@ -9,7 +9,7 @@ const Subscriptions = ({user, surveys, cuUser, viewInvoice}) => {
   return (
     <div className='subscrip'>
         <div className="sub_wrapper">
-            <h2>Thank you {cuUser?.username}, we have received your payment for your invoice No, {viewInvoice?.invoiceNo}, our team will send you a link for your questionnaire within 12 hours</h2>
+            <h2>Thank you {cuUser?.username}, we have received your payment for survey, our team will send you a link for your questionnaire within 12 hours</h2>
             <small>You can get your receipt from the dashboard</small>
             <div className="subscrip_btn">
                 <button onClick={() => navigate('/account')} className='btn_submit'>Dashbord</button>
