@@ -15,8 +15,8 @@ const Respondents = ({values, setRespondents, userResponces}) => {
              <table className="table">
                 <thead>
                     <th>SN</th>
-                    <th>Company Name</th>
-                    <th>Company Email</th>
+                    <th>Name</th>
+                    <th>Email</th>
                     <th>Status</th>
                     <th>Action</th>
                 </thead>
@@ -26,7 +26,7 @@ const Respondents = ({values, setRespondents, userResponces}) => {
                         <td data-label='SN'>{index+1}</td>                  
                         <td data-label='Company Name'>{item.fname}</td>
                         <td data-label='Company Email'>{item.fEmail}</td>
-                        <td data-label='Status'>{item.taneps? 'Completed' : 'Starting'}</td>
+                        <td data-label='Status'>{item?.taneps? 'Completed' : 'NA'}</td>
                         <td data-label='Action'>action</td>
                     </tr>
                     ))}

@@ -997,14 +997,18 @@ input:invalid[focused='true']{
     align-items: center;
     flex-direction: column;
     position: absolute;
-    bottom: 20px;
+    bottom: 40px;
     width: 595px;
     left: 50%;
     transform: translateX(-50%);
 }
 
+.btn_div{
+    margin-top: 15px;
+}
+
 .company_details{
-    display: flex;
+    /* display: flex; */
     font-size: 9px;
     gap: 10px;
     color: blue;

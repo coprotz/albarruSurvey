@@ -1,7 +1,7 @@
 import { Questionnaires } from "../../../data/surveys"
 import { useParams } from 'react-router-dom';
 import Survey1 from "./survey1/Survey1"
-// import Survey2 from "./survey2/Survey2"
+import Survey2 from "./survey2/Survey2"
 // import Survey3 from "./survey3/Survey3"
 
 
@@ -13,11 +13,6 @@ const RenderSurvey = ({activeQuestionnaire, share,setShare,setActiveQuestionnair
 
     const activeQue = Questionnaires?.find(q => q.id === queId)
 
-    // console.log('active', activeQuestionnaire)
-
-    // console.log('active', activeQue)
-
-    // console.log('currentQue', currentQue)
 
     switch(currentQue?.type || activeQue?.type){
         case '1':
@@ -35,20 +30,20 @@ const RenderSurvey = ({activeQuestionnaire, share,setShare,setActiveQuestionnair
                     user={user}
                 />
             )
-            // case '2':
-            //     return(
-            //         <Survey2 
-            //             activeQuestionnaire={activeQuestionnaire} 
-            //             share={share} 
-            //             setShare={setShare} 
-            //             setActiveQuestionnaire={setActiveQuestionnaire}
-            //             setActiveResponce={setActiveResponce}
-            //             responces={responces}
-            //             Questionnaires={Questionnaires}
-            //             activeQue={activeQue}
-            //             currentQue={currentQue}
-            //         />
-            //     )
+            case '2':
+                return(
+                    <Survey2 
+                        activeQuestionnaire={activeQuestionnaire} 
+                        share={share} 
+                        setShare={setShare} 
+                        setActiveQuestionnaire={setActiveQuestionnaire}
+                        setActiveResponce={setActiveResponce}
+                        responces={responces}
+                        Questionnaires={Questionnaires}
+                        activeQue={activeQue}
+                        currentQue={currentQue}
+                    />
+                )
         // case '3':
         //     return(
         //         <Survey3 

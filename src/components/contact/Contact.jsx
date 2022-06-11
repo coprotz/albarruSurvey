@@ -124,13 +124,15 @@ const Contact = () => {
         animate={{y:0}} className="contact_bottom">
           <div className="top">
             <h3>CALL US</h3>
-            <span>+255 7584 525 555</span>
-            <span>+255 7584 525 555</span>
+            <span>Whatsapp: +44 7723 858243</span>
+            
           </div>
           <div className="top">
             <h3>LOCATION</h3>
-            <span>+255 7584 525 555</span>
-            <span>+255 7584 525 555</span>
+            <span>273746 York House</span>
+            <span>Green Lane West</span>
+            <span>Prestron, Lancashire, PR3 1NJ</span>
+            <span>United Kingdom</span>
           </div>
           <div className="top">
             <h3>EMAIL</h3>

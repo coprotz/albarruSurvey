@@ -38,6 +38,8 @@ const TopBar = () => {
   const [noti, showNoti] = useState(null)
   const [notificatios, setNotifications] = useState(null)
 
+  // console.log('user', user)
+
   
 
   const cuUser = users.find((u) => u.id === user?.uid)
@@ -119,7 +121,7 @@ const handleUpdate = (e) => {
              
              
              <Link to='/account' onClick={() => setActive(!active)}><button className='top_btn'>My Dashboard</button></Link>
-             {cuUser?.role === 'admin' && 
+             {user?.admin?.admin && 
              <div className="notification">
                <button className='noti_on'><GrNotification/></button>
                <div className="noti_last" onClick={() => showNoti(!noti)}>{notificatios && notificatios?.length}</div>
@@ -151,8 +153,8 @@ const handleUpdate = (e) => {
                 <div className="menu_toggle">
                   
                   {cuUser && <span onClick={handleUpdate}>Setting</span>}
-                  {cuUser?.role === 'admin' && <span onClick={() => navigate('/admin')}>Admin</span>}
-                  <span onClick={() => navigate('/account')}>My Account</span>
+                  {user?.admin?.admin && <span onClick={() => {navigate('/admin');setShow(!show)}}>Admin</span>}
+                  <span onClick={() => {navigate('/account'); setShow(!show)}}>My Account</span>
                   <span onClick={handleLogout}>LOG OUT</span>
                   
                 </div>} 

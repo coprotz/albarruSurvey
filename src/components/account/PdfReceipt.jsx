@@ -105,7 +105,7 @@ const PdfReceipt = ({setViewInvoice, pdfReceipt, user, cuUser, setActive, setPag
               <h5>Thank you for your business</h5>
               <div className="company_details">
                 <span>Albarru Survey,</span>
-                <span>LA 25625 West Camp,</span>
+                <span>292746 York House, Green Lane West, Preston, Lancashire, PR3 1NJ, United Kingdom, </span>
                 <span>+44 425 4251 2235,</span>
                 <span>info@albarrusurvey.com,</span>
                 {/* <span>www.albarrusurvey.com</span> */}

@@ -5,7 +5,8 @@ import {
     signOut,
     onAuthStateChanged, 
     GoogleAuthProvider,
-    signInWithPopup
+    signInWithPopup,
+    getIdTokenResult
 } from 'firebase/auth';
 import { auth } from '../firebase'
 
@@ -36,6 +37,9 @@ export function UserAuthContextProvider({ children }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            currentUser?.getIdTokenResult().then(idTokenResult => {
+                currentUser.admin = idTokenResult.claims;
+            })
             setUser(currentUser);
         });
         return () => {

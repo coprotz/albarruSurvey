@@ -16,11 +16,13 @@ import {
   onSnapshot,
 
 } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db, functions } from "../../firebase";
 import NewMessage from './NewMessage';
 import Terms from './Terms';
 import Privacy from './Privacy';
 import Subscribers from './Subscribers';
+import AddAdmin from './AddAdmin';
+
 
 
 const Admin = ({users, surveys, responces, questionnaires, currentUser, user, subscribes}) => {
@@ -159,7 +161,10 @@ useEffect(() => {
       return <Terms {...props}/>
     }else if (page === 7){
       return <Privacy {...props}/>
+    }else if (page === 9){
+      return <AddAdmin {...props}/>
     }
+    
 
     
     
@@ -192,6 +197,7 @@ useEffect(() => {
             <span className={active === 9? 'admin_active' : 'admin_link'}  onClick={() => {setPage(8); setActive(9)}}>Subscribers</span>
             <span className={active === 7? 'admin_active' : 'admin_link'}  onClick={() => {setPage(6); setActive(7)}}>Terms</span>
             <span className={active === 8? 'admin_active' : 'admin_link'}  onClick={() => {setPage(7); setActive(8)}}>Privacy</span>
+            <span className={active === 10? 'admin_active' : 'admin_link'}  onClick={() => {setPage(9); setActive(10)}}>Add Admin Role</span>
           </div>
 
           <div className="admin_right">

@@ -1,6 +1,7 @@
 import React from 'react'
 import { deleteDoc, doc} from "firebase/firestore";
 import { db } from "../../firebase";
+import moment from 'moment'
 
 
 const Surveys = ({surveys, users, setErrMessage }) => {
@@ -36,7 +37,8 @@ const Surveys = ({surveys, users, setErrMessage }) => {
           <th className='total'>Invoice No</th>
           <th className='total'>Payment Status</th>
           <th className='total'>Completed?</th>
-          <th className='total'>Researcher Name</th>      
+          <th className='total'>Researcher Name</th>   
+          <th className='total'>Time</th>    
           <th className='total'>Actions</th>
         </thead>
         <tbody className='total'>
@@ -52,7 +54,7 @@ const Surveys = ({surveys, users, setErrMessage }) => {
               <td data-label='Payment Status'>{s.status}</td>
               <td data-label='Completed'>{s.status}</td>
               <td data-label='Researcher Name'>{s? s.name : users.find((u) => u.id === s.userId)?.username }</td>
-                    
+              <td data-label='Time'>{moment(s?.timeStamp.toDate()).fromNow()}</td>    
               <td data-label='Actions' onClick={() => deleteSurvey(s.id)}><button>Delete</button></td>
             </tr>
            ))}
