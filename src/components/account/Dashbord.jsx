@@ -83,12 +83,12 @@ const Dashbord = ({
                                         <span>
                                             <h4>Responces</h4>
                                             <div className="dash_h">
-                                            <button onClick={() =>  {setActiveResponce(s); setPage(3)}}>View</button></div>
+                                            <button onClick={() =>  {setActiveResponce(s); setPage(3)}} className='btn'>View</button></div>
                                         </span>
                                         <span>
                                             <h4>Questionnaires</h4>
                                             <div className="dash_h">
-                                            <button onClick={() => setActiveQuestionnaire(s)}>View</button></div>
+                                            <button onClick={() => setActiveQuestionnaire(s)} className='btn'>View</button></div>
                                         </span>
                                     </div> 
                                 </div>

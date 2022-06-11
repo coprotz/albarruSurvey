@@ -86,10 +86,12 @@ const temp_res = responces?.filter((f) => f?.surveyId === activeQuestionnaire?.i
 const next2 = temp_res?.find(v => v?.values?.fEmail === watchValues?.fEmail)
 
 const newSurvey = {
-  title: currentQue?.title || activeQuestionnaire?.title,
-  userId: currentQue?.userId || activeQuestionnaire?.userId,
-  surveyId: currentQue?.id || activeQuestionnaire?.id,
-  values: watchValues
+  title: activeQue?.title || activeQuestionnaire?.title,
+  userId: activeQue?.userId || activeQuestionnaire?.userId,
+  surveyId: activeQue?.id || activeQuestionnaire?.id,
+  values: watchValues,
+  completed: 'true'
+
 }
 
 
@@ -112,7 +114,7 @@ const submitResponce = async(e) => {
           if(activeQuestionnaire){
             setActiveQuestionnaire(null)
             
-          }else if(!activeQuestionnaire){
+          }else {
             navigate('/thanks')
           }
           
@@ -137,7 +139,7 @@ const submitResponce = async(e) => {
       <div className="welcome_input">
         <div className="welcome_action">
           <button type='button' onClick={() => setPage(0)} className='back1'><FaChevronLeft/></button>
-          <small className='main__title'>{currentQue?.title || activeQuestionnaire.title}</small>
+          <small className='main__title'>{activeQue?.title || activeQuestionnaire.title}</small>
         </div>
         <h3  className='pages_title'>{page1.title}</h3>
         <h4 className='pages_description'>{page1.description}</h4>

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { httpsCallable } from 'firebase/functions';
 import { functions } from "../../firebase";
 
-const AddAdmin = () => {
+const AddAdmin = ({users}) => {
 
     const [email, setEmail] = useState();
     const [loading, setLoading] = useState(null)
@@ -26,6 +26,7 @@ const AddAdmin = () => {
     <div className='account_body'>
         <div className="admin_wrapper">
             <h3>Add Admin Role</h3>
+            
             <form action="">
                 <div className="element_single">
                     <h4 className='element_que'>Add Email of a user</h4> 

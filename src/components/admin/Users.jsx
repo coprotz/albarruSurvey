@@ -2,7 +2,7 @@ import React from 'react'
 import { deleteDoc, doc} from "firebase/firestore";
 import { db } from "../../firebase";
 
-const Users = ({users, surveys, setMessageAlert, setErrMessage}) => {
+const Users = ({users, surveys, setMessageAlert, setErrMessage, user}) => {
 
   const deleteUser = async (id) => {
     // e.preventDefault()
@@ -28,6 +28,7 @@ const Users = ({users, surveys, setMessageAlert, setErrMessage}) => {
           <th className='qty'>Name</th>
           <th className='total'>Email</th>
           <th className='total'>No of Surveys</th> 
+          {/* <th className='total'>Type</th>  */}
           <th className='total'>Actions</th>
         </thead>
         <tbody className='total'>
@@ -39,7 +40,7 @@ const Users = ({users, surveys, setMessageAlert, setErrMessage}) => {
                 <td data-label='From' className='tab_column'>{s.username}</td>
                 <td data-label='Email'>{s.email}</td>
                 <td data-label='No of Survey'>{surveys?.filter(su => su?.userId === s.id)?.length}</td>
-              
+                {/* <td data-label='No of Survey'>{}</td> */}
                 <td data-label='Actions' onClick={() => deleteUser(s.id)}><button>Delete</button></td>
               </tr>
             ))}

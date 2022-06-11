@@ -103,6 +103,8 @@ const handleUpdate = (e) => {
   navigate('/settings');
 }
 
+// console.log('user', user)
+
   
   return (
     <div className="topbar">
