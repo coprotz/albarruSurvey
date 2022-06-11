@@ -49,16 +49,16 @@ const SurveyLists = ({
     const [error, setError] = useState(null)
     const [sending, setSending] = useState(null)
     const { url, perc } = useStorage(file)
-    const ft = Questionnaires.map((f) => f.id)
+    // const ft = Questionnaires.map((f) => f.id)
     const types = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword']
    
-    console.log('creat', surveys)
+    // console.log('creat', surveys)
 
-    console.log('user', user.uid)
+    // console.log('user', user.uid)
 
     const uSurveys = surveys.filter((s) => s.userId === user.uid)
 
-    console.log('u',uSurveys)
+    // console.log('u',uSurveys)
 
   
     const selectedFile = (e, id) => {

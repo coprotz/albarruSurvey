@@ -911,12 +911,12 @@ input:invalid[focused='true']{
 
 
 
-.sub_total h6, small{
+.sub_total h6, .small_pdf{
     display: flex;
     justify-content: space-between;
 }
 
-.sub_total small{
+.small_pdf{
     font-size: 9px;
 }
 

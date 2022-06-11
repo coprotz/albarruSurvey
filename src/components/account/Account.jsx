@@ -37,7 +37,7 @@ const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
     const [page, setPage] = useState(0);
 
     // console.log('cu', cuUser)
-    console.log('surveys', surveys)
+    // console.log('surveys', surveys)
 
      
  

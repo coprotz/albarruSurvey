@@ -21,7 +21,7 @@ const Invoice = ({
     surveys
   }) => {
 
-    console.log('surveys', surveys)
+    // console.log('surveys', surveys)
    
   return (
     

@@ -28,12 +28,12 @@
     text-decoration: underline;
 }
 
-.footer_right small{
+.footer_small{
     /* margin: 3px; */
     padding: 0 5px;
 }
 
-.footer_right small:not(:last-of-type){
+.footer_small:not(:last-of-type){
     border-right: 1px solid white;
 }
 

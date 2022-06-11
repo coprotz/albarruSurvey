@@ -92,8 +92,8 @@ const PdfReceipt = ({setViewInvoice, pdfReceipt, user, cuUser, setActive, setPag
                   </table>
                   <div className="sub_total">
                     <h6>SUBTOTAL <span> ${pdfReceipt.totalCost}</span></h6>
-                    <small>Tax <span>00.00</span></small>
-                    <small>Discount <span>00.00</span> </small>
+                    <small className='small_pdf'>Tax <span>00.00</span></small>
+                    <small className='small_pdf'>Discount <span>00.00</span> </small>
                     <div className="gandTotal">
                       <h6>Grand Total <span>${pdfReceipt.totalCost}</span></h6>
                     </div>
