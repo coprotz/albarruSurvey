@@ -12,6 +12,7 @@ import RenderSurvey from './createForm/RenderSurvey';
 import RenderReponces from './createForm/RenderReponces';
 import Loading from '../Loading'
 import PdfReceipt from './PdfReceipt'
+import Billing from '../bills/Billing'
 
 
 const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
@@ -36,7 +37,7 @@ const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
     const [page, setPage] = useState(0);
 
     // console.log('cu', cuUser)
-    // console.log('sub', subscribes)
+    console.log('surveys', surveys)
 
      
  
@@ -85,6 +86,8 @@ const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
         return <RenderSurvey {...props}/>
       }else if(page === 3){
         return <RenderReponces {...props}/>     
+      }else if(page === 4){
+        return <Billing {...props}/>
       }else if(page === 6){
         return <Invoice {...props}/>
       }else if(page === 7){
@@ -145,7 +148,7 @@ const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
           <div className="survey_inner1_top">
                 <div className="inner1_top_left">
                     <span className={`${active === 1? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(0); setActive(1)}}>Home</span>
-                    <span className={`${active === 2? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(1); setActive(2)}}>Surveys</span> 
+                    <span className={`${active === 2? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(1); setActive(2)}}>Questionnaires</span> 
                     <span className={`${active === 3? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(6); setActive(3)}}>Invoices</span>
                     {/* {active === 8 && 
                     <span className={`${active === 8? 'inner1_active_item': 'inner_item '}`} onClick={() => {setPage(8); setActive(8)}}>Receipt</span> 

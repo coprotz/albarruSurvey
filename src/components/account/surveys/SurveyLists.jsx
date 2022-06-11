@@ -48,21 +48,17 @@ const SurveyLists = ({
     const [file, setFile] = useState(null)
     const [error, setError] = useState(null)
     const [sending, setSending] = useState(null)
-
     const { url, perc } = useStorage(file)
-
     const ft = Questionnaires.map((f) => f.id)
-
-    // console.log('filter', ft)
-
-    // console.log('su', surveys)
-
     const types = ['application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/msword']
+   
+    console.log('creat', surveys)
 
-    const tem_sur = userSurveys.find((d) =>{
-      if(ft.includes(d.id)) return d.id
-      
-    })
+    console.log('user', user.uid)
+
+    const uSurveys = surveys.filter((s) => s.userId === user.uid)
+
+    console.log('u',uSurveys)
 
   
     const selectedFile = (e, id) => {
@@ -117,12 +113,7 @@ const SurveyLists = ({
 
     }
 
-    
 
-    // const paid = subscribes?.find((s)=> s.surveyId === "3yn8aqIG37nLvxq3vcyu").status
-
-    // console.log('paid', paid)
-    
   return (
     <motion.div 
         initial={{ y: '-100vw'}}
@@ -130,10 +121,7 @@ const SurveyLists = ({
         transition={{ ease: "easeOut", duration: 0.5 }} 
         className="account_body">
           {userSurveys?.length != '0'?
-          <>
-          {!createSurvey?
-            <>
-            {!viewInvoice?
+         
             <div className="surveys">
                 <div className="survey_top">
                     <div className="survey_top_1">
@@ -146,18 +134,14 @@ const SurveyLists = ({
                 <table className="table">
                     <thead>
                       <th>Title</th>
-                      <th>Questions</th>
-                      {/* <th>Payment Status</th> */}
+                      <th>Questions</th>              
                       <th>Invoice No.</th>
                       <th>Payment Status</th>
                       <th>Actions</th>
                     </thead>
                     <tbody>
                       {userSurveys?.map((item) => (
-                        <tr key={item.id}>
-                        {/* <td>
-                          <button className='billing__btn' onClick={() => {go('5'); setSurvey(item)}}>{item.title}</button>
-                        </td> */}
+                        <tr key={item.id}>                     
                         <td data-label='Title'>{item.title}</td>
                         <td data-label='Questions'>
                           <a href={item.file} target='_blank'>
@@ -180,13 +164,11 @@ const SurveyLists = ({
                                 </div>
                               }
                             </>
-                            // <button className='attach_btn' onClick={() =>handleQues(item.id)}>Attach Questions</button>
+                    
                             }
                           </a>
-                        </td>  
-                        {/* <td data-label='Payment Status'>{item.status}</td>                 */}
-                        <td data-label='Invoice No'><button className='billing__btn' onClick={() => setViewInvoice(item)}>{item.invoiceNo}</button></td>
-                        {/* <td data-label='Status'>{tem_sur?.id == item.id? 'Completed' :  item.status === 'Unpaid'? 'Pending' : 'Processing' }</td> */}
+                        </td>                        
+                        <td data-label='Invoice No'><button className='billing__btn' onClick={() => {setViewInvoice(item); setPage(4); setActive(3)}}>{item.invoiceNo}</button></td>
                         <td data-label='Payment Status'>{subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? 'Paid' : 'Unpaid' }</td>
                         <td data-label='Actions'>
                           {subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? <button onClick={() => {setPdfReceipt(item); setPage(8); setActive(8)}} className='btn'>View Receipt</button>:
@@ -201,32 +183,8 @@ const SurveyLists = ({
                     </tbody>
                   </table>
             </div> 
-            
-            : <Billing 
-                createInvoice={createInvoice} 
-                setCreateInvoices={setCreateInvoices} 
-                cuUser={cuUser}
-                viewInvoice={viewInvoice}
-                setViewInvoice={setViewInvoice}
-                setMessageAlert={setMessageAlert}
-                subscribes={subscribes}
-                setActive={setActive}
-                setPage={setPage}
-                setPdfReceipt={setPdfReceipt}
-            /> 
-            }
-            </>
-            : <CreateSurvey 
-                createSurvey={createSurvey} 
-                setCreateSurvey={setCreateSurvey} 
-                go={go} 
-                cuUser={cuUser}
-                user={user}
-                
-            /> 
-          }
-          </>
-         :
+          
+           :
            <div className="dash_body">
               <div className="dash_body_inner">
                   <div className="inner__1">                    

@@ -77,10 +77,10 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert, subscri
                 <div className="bill_right">
                   <h4>AlBarru Survey Inc.</h4>
                   <h4>Email: info@albarrusurvey.com</h4>
-                  <h4>Mobile Number: +44 8885 8888</h4>
+                  <h4>Whatsapp Number: +44 7723 858243</h4>
 
                 </div>
-                <button className='invoice__btn' onClick={() => setViewInvoice(null)}><AiOutlineClose/></button>
+                <button className='invoice__btn' onClick={() => {setViewInvoice(null); setPage(6); setActive(3)}}><AiOutlineClose/></button>
               </div>
               <div className="bill_body">
                 <div className="bill_body_left">

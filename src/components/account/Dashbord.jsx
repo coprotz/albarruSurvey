@@ -42,7 +42,7 @@ const Dashbord = ({
                 {userQuestionnaires.length > '0' ? 
                     <div className="dash_body">
                         <div className="dash_body_inner">
-                            <h2 className='inner__title_1'>Recent Surveys:</h2>
+                            <h2 className='inner__title_1'>Recent Questionnaires:</h2>
 
                             <div className="recent_surv">
                                 {userQuestionnaires.map((s, index) => (                       
@@ -102,10 +102,10 @@ const Dashbord = ({
                     </div>                    
                     :
                     <div className='no_survey_wrapper'>
-                        <span className='dont_hv'>{surveys.find((u) => u.userId === user.uid)?.status === 'Paid' ? 'Your Survey is processing' : 'No survey created'}</span> 
-                        <div className="no_btn">
+                        <span className='dont_hv'>{surveys.find((u) => u.userId === user.uid)?.status === 'Paid' ? 'Your Questionnaire is processing' : 'You dont have Questionnaire or you have not paid for your survey!'}</span> 
+                        {/* <div className="no_btn">
                             <button className="btn_submit" onClick={() => {setPage(7); setActive(1)}}>Create A Survey</button>
-                        </div>
+                        </div> */}
                     </div>
             
             

@@ -12,15 +12,16 @@ const Invoice = ({
     userSurveys, 
     cuUser, 
     setViewInvoice,
-    viewInvoice,
+    viewInvoice,   
     setMessageAlert,
     subscribes,
     setPage,
     setActive,
-    setPdfReceipt
+    setPdfReceipt,
+    surveys
   }) => {
 
-    // console.log('sub', subscribes)
+    console.log('surveys', surveys)
    
   return (
     
@@ -29,7 +30,7 @@ const Invoice = ({
         animate={{y:0}} 
         transition={{ ease: "easeOut", duration: 0.5 }} 
         className="account_body">
-         {!viewInvoice ? 
+       
          <>
           {userSurveys.length != '0' ?
              <table className="table">
@@ -43,7 +44,7 @@ const Invoice = ({
                   {userSurveys?.map((item) => (
                     <tr key={item.id}>
                     <td data-label='Invoice No'>
-                      <button className='billing__btn' onClick={() => setViewInvoice(item)}>{item.invoiceNo}</button>
+                      <button className='billing__btn' onClick={() => {setViewInvoice(item); setPage(4); setActive(3)}}>{item.invoiceNo}</button>
                     </td>
                     <td data-label='Description'>Questions: {item.questions}, Questionnaires: {item.questionnaires}, Period: {item.period} </td>
                     <td data-label='Amount'>$ {item.totalCost}</td>
@@ -59,17 +60,7 @@ const Invoice = ({
           }
         </>
         
-        : <Billing 
-            setMessageAlert={setMessageAlert}
-            cuUser={cuUser}
-            setViewInvoice={setViewInvoice}
-            viewInvoice={viewInvoice}
-            user={user}
-            subscribes={subscribes}
-            setActive={setActive}
-            setPage={setPage}
-            setPdfReceipt={setPdfReceipt}
-            /> }
+    
         
         
         

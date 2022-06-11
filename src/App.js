@@ -191,7 +191,7 @@ useEffect(() => {
 
 
 
-  // console.log(viewInvoice)
+  console.log('surveys', surveys)
 
 
  
