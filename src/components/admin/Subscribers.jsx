@@ -25,7 +25,7 @@ const Subscribers = ({subscribes, users}) => {
               <td data-label='Survey Id' className='tab_column'>{s.surveyId}</td>    
               <td data-label='UserName'>{s.user}</td>   
               <td data-label='UserName'>{s.userId}</td>             
-              <td data-label='Amount Paid'>{s.paid_amount}</td>
+              <td data-label='Amount Paid'>$ {s.paid_amount}</td>
               <td data-label='Amount Paid'>{moment(s?.time.toDate()).fromNow()}</td>
             </tr>
            ))}
