@@ -2,6 +2,8 @@ import React, {useState, useRef} from 'react'
 import Charts from '../../Charts'
 import Respondents from '../../surveys/Respondents'
 import { useReactToPrint } from 'react-to-print';
+import { GrPrint } from "react-icons/gr";
+import { BiPrinter } from "react-icons/bi";
 
 const Responce2 = ({
     setActiveResponce, 
@@ -69,7 +71,7 @@ const Responce2 = ({
           <button onClick={() => setRespondents(true)} className='btn'>View</button>
         </div>
         <div className="res_upload">         
-            <button className='btn_submit' onClick={ handlePrint }>Print</button>       
+          <button className='get_start res_print' onClick={ handlePrint }><BiPrinter/>Print</button>       
         </div>
         
       </div>

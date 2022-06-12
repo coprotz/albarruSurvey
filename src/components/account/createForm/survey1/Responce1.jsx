@@ -4,6 +4,8 @@ import Respondents from '../../surveys/Respondents'
 // import { jsPDF } from "jspdf";
 // import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import { useReactToPrint } from 'react-to-print';
+import { GrPrint } from "react-icons/gr";
+import { BiPrinter } from "react-icons/bi";
 
 const Responce1 = ({
     setActiveResponce, 
@@ -79,7 +81,7 @@ const Responce1 = ({
           <button onClick={() => setRespondents(true)} className='btn'>View</button>
         </div>
         <div className="res_upload">         
-            <button className='btn_submit' onClick={ handlePrint }>Print</button>       
+            <button className='get_start' onClick={ handlePrint }><BiPrinter/>Print</button>       
         </div>
         
       </div>

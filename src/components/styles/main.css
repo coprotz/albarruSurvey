@@ -447,6 +447,38 @@
     margin: 15px 0;
 }
 
+.work_reg{
+    width: 100%;
+}
+
+.work_reg img{
+    width: 100%;
+}
+
+.dash_works{
+    display: flex;
+    background-color: blue;
+    padding: 30px;
+    gap: 15px;
+    color: white;
+    align-items: center;
+}
+
+.dash_works img{
+    width: 50%;
+}
+
+.res_print{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white !important;
+}
+
+.res_print svg{
+    color: white !important;
+}
+
 
 
 
@@ -548,6 +580,14 @@
   .how_works p{
       padding: 15px;
       /* text-align: justify; */
+  }
+
+  .dash_works{
+      flex-direction: column;
+  }
+
+  .dash_works img{
+      width: 100%;
   }
 }
 
