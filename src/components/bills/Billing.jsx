@@ -27,7 +27,7 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert, subscri
     e.preventDefault();
      setSending(true)
 
-     const stripePromise = loadStripe("pk_test_51L7BhfEk74y2bHhrlDyIuTasaYeh5lQ1HwJ49FOUCbL4KvFsRkNnJWXlmaeakpoPybk1Sox6NdyP4K9XR3DzTwGu007evrqtpi")
+     const stripePromise = loadStripe("pk_live_51L99diIUGiePsCHMuQR3FsvI6eYh5s0iFW7tf8jAgoW1P4p9faTGfpT2xBhBe7incdVtRP6OtdnpRusOWPIaKcXT005OnhgqWG")
      const stripe = await stripePromise;
      const data = {
         payment_method_types: ["card"],

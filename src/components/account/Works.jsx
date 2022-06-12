@@ -6,7 +6,7 @@ import TopBar from '../topbar/TopBar';
 import Register from '../images/register.png'
 import Que from '../images/survey.png'
 import Dash from '../images/achi_dash.png'
-import Result from '../images/responces.png'
+import Result from '../images/dash1.png'
 
 const Works = () => {
   return (
@@ -50,7 +50,7 @@ const Works = () => {
                 
                 <div className="works_body">
                     <h2>Watch your results roll in</h2>
-                    <p>Our system can be easily get the responces from your audience and the results will be presented with nice looking graphical diagrams and also you can easily download to pdf or excel.</p>
+                    <p>Our system can be easily get the responces from your audience and the results will be presented with nice looking graphical diagrams and also you can easily print the responces or save as pdf.</p>
                     <div className="work_reg">
                         <img src={Result} alt='Register' />  
                     </div> 
