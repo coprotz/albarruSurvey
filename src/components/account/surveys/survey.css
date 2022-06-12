@@ -30,7 +30,7 @@
 
 .survey_btn{
     padding: 11px 17px;
-    background: rgba(0, 0, 249, 0.429);
+    background: black;
     border: none;
     font-size: 15px;
     border-radius: 5px;
@@ -1433,19 +1433,22 @@
     display: flex;
     align-items: center;
     gap:15px;
-    margin-top: 7px;
+    /* margin-top: 7px; */
 }
 
 .ndents_wrapper{
     display: flex;
     gap: 10px;
     margin: 10px 0;
+    /* padding: 5px; */
 }
 
 .res_wrapper{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* border: 1px solid red; */
+    padding: 5px;
 }
 
 .res_upload{

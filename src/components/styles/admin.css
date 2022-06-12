@@ -160,6 +160,38 @@
     padding: 10px;
 }
 
+.action_btn{
+    
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.action_btn button{
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+   
+}
+
+.btn_delete{
+    color: red;
+}
+
+.btn_edit{
+    color: goldenrod;
+}
+
+.btn_black{
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 5px 9px;
+    font-size: 14px;
+    border-radius: 3px;
+}
 
 @keyframes success{
     0%{
@@ -207,6 +239,14 @@
 
     .inner1_top_left{
         gap: 0 !important;
+        justify-content: center;
+        margin: 2px auto;
+        /* border: 1px solid red; */
+    }
+
+    .action_btn{
+    
+        justify-content: flex-end;
     }
    
 }

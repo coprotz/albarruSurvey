@@ -55,7 +55,7 @@ const Dashbord = ({
                                     <div className="dash_span">                                   
                                      
                                         <span>
-                                            <h4>Completed</h4>
+                                            <h4>Completed Respondents</h4>
                                             <div className="dash_h">
                                                  <h5>{completed? completed.length : '0'}</h5>
                                             </div>                                           

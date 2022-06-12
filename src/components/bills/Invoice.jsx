@@ -39,6 +39,7 @@ const Invoice = ({
                   <th>Description</th>
                   <th>Amount</th>
                   <th>Status</th>
+                  <th>Action</th>
                 </thead>
                 <tbody>
                   {userSurveys?.map((item) => (
@@ -49,6 +50,14 @@ const Invoice = ({
                     <td data-label='Description'>Questions: {item.questions}, Questionnaires: {item.questionnaires}, Period: {item.period} </td>
                     <td data-label='Amount'>$ {item.totalCost}</td>
                     <td data-label='Status'>{subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? 'Paid' : 'Unpaid' }</td>
+                    <td data-label='Action'>
+                      {subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? 
+                      <button className='btn' onClick={() => {setPdfReceipt(viewInvoice); setPage(8); setActive(8)}}>View Receipt</button>
+                      : 
+                      <button className='btn_black' onClick={() => {setViewInvoice(item); setPage(4); setActive(3)}}>Pay a Bill</button> 
+                      }
+                      
+                    </td>
                   </tr>
                   ))}
                   

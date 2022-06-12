@@ -113,12 +113,12 @@ const Contact = () => {
         <div className="contact_middle">
           <h1>GET IN TOUCH</h1>
           <h4>Hey! We are looking forward to get your message..</h4>
-          <div className="social_icons">
+          {/* <div className="social_icons">
             <span><FaFacebookF/></span>
             <span><FaYoutube/></span>
             <span><FaTwitter/></span>
             <span><FaInstagram/></span>
-          </div>
+          </div> */}
         </div>
         <motion.div initial={{ y: '-100vh'}}
         animate={{y:0}} className="contact_bottom">

@@ -25,15 +25,14 @@ const Settings = ({users, user}) => {
     const {currentUser} = useContext(AuthContext)
     const cuUser = users?.find((u) => u?.id === user?.uid)
 
-    const [firstname, setFname] = useState(cuUser?.firstname)
-    const [lastname, setLname] = useState(cuUser?.lastname)
+    const [username, setUsername] = useState(cuUser?.username)
     const [email, setEmail] = useState(cuUser?.email)
     const [password, setPassword] = useState(cuUser?.password)
     const [sending, setSending] = useState(null)
 
     
 
-    console.log('user',cuUser)
+    // console.log('user',cuUser)
 
     const updateUser = async(e) => {
         e.preventDefault();
@@ -41,8 +40,7 @@ const Settings = ({users, user}) => {
         setSending(true)
 
         const data = {            
-            firstname: firstname, 
-            lastname: lastname,
+            username: username,          
             email: email,
             password: password,            
                 
@@ -74,35 +72,18 @@ const Settings = ({users, user}) => {
       </div>
       <div className="define">
         <div className="group_define2">
-            <label htmlFor="">FIRSTNAME</label>
+            <label htmlFor="">USERNAME</label>
             <input 
                 type="text"                         
-                name='fname'
+                name='username'
                 className='group_input' 
-                value={firstname} 
-                onChange={(e) => setFname(e.target.value)}
-                       
-                        // value={name}
-                        // onChange={setForm}
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)}
             />
           
                             
         </div>
-        <div className="group_define2">
-            <label htmlFor="">LASTNAME</label>
-            <input 
-                type="text"                         
-                name='lname'
-                className='group_input' 
-                value={lastname} 
-                onChange={(e) => setLname(e.target.value)} 
-                       
-                        // value={name}
-                        // onChange={setForm}
-            />
-          
-                            
-        </div>
+      
         <div className="group_define2">
             <label htmlFor="">EMAIL</label>
             <input 

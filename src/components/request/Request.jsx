@@ -208,7 +208,7 @@ const Request = () => {
             </div> 
             <div className="google">
                 <h3>OR</h3>
-                <button onClick={signWithGoogle}><FcGoogle/>Sign In with Google</button>
+                <button onClick={signWithGoogle}><FcGoogle/>Sign Up with Google</button>
             </div> 
             
             

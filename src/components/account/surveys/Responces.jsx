@@ -12,12 +12,15 @@ const Responces = ({
     s
 }) => {
 
-    const userResponces = responces?.filter((q) => q?.userId === activeResponce?.userId)
+    const userResponces = responces?.filter((q) => q?.surveyId === activeResponce?.id)
 
  
-    const values = userResponces?.map((s) => s.values)
+    const values = activeResponce.map((s) => s.values)
 
-    // console.log('values', values)
+    console.log('activeRes', activeResponce)
+    console.log('Res1', responces)
+
+    console.log('values', values)
 
     // const name = values.map(item => item.fname)
     // const email = values.map(item => item.fEmail)
@@ -65,7 +68,7 @@ const Responces = ({
       <div className='res_wrapper'>
         <div className="res_number">
           <h4>Total Respondents: {userResponces.length}</h4>
-          <button onClick={() => setRespondents(true)}>View</button>
+          <button onClick={() => setRespondents(true)} className='btn'>View</button>
         </div>
         <div className="res_upload">
           <h4>Export file as Excell:</h4>
@@ -98,7 +101,7 @@ const Responces = ({
           </div>
           <div className="analysis_card">
             <h4>Reasons why not registered with Taneps</h4>
-            <Charts series={[dont,nt_ready, no_reason]} labels={['Do not know', 'Not ready', 'No genuine reason']}/>
+            <Charts series={[dont,nt_ready, no_reason]} labels={['Do not know', 'Not ready', 'No reason']}/>
           </div>
         </div>
         </>

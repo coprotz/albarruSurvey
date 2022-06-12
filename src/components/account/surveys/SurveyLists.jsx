@@ -5,6 +5,8 @@ import { deleteDoc, doc, serverTimestamp, updateDoc,} from "firebase/firestore";
 import { db } from "../../../firebase";
 import { useState } from 'react'
 import useStorage from '../../../hook/useStorage';
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { BiEdit } from "react-icons/bi";
 
 
 
@@ -118,12 +120,12 @@ const SurveyLists = ({
                     <tbody>
                       {uSurveys?.map((item) => (
                         <tr key={item.id}>                     
-                        <td data-label='Title'>{item.title}</td>
+                        <td data-label='Title' className='tab_column'>{item.title}</td>
                         <td data-label='Questions'>
                           <a href={item.file} target='_blank'>
                             {item.file? 
                             
-                            'View Questions' 
+                            'Questions' 
                             : 
                             <>
                               {url!== null? <span onClick={() => handleQues(item.id)} className='attach_que'>Attach Now</span>:
@@ -148,10 +150,10 @@ const SurveyLists = ({
                         <td data-label='Payment Status'>{subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? 'Paid' : 'Unpaid' }</td>
                         <td data-label='Actions'>
                           {subscribes?.find((s)=> s.surveyId === item.id)?.status ==='paid'? <button onClick={() => {setPdfReceipt(item); setPage(8); setActive(8)}} className='btn'>View Receipt</button>:
-                          <>
-                          <button onClick={() => setCreateSurvey(item)}>Update</button>
-                          <button onClick={() => deleteSurvey(item.id)}>Delete</button>
-                          </>}
+                          <div className='action_btn'>
+                          <button onClick={() => {setCreateSurvey(item); setPage(7); setActive(1)}} className='btn_edit'><BiEdit/></button>
+                          <button onClick={() => deleteSurvey(item.id)} className='btn_delete'><RiDeleteBin5Line/></button>
+                          </div>}
                         </td>
                       </tr>
                       ))}

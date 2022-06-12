@@ -119,9 +119,11 @@ const Billing = ({cuUser,  viewInvoice, setViewInvoice, setMessageAlert, subscri
                          <button className='btn' onClick={() => {setPdfReceipt(viewInvoice); setPage(8); setActive(8)}}>View Receipt</button>
                       </div>
                      
-                      :                   
-                      <button className='btn_submit' onClick={handlePay}>{sending? 'Open Secured Payment Gateway...' : 'Pay a Bill'}</button> 
-                      }
+                      :
+                      <>
+                      {sending? 'Please wait, connecting to the secured gateway...':  <button className='btn_submit' onClick={handlePay}>Pay Now</button> }                   
+                     
+                      </>}
                     </div>
                     
                 </div>

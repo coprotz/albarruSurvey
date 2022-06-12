@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import Charts from '../../Charts'
 import Respondents from '../../surveys/Respondents'
+import { useReactToPrint } from 'react-to-print';
 
 const Responce2 = ({
     setActiveResponce, 
@@ -13,7 +14,7 @@ const Responce2 = ({
     s
 }) => {
 
-    const userResponces = responces?.filter((q) => q?.userId === activeResponce?.userId)
+    const userResponces = responces?.filter((q) => q?.surveyId === activeResponce?.id)
 
     console.log('res', responces)
 
@@ -51,7 +52,10 @@ const Responce2 = ({
     const unemployee = values.filter(item => item.job === 'unemployee').length
  
 
-
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+    });
 
   return (
     <div className="account_body">
@@ -62,16 +66,15 @@ const Responce2 = ({
       <div className='res_wrapper'>
         <div className="res_number">
           <h4>Total Respondents: {userResponces.length}</h4>
-          <button onClick={() => setRespondents(true)}>View</button>
+          <button onClick={() => setRespondents(true)} className='btn'>View</button>
         </div>
-        <div className="res_upload">
-          <h4>Export file as Excell:</h4>
-          <button onClick={() => alert('Haaaaa... umbea tu bado...')}>Upload</button>
+        <div className="res_upload">         
+            <button className='btn_submit' onClick={ handlePrint }>Print</button>       
         </div>
         
       </div>
       
-      <div className="analysis">
+      <div className="analysis" ref={componentRef}>
           <div className="analysis_card">
               
             <h4>Age</h4>

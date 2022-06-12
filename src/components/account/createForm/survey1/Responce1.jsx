@@ -1,6 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import Charts from '../../../account/Charts'
 import Respondents from '../../surveys/Respondents'
+// import { jsPDF } from "jspdf";
+// import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
+import { useReactToPrint } from 'react-to-print';
 
 const Responce1 = ({
     setActiveResponce, 
@@ -13,11 +16,12 @@ const Responce1 = ({
     s
 }) => {
 
-    const userResponces = responces?.filter((q) => q?.userId === activeResponce?.userId)
+    const userResponces = responces?.filter((q) => q?.surveyId === activeResponce?.id)
 
     console.log('res', responces)
 
     console.log('activeRes', activeResponce)
+    console.log('userRes', userResponces)
 
     const values = userResponces?.map((s) => s.values)
 
@@ -47,7 +51,21 @@ const Responce1 = ({
     const nt_ready = values.filter(item => item.whyNo === 'not_ready').length
     const no_reason = values.filter(item => item.whyNo === 'no_reason').length
 
+    // const generatePdf = () => {
+    //   const doc = new jsPDF("l", "pt", "a4");
+    //   doc.html(document.querySelector("#pdfResponces"), {
+    //     callback: function(pdf){
+    //       const pageCount = doc.internal.getNumberOfPages();
+    //       pdf.deletePage(pageCount)
+    //       pdf.save("maydoc.pdf")
+    //     }
+    //   })
+    // }
 
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+    });
 
   return (
     <div className="account_body">
@@ -58,16 +76,15 @@ const Responce1 = ({
       <div className='res_wrapper'>
         <div className="res_number">
           <h4>Total Respondents: {userResponces.length}</h4>
-          <button onClick={() => setRespondents(true)}>View</button>
+          <button onClick={() => setRespondents(true)} className='btn'>View</button>
         </div>
-        <div className="res_upload">
-          <h4>Export file as Excell:</h4>
-          <button onClick={() => alert('Haaaaa... umbea tu bado...')}>Upload</button>
+        <div className="res_upload">         
+            <button className='btn_submit' onClick={ handlePrint }>Print</button>       
         </div>
         
       </div>
       
-      <div className="analysis">
+      <div className="analysis" id='pdfResponces' ref={componentRef}>
           <div className="analysis_card">
               
             <h4>Firm's years Experience</h4>
@@ -83,15 +100,15 @@ const Responce1 = ({
           </div>
           <div className="analysis_card">
             <h4>Consultants</h4>
-            <Charts series={[arch,qs, eng]} labels={['Architect', 'Quantity Surveying', 'Engineering']}/>
+            <Charts series={[arch,qs, eng]} labels={['Architect', 'QS', 'Engineering']}/>
           </div>
           <div className="analysis_card">
             <h4>Registered with TANEPS</h4>
-            <Charts series={[yesTan,noTan]} labels={['Yes', 'No']}/>
+            <Charts series={[yesTan,noTan]} labels={['Yes Registered', 'No']}/>
           </div>
           <div className="analysis_card">
             <h4>Reasons why not registered with Taneps</h4>
-            <Charts series={[dont,nt_ready, no_reason]} labels={['Do not know', 'Not ready', 'No genuine reason']}/>
+            <Charts series={[dont,nt_ready, no_reason]} labels={['Do not know', 'Not ready', 'No Reason']}/>
           </div>
         </div>
         </>
