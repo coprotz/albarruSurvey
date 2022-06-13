@@ -41,7 +41,8 @@ const RenderSurvey = ({activeQuestionnaire, share,setShare,setActiveQuestionnair
                         responces={responces}
                         Questionnaires={Questionnaires}
                         activeQue={activeQue}
-                        currentQue={currentQue}
+                        currentQue={currentQue}                     
+                        user={user}
                     />
                 )
         // case '3':

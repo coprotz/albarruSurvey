@@ -39,6 +39,7 @@ function App() {
   const [terms, setTerms] = useState([])
   const [privacy, setPrivacy] = useState([])
   const [subscribes, setSubscribes] = useState([])
+  const [views, setViews] = useState([])
   const { user } = useUserAuth();
 
   const term = terms?.find((u) => u.id)
@@ -58,6 +59,29 @@ function App() {
           list.push({ id: doc.id, ...doc.data() });
         });
         setUsers(list)
+        // console.log(list)
+      },
+      (error) => {
+        console.log(error)
+      }  
+    );
+    
+    return () => {
+        unsub();
+  }
+  
+  },[]);
+
+  useEffect(() => {
+
+    const unsub = onSnapshot(
+      collection(db, "views"),
+      (snapShot) => {
+        let list = [];
+        snapShot.docs.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setViews(list)
         // console.log(list)
       },
       (error) => {
@@ -219,6 +243,7 @@ useEffect(() => {
                         responces={responces}
                         setSurveys={setSurveys}
                         subscribes={subscribes}
+                        views={views}
                         // viewInvoice={viewInvoice}
                         // setViewInvoice={setViewInvoice}
                         // setUsers={setUsers}
@@ -260,6 +285,7 @@ useEffect(() => {
                       setResponces={setResponces}
                       subscribes={subscribes}
                       user={user}
+                      views={views}
                     />
                     </RequireAuth>
                     } />  

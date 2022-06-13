@@ -17,6 +17,7 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
     });
 });
 
+
 exports.createStripeCheckout = functions.https.onCall(async (data, context) => {
     const stripe = require("stripe")(functions.config().stripe.secret_key);
     const session = await stripe.checkout.sessions.create(data);
@@ -30,6 +31,7 @@ const createNotification = ((notification) => {
         .add(notification)
         .then((doc) => console.log("notification added", doc));
 });
+
 
 exports.stripeWebhook = functions.https.onRequest(async (req, res) => {
     const stripe = require("stripe")(functions.config().stripe.token);
@@ -74,6 +76,7 @@ exports.createSurvey = functions.firestore
 
     return createNotification(notification);
 });
+
 
 exports.paidBill = functions.firestore
     .document("subscriptions/{id}").onCreate((doc) => {

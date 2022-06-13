@@ -15,7 +15,7 @@ import PdfReceipt from './PdfReceipt'
 import Billing from '../bills/Billing'
 
 
-const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
+const Account = ({responces, users, surveys, setSurveys, user, subscribes, views}) => {
 
     const [activeSurvey, setActiveSurvey] = useState(false)
     const [activeQuestionnaire, setActiveQuestionnaire] = useState(null)
@@ -48,6 +48,7 @@ const Account = ({responces, users, surveys, setSurveys, user, subscribes}) => {
       userInvoices, 
       cuUser, users, 
       invoices, 
+      views,
       setInvoices, 
       // setForm, 
       // formData, 

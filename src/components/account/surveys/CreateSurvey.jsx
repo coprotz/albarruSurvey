@@ -282,7 +282,7 @@ const CreateSurvey = ({ createSurvey, setCreateSurvey, setActive, setMessageAler
                           <div className="file_input">                
                               <label 
                                   htmlFor="file" 
-                                  className='file_label'><IoIosAttach/>Attach Questions</label>
+                                  className='file_label'><IoIosAttach/>Attach Questions(only doc or docx accepts)</label>
                               <input 
                                   type="file"
                                   id='file'

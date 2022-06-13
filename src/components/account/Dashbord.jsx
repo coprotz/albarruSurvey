@@ -14,7 +14,8 @@ const Dashbord = ({
     responces,
     setActive,
     setActiveResponce, 
-    surveys
+    surveys,
+    views
 }) => {
 
    
@@ -24,6 +25,12 @@ const Dashbord = ({
         const currentQue = userQuestionnaires.find((u) => u.type)
         const completed = userResponces.filter((u) => u.completed === 'true')  
         const [share, setShare] = useState(null)
+        const userViews = views.filter((v) => v.surveyId === currentQue?.id)
+
+        // console.log('userViews', userViews)
+        // console.log('userRes', userResponces)
+        // console.log('currentQue', currentQue)
+        // console.log('activeQuestionanaire', activeQuestionnaire)
 
 
         
@@ -54,6 +61,12 @@ const Dashbord = ({
                                     </div> 
                                     <div className="dash_span">                                   
                                      
+                                        <span>
+                                            <h4>Opened</h4>
+                                            <div className="dash_h">
+                                                 <h5>{userViews? userViews.length : '0'}</h5>
+                                            </div>                                           
+                                        </span>
                                         <span>
                                             <h4>Completed Respondents</h4>
                                             <div className="dash_h">
@@ -88,7 +101,7 @@ const Dashbord = ({
                                         <span>
                                             <h4>Questionnaires</h4>
                                             <div className="dash_h">
-                                            <button onClick={() => setActiveQuestionnaire(s)} className='btn'>View</button></div>
+                                            <button onClick={() => {setActiveQuestionnaire(s)}} className='btn'>View</button></div>
                                         </span>
                                     </div> 
                                 </div>

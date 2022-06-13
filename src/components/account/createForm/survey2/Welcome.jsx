@@ -1,12 +1,51 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {motion} from 'framer-motion'
 // import RenderFields from '../../../elements/RenderFields'
 // import { SurveyContext } from '../../../../contexts/SurveyContext';
 // import { useContext } from 'react';
 import Share from '../../Share'
+import { serverTimestamp, addDoc, collection } from 'firebase/firestore'
+import { db } from '../../../../firebase';
+import { async } from '@firebase/util';
 
 const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, setActiveQuestionnaire, setPage, user, currentQue}) => {
 
+  // console.log('user', user)
+
+  const [sending, setSending] = useState(null)
+
+  const surveyId = activeQue?.id || activeQuestionnaire?.id
+
+  console.log('surid', surveyId)
+
+  const handleNext =  async(e) => {
+    e.preventDefault()
+    setSending(true)
+
+    // setPage(1)
+    if(activeQue){
+      try {
+
+        addDoc(collection(db, "views"), {
+          surveyId:surveyId,
+          timeStamp: serverTimestamp()
+  
+        })
+        setSending(null)
+         setPage(1)
+        
+      } catch (error) {
+        console.log(error)
+      }
+    }else{
+      setPage(1)
+    }
+        
+   
+    
+
+
+  }
 
   return (
     <motion.div 
@@ -32,7 +71,7 @@ const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, set
           <div className="welcome">
                 <h2>{activeQue?.description || activeQuestionnaire?.description}</h2>
           </div>
-          <button className='get_start' onClick={() => {setPage(1)}}>Get Started</button>
+          <button className='get_start' onClick={ handleNext} type='submit'>{sending? 'Waiting...' : 'Get Started'}</button>
         </div>
   </motion.div>
   )
