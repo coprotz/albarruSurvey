@@ -40,10 +40,6 @@ const Welcome = ({go, next, activeQue, activeQuestionnaire, share, setShare, set
     }else{
       setPage(1)
     }
-        
-   
-    
-
 
   }
 

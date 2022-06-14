@@ -8,6 +8,7 @@ import { MdOutlinePayment } from "react-icons/md";
 import { VscFiles } from "react-icons/vsc";
 import TopBar from './topbar/TopBar';
 import Footer from './footer/Footer';
+import { BiAddToQueue } from "react-icons/bi";
 
 const Home = () => {
 
@@ -33,7 +34,7 @@ const Home = () => {
       </motion.div>
 
      <div className="how_it_works">
-        <h1 className='how_title'>How it works?</h1>
+        <h1 className='how_title'>How it goes?</h1>
         <div className="how_inner">
           {/* <div className="work">
             <FiUsers/>
@@ -45,7 +46,7 @@ const Home = () => {
             <h2>Create an account</h2>
           </div>
           <div className="work">
-            <FiUsers/>
+            <BiAddToQueue/>
             <h2>Create a Survey</h2>
           </div>
           <div className="work">

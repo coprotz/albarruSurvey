@@ -113,7 +113,7 @@ const handleUpdate = (e) => {
           <div className="logo">
             <Link to='/'><img src={Logo} alt='ALBARRU'></img></Link>
           </div>
-           <Link to='/works'><button className='top_btn'>How it works</button></Link> 
+           <Link to='/works'><button className='top_btn'>How it goes</button></Link> 
            <Link to='/pricing'><button className='top_btn'>Pricing</button></Link> 
         </div>
         <div className="top_right"> 

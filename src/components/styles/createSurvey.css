@@ -9,6 +9,7 @@
     position: sticky;
     top: 15px;
     background: #e4e4ff;
+    z-index: 500;
     
 }
 

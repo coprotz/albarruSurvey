@@ -44,13 +44,15 @@ const Pricing = () => {
     
 
     // const [formData, setForm] = useForm(defaultData)
-    const [questionnaires, setQuestionnaires] = useState('100')
+    const [questionnaires, setQuestionnaires] = useState(100)
     const [questions, setQuestions] = useState(0.05)
     const [period, setPeriod] = useState(1)
 
     const qns = ques?.find((q) => q?.id === questions)  
     const time = periods?.find((p) => p?.id === period) 
-    const totalCost = (questionnaires * 2 * qns?.value * time?.value).toLocaleString(undefined, {minimumFractionDigits:2})
+    const totalCost = (questionnaires * 2 * questions * period).toLocaleString(undefined, {minimumFractionDigits:2})
+
+    console.log('tot', totalCost)
 
     // const {questionnaires, questions, periods} = formData
 
@@ -96,16 +98,16 @@ const Pricing = () => {
                                     onChange={(e) => setQuestions(e.target.value)}
                                 >
                                     {/* <option value="">--Select</option> */}
-                                    <option value="1 - 5 questions">1 - 5 questions</option>
-                                      <option value="6 - 10 questions">6 - 10 questions</option>
-                                      <option value="11 - 15 questions">11 - 15 questions</option>
-                                      <option value="16 - 20 questions">16- 20 questions</option>
-                                      <option value="21 - 25 questions">21 - 25 questions</option>
-                                      <option value="26 - 30 questions">26 - 30 questions</option>
-                                      <option value="31 - 35 questions">31 - 35 questions</option>
-                                      <option value="36 - 40 questions">36 - 40 questions</option>
-                                      <option value="41 - 45 questions">41 - 45 questions</option>
-                                      <option value="46 - 50 questions">46 - 50 questions</option>                        
+                                    <option value={0.05} >1 - 5 questions</option>
+                                      <option value={0.07}>6 - 10 questions</option>
+                                      <option value={0.09}>11 - 15 questions</option>
+                                      <option value={0.11}>16- 20 questions</option>
+                                      <option value={0.13}>21 - 25 questions</option>
+                                      <option value={0.15}>26 - 30 questions</option>
+                                      <option value={0.17}>31 - 35 questions</option>
+                                      <option value={0.19}>36 - 40 questions</option>
+                                      <option value={0.21}>41 - 45 questions</option>
+                                      <option value={0.23}>46 - 50 questions</option>                        
                                 </select>
                             </div>
                             
@@ -119,10 +121,10 @@ const Pricing = () => {
                                     value={period}
                                     onChange={(e) => setPeriod(e.target.value)}                                >
                                     {/* <option value="">--Select</option> */}
-                                    <option value="1 - 3 months">1 - 3 months</option>
-                                      <option value="4 - 6 months">4 - 6 months</option>
-                                      <option value="7 - 9 months">7 - 9 months</option>
-                                      <option value="10 - 12 months">10 - 12 months</option>                                                           
+                                        <option value={1}>1 - 3 months</option>
+                                        <option value={1.5}>4 - 6 months</option>
+                                        <option value={2}>7 - 9 months</option>
+                                        <option value={2.5}>10 - 12 months</option>                                                           
                                 </select>
                             </div>
                         </div>
